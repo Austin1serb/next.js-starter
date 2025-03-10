@@ -1,7 +1,9 @@
 {
   "workbench.colorCustomizations": {
-    "activityBar.background": "#9b313d",
-    "titleBar.activeBackground": "#e04d61",
+    "activityBar.background": "#27815f",
+    "activityBar.inactiveForeground": "#a9a9a9",
+    "activityBar.foreground": "#fdfdfd",
+    "titleBar.activeBackground": "#46b074",
     "titleBar.activeForeground": "#FBFBFE",
     "tab.activeBackground": "#232635",
     "tab.hoverBackground": "#2d3144",
@@ -12,7 +14,5 @@
     "list.inactiveSelectionBackground": "#0f74e083",
     "list.hoverBackground": "#0f74e0d8"
   },
-  "cSpell.words": [
-    "Teleperformance"
-  ]
+  "typescript.tsdk": "node_modules/typescript/lib",
 }

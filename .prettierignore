@@ -6,3 +6,4 @@ out
 .vscode
 .venv
 *.mdx
+.husky

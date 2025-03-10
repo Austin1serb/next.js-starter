@@ -19,12 +19,11 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.title}`,
   },
   description: siteConfig.description,
-  openGraph: {
-    title: siteConfig.title,
-    description: siteConfig.description,
-    url: siteConfig.url,
-    images: [{ url: siteConfig.ogImage }],
-  },
+  // openGraph: {
+  //   title: siteConfig.title,
+  //   description: siteConfig.description,
+  //   url: siteConfig.url,
+  // },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.title,
