@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
-};
+}
 
 export default function RootLayout({
   children,

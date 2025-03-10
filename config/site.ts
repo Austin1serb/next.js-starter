@@ -5,4 +5,4 @@ export const siteConfig = {
   siteName: "My Next.js Starter",
   ogImage: "/og-image.png",
   keywords: ["Next.js", "Tailwind CSS", "SEO", "TypeScript"],
-};
+}
