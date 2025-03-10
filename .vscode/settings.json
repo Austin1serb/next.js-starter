@@ -1,0 +1,18 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#9b313d",
+    "titleBar.activeBackground": "#e04d61",
+    "titleBar.activeForeground": "#FBFBFE",
+    "tab.activeBackground": "#232635",
+    "tab.hoverBackground": "#2d3144",
+    "editorIndentGuide.activeBackground1": "#95ff00",
+    "editorUnnecessaryCode.border": "#ff0000",
+    "list.activeSelectionBackground": "#0f74e098",
+    "list.activeSelectionForeground": "#ffffff",
+    "list.inactiveSelectionBackground": "#0f74e083",
+    "list.hoverBackground": "#0f74e0d8"
+  },
+  "cSpell.words": [
+    "Teleperformance"
+  ]
+}
