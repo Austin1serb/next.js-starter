@@ -14,7 +14,9 @@ export const siteNAP = {
   contactTitle: "CEO",
   email: "example@gmail.com",
   phone: "+1123456789",
+  formattedPhone: "+1 (123) 456-789",
   address: "123 Street",
+  addressLink: "https://goo.gl/maps/youraddress", // Update with the actual Google Maps link
   city: "City",
   state: "State",
   zipCode: "12345",

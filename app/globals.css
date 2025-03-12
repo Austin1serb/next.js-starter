@@ -12,12 +12,16 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
   --color-foreground: var(--foreground);
+  --color-foreground-alt: var(--foreground-alt);
 }
 
 :root {
   --background: oklch(0.145 0 0);
+  --background-alt: oklch(1 0 0);
   --foreground: oklch(1 0 0);
+  --foreground-alt: oklch(0.145 0 0);
 }
 
 .dark {
@@ -26,11 +30,11 @@
 }
 
 @layer base {
-  * {
+  /* * {
     @apply bg-background;
-  }
+  } */
   body {
-    @apply text-foreground;
+    @apply text-foreground bg-background;
   }
 }
 
