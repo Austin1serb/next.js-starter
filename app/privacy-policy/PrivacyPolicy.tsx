@@ -1,3 +1,6 @@
+import { siteNAP } from "@/config/site"
+import type { Metadata } from "next"
+
 interface PrivacyProps {
   accentColor: string
   fullCompanyName: string
@@ -8,6 +11,13 @@ interface PrivacyProps {
     phone: string
     email: string
   }
+}
+
+export const metadata: Metadata = {
+  title: `Privacy Policy | ${siteNAP.name}`,
+  description:
+    "We value your privacy. Please read this Privacy Policy carefully before using the Website operated by us as this Privacy Policy contains important information regarding your privacy and how we may use the information we collect about you.",
+  keywords: "privacy policy, privacy, policy, data protection, data privacy, data security",
 }
 export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fullWebAddress, contact }) => {
   return (

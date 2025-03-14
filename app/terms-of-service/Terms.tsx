@@ -1,3 +1,6 @@
+import { siteNAP } from "@/config/site"
+import type { Metadata } from "next"
+
 interface PrivacyProps {
   accentColor: string
   fullCompanyName: string
@@ -11,6 +14,11 @@ interface PrivacyProps {
 }
 const year = new Date().getFullYear()
 
+export const metadata: Metadata = {
+  title: `Terms of Service | ${siteNAP.name}`,
+  description: `Read our Terms of Service to learn about the rules and regulations for accessing and using the ${siteNAP.name} website.`,
+  keywords: ["terms of service", "terms and conditions"],
+}
 export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fullWebAddress, contact }) => {
   return (
     <main className="relative mx-auto -mt-5 bg-white px-10 pt-20 pb-20 md:px-20">
