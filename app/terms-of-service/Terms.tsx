@@ -1,4 +1,4 @@
-import { siteNAP } from "@/config/site"
+import { siteConfig, siteNAP } from "@/config/siteConfig"
 import type { Metadata } from "next"
 
 interface PrivacyProps {
@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: `Terms of Service | ${siteNAP.name}`,
   description: `Read our Terms of Service to learn about the rules and regulations for accessing and using the ${siteNAP.name} website.`,
   keywords: ["terms of service", "terms and conditions"],
+  alternates: {
+    canonical: `${siteConfig.url}/terms-of-service`,
+  },
 }
 export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fullWebAddress, contact }) => {
   return (

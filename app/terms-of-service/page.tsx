@@ -1,4 +1,4 @@
-import { siteNAP, siteConfig } from "@/config/site"
+import { siteNAP, siteConfig } from "@/config/siteConfig"
 import { Terms } from "./Terms"
 
 const page: React.FC = () => {

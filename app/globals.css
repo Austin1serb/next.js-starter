@@ -38,11 +38,14 @@
   }
 }
 
-@layer utilities {
+@layer base {
   .flex-center {
     @apply flex items-center justify-center;
   }
   .screen {
     @apply h-screen w-screen;
+  }
+  .icon-display {
+    @apply relative h-10 w-10 duration-300 will-change-transform hover:scale-110;
   }
 }

@@ -1,4 +1,4 @@
-import { siteConfig, siteNAP } from "@/config/site"
+import { siteConfig, siteNAP } from "@/config/siteConfig"
 import { Privacy } from "./PrivacyPolicy"
 const Page: React.FC = () => {
   return (

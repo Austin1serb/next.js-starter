@@ -1,5 +1,5 @@
 import type { LocalBusiness, WithContext } from "schema-dts"
-import { siteConfig, siteNAP } from "./site"
+import { siteConfig, siteNAP } from "./siteConfig"
 
 export const localBusinessSchema: WithContext<LocalBusiness> = {
   "@context": "https://schema.org",
@@ -34,5 +34,5 @@ export const localBusinessSchema: WithContext<LocalBusiness> = {
     },
     { "@type": "OpeningHoursSpecification", dayOfWeek: ["Friday"], opens: "08:00", closes: "14:00" },
   ],
-  sameAs: Object.values(siteNAP.socialMedia),
+  sameAs: Object.values(siteNAP.profiles),
 }

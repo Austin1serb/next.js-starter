@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { HamburgerIcon } from "./HamburgerIcon"
 import clsx from "clsx"
+import { siteNAP, siteSlugs } from "@/config/siteConfig"
 
 export const MobileMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -33,14 +34,14 @@ export const MobileMenu: React.FC = () => {
           <Link href="/" className="link block p-5" onClick={() => setIsOpen(false)} role="menuitem">
             Home
           </Link>
-          <Link href="/car-repair-services-kirkland" className="p-5" onClick={() => setIsOpen(false)} role="menuitem">
+          <Link href={siteSlugs.services} className="p-5" onClick={() => setIsOpen(false)} role="menuitem">
             Services
           </Link>
-          <Link href="/contact-auto-care-kirkland" className="p-5" onClick={() => setIsOpen(false)} role="menuitem">
+          <Link href={siteSlugs.contact} className="p-5" onClick={() => setIsOpen(false)} role="menuitem">
             Contact
           </Link>
           <div className="mx-auto p-5">
-            <Link className="bg-blue-500 p-2" href="tel:+14258231881">
+            <Link className="bg-blue-500 p-2" href={`tel:${siteNAP.phone}`}>
               Schedule Now
             </Link>
           </div>
