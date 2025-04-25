@@ -6,17 +6,16 @@ on:
   pull_request:
     branches: [main, master]
 
-# Auto-cancel older runs on the same branch / PR
 concurrency:
   group: test-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   test:
-    runs-on: ubuntu-22.04 # pin image for consistent native binaries
+    runs-on: ubuntu-22.04
     timeout-minutes: 60
     env:
-      NEXT_TELEMETRY_DISABLED: "1" # silence Next.js telemetry banner
+      NEXT_TELEMETRY_DISABLED: "1"
 
     steps:
       - uses: actions/checkout@v4
@@ -24,24 +23,31 @@ jobs:
       # Node + built-in npm cache
       - uses: actions/setup-node@v4
         with:
-          node-version: 20 # Playwright ≥1.44 requires ≥18
+          node-version: 20 # explicit ≥18
           cache: npm
 
       - name: Install dependencies
         run: npm ci --prefer-offline --no-audit --progress=false
 
-      # Cache Playwright’s browser bundle (~100 MB)
-      - name: Cache Playwright browsers
+      # ── Playwright browsers cache ────────────────────────────────────────
+      - name: Restore Playwright browsers cache
         id: pw-cache
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-pw-1 # bump the number when Playwright major changes
+          key: ${{ runner.os }}-pw-1 # bump “1” when Playwright major version changes
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      # ── Next.js build cache ────────────────────────────────────────────────
+      - name: Save Playwright browsers cache
+        if: steps.pw-cache.outputs.cache-hit != 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ steps.pw-cache.outputs.cache-primary-key }}
+
+      # ── Next.js build cache ─────────────────────────────────────────────
       - name: Restore Next.js build cache
         id: next-cache
         uses: actions/cache@v4
@@ -61,11 +67,11 @@ jobs:
           path: .next/cache
           key: ${{ steps.next-cache.outputs.cache-primary-key }}
 
-      # ── Tests ─────────────────────────────────────────────────────────────
+      # ── Tests ───────────────────────────────────────────────────────────
       - name: Run Playwright tests
         run: npm run test
 
-      # ── Upload HTML report (optional) ─────────────────────────────────────
+      # ── Upload HTML report (optional) ───────────────────────────────────
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
