@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next"
 import fs from "fs"
 import path from "path"
 
-const siteConfig = {
+const SITE_CONFIG = {
   url: "https://example.com",
 }
 
@@ -61,7 +61,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const allRoutes = await getStaticRoutes()
 
   return allRoutes.map((route) => ({
-    url: `${siteConfig.url}${route}`,
+    url: `${SITE_CONFIG.url}${route}`,
     lastModified: new Date().toISOString(),
     priority: route === "/" ? 1 : 0.8,
   }))

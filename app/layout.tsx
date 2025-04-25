@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
-import { siteConfig } from "@/config/siteConfig"
+import { SITE_CONFIG } from "@/config/siteConfig"
 import { TopBar } from "./components/TopBar/TopBar"
 import { Footer } from "./components/Footer"
 
@@ -17,20 +17,20 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.title,
-    template: `%s | ${siteConfig.title}`,
+    default: SITE_CONFIG.title,
+    template: `%s | ${SITE_CONFIG.title}`,
   },
-  description: siteConfig.description,
+  description: SITE_CONFIG.description,
   // openGraph: {
-  //   title: siteConfig.title,
-  //   description: siteConfig.description,
-  //   url: siteConfig.url,
+  //   title: SITE_CONFIG.title,
+  //   description: SITE_CONFIG.description,
+  //   url: SITE_CONFIG.url,
   // },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.title,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
+    images: [SITE_CONFIG.ogImage],
   },
 }
 

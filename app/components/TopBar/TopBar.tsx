@@ -3,7 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 import brandImage from "@/app/images/serbyte-logo.jpg"
 import { MobileMenu } from "./MobileMenu"
-import { siteSlugs } from "@/config/siteConfig"
+import { SITE_SLUGS } from "@/config/siteConfig"
 export const TopBar = () => {
   return (
     <header className="bg-background-alt text-foreground-alt z-50 flex w-full items-center justify-between overflow-hidden px-5 py-2.5">
@@ -24,12 +24,9 @@ export const TopBar = () => {
         <nav className="flex w-full items-center justify-end">
           <MobileMenu />
           <div className="flex w-full items-center justify-end gap-10 max-lg:hidden">
-            <Link href={siteSlugs.services}>Services</Link>
-            <Link href={siteSlugs.about}>About</Link>
-            <Link href={siteSlugs.contact}>Contact</Link>
-            <Link href={siteSlugs.quote} className="bg-blue-500 p-2">
-              Get Quote
-            </Link>
+            <Link href={SITE_SLUGS.services}>Services</Link>
+            <Link href={SITE_SLUGS.about}>About</Link>
+            <Link href={SITE_SLUGS.contact}>Contact</Link>
           </div>
         </nav>
       </div>

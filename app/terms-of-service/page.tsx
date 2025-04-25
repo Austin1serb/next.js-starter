@@ -1,19 +1,28 @@
-import { siteNAP, siteConfig } from "@/config/siteConfig"
+import { SITE_NAP, SITE_CONFIG, SITE_SLUGS } from "@/config/siteConfig"
 import { Terms } from "./Terms"
+import type { Metadata } from "next"
 
-const page: React.FC = () => {
+export const metadata: Metadata = {
+  title: SITE_CONFIG.title + " - Terms of Service",
+  description: "Read the terms of service for " + SITE_CONFIG.title,
+  alternates: {
+    canonical: SITE_SLUGS.terms,
+  },
+}
+
+const Page: React.FC = () => {
   return (
     <Terms
       accentColor="--primary"
-      fullCompanyName={siteNAP.name}
-      fullWebAddress={siteConfig.url}
+      fullCompanyName={SITE_NAP.name}
+      fullWebAddress={SITE_CONFIG.url}
       contact={{
-        name: siteNAP.contact,
-        title: siteNAP.contactTitle,
-        phone: siteNAP.phone,
-        email: siteNAP.email,
+        name: SITE_NAP.contact,
+        title: SITE_NAP.contactTitle,
+        phone: SITE_NAP.phone,
+        email: SITE_NAP.email,
       }}
     />
   )
 }
-export default page
+export default Page

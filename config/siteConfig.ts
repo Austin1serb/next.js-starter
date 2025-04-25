@@ -1,4 +1,4 @@
-export const siteConfig = {
+export const SITE_CONFIG = {
   title: "My Next.js Starter",
   description: "A fully optimized Next.js 15 starter template.",
   url: process.env.NEXT_PUBLIC_URL || "https://yourwebsite.com",
@@ -8,7 +8,7 @@ export const siteConfig = {
   logo: "/logo.png",
 } as const
 
-export const siteNAP = {
+export const SITE_NAP = {
   name: "Your Company Name",
   googleBusinessType: "ProfessionalService" as const,
   contact: "John Does",
@@ -42,13 +42,13 @@ export const siteNAP = {
   images: ["business-image.png"],
 } as const
 
-export const siteSlugs = {
+export const SITE_SLUGS = {
   home: "/",
   about: "/about",
   contact: "/contact",
   services: "/services",
-  gallery: "/gallery",
+  // gallery: "/gallery",
   terms: "/terms-of-service",
   privacy: "/privacy-policy",
-  quote: "/quote",
+  // quote: "/quote",
 } as const

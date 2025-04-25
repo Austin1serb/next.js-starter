@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { HamburgerIcon } from "./HamburgerIcon"
 import clsx from "clsx"
-import { siteNAP, siteSlugs } from "@/config/siteConfig"
+import { SITE_NAP, SITE_SLUGS } from "@/config/siteConfig"
 
 export const MobileMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -26,22 +26,21 @@ export const MobileMenu: React.FC = () => {
       {/* ✅ Slide-In Menu */}
       <div
         className={clsx("bg-secondary fixed inset-0 top-16 right-0 h-full transform transition-transform", isOpen ? "translate-x-0" : "translate-x-full")}
-        role="menu"
         aria-hidden={!isOpen}
       >
         {/* ✅ Navigation Links */}
-        <nav className="mt-12 flex flex-col items-center justify-around space-y-4" role="menu">
-          <Link href="/" className="link block p-5" onClick={() => setIsOpen(false)} role="menuitem">
+        <nav className="mt-12 flex flex-col items-center justify-around space-y-4">
+          <Link href="/" className="link block p-5" onClick={() => setIsOpen(false)}>
             Home
           </Link>
-          <Link href={siteSlugs.services} className="p-5" onClick={() => setIsOpen(false)} role="menuitem">
+          <Link href={SITE_SLUGS.services} className="p-5" onClick={() => setIsOpen(false)}>
             Services
           </Link>
-          <Link href={siteSlugs.contact} className="p-5" onClick={() => setIsOpen(false)} role="menuitem">
+          <Link href={SITE_SLUGS.contact} className="p-5" onClick={() => setIsOpen(false)}>
             Contact
           </Link>
           <div className="mx-auto p-5">
-            <Link className="bg-blue-500 p-2" href={`tel:${siteNAP.phone}`}>
+            <Link className="bg-blue-500 p-2" href={`tel:${SITE_NAP.phone}`}>
               Schedule Now
             </Link>
           </div>

@@ -11,6 +11,10 @@ package-lock.json
 .vercel
 dist/
 
+# playwright
+/playwright-report
+/test-results
+
 # production
 /build
 

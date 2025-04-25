@@ -1,17 +1,17 @@
 import type { LocalBusiness, WithContext } from "schema-dts"
-import { siteConfig, siteNAP } from "./siteConfig"
+import { SITE_CONFIG, SITE_NAP } from "./siteConfig"
 
 export const localBusinessSchema: WithContext<LocalBusiness> = {
   "@context": "https://schema.org",
-  "@type": siteNAP.googleBusinessType,
-  image: siteNAP.images,
-  name: siteNAP.name,
+  "@type": SITE_NAP.googleBusinessType,
+  image: SITE_NAP.images,
+  name: SITE_NAP.name,
   address: {
     "@type": "PostalAddress",
-    streetAddress: siteNAP.address,
-    addressLocality: siteNAP.city,
-    addressRegion: siteNAP.state,
-    postalCode: siteNAP.zipCode,
+    streetAddress: SITE_NAP.address,
+    addressLocality: SITE_NAP.city,
+    addressRegion: SITE_NAP.state,
+    postalCode: SITE_NAP.zipCode,
     addressCountry: "US",
   },
 
@@ -22,8 +22,8 @@ export const localBusinessSchema: WithContext<LocalBusiness> = {
   // },
   // geo: { "@type": "GeoCoordinates", latitude: 47.709356, longitude: -122.177239 },\
 
-  url: siteConfig.url,
-  telephone: siteNAP.phone,
+  url: SITE_CONFIG.url,
+  telephone: SITE_NAP.phone,
   priceRange: "$$",
   openingHoursSpecification: [
     {
@@ -34,5 +34,5 @@ export const localBusinessSchema: WithContext<LocalBusiness> = {
     },
     { "@type": "OpeningHoursSpecification", dayOfWeek: ["Friday"], opens: "08:00", closes: "14:00" },
   ],
-  sameAs: Object.values(siteNAP.profiles),
+  sameAs: Object.values(SITE_NAP.profiles),
 }

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { siteConfig, siteNAP, siteSlugs } from "@/config/siteConfig"
+import { SITE_CONFIG, SITE_NAP, SITE_SLUGS } from "@/config/siteConfig"
 import { SocialLinks } from "./SocialLinks"
 
 const year = new Date().getFullYear()
@@ -14,10 +14,10 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="after:bg-accent relative mb-4 after:absolute after:bottom-0 after:mt-2 after:block after:h-[3px] after:w-12">Navigate</h3>
             <nav className="flex flex-col gap-5">
-              <Link href={siteSlugs.home}>Home</Link>
-              <Link href={siteSlugs.contact}>Contact</Link>
-              <Link href={siteSlugs.services}>Services</Link>
-              <Link rel="noopener noreferrer" target="_blank" href={siteNAP.googleReviewLink}>
+              <Link href={SITE_SLUGS.home}>Home</Link>
+              <Link href={SITE_SLUGS.contact}>Contact</Link>
+              <Link href={SITE_SLUGS.services}>Services</Link>
+              <Link rel="noopener noreferrer" target="_blank" href={SITE_NAP.googleReviewLink}>
                 Write Review
               </Link>
             </nav>
@@ -27,15 +27,15 @@ export const Footer: React.FC = () => {
           <div className="h-card">
             <h3 className="after:bg-accent relative mb-4 after:absolute after:bottom-0 after:mt-2 after:block after:h-[3px] after:w-16">Contact</h3>
             <div className="grid grid-cols-1 gap-4">
-              <Link href={`tel:${siteNAP.phone}`} className="p-tel" aria-label={`Call ${siteConfig.title} in Bellevue at ${siteNAP.formattedPhone}`}>
-                {siteNAP.formattedPhone}
+              <Link href={`tel:${SITE_NAP.phone}`} className="p-tel" aria-label={`Call ${SITE_CONFIG.title} in Bellevue at ${SITE_NAP.formattedPhone}`}>
+                {SITE_NAP.formattedPhone}
               </Link>
-              <Link href={`mailto:${siteNAP.email}`} className="u-email" ria-label={`Email ${siteConfig.title} at ${siteNAP.email}`}>
-                {siteNAP.email}
+              <Link href={`mailto:${SITE_NAP.email}`} className="u-email" ria-label={`Email ${SITE_CONFIG.title} at ${SITE_NAP.email}`}>
+                {SITE_NAP.email}
               </Link>
-              <Link href={siteNAP.profiles.gbp} className="p-adr" target="_blank" rel="noopener noreferrer" aria-label="View our location on Google Maps">
-                <span className="p-street-address">{siteNAP.address}</span>,<span className="p-locality"> {siteNAP.city}</span>,
-                <span className="p-region"> {siteNAP.state}</span>,<span className="p-postal-code">{siteNAP.zipCode}</span>
+              <Link href={SITE_NAP.profiles.gbp} className="p-adr" target="_blank" rel="noopener noreferrer" aria-label="View our location on Google Maps">
+                <span className="p-street-address">{SITE_NAP.address}</span>,<span className="p-locality"> {SITE_NAP.city}</span>,
+                <span className="p-region"> {SITE_NAP.state}</span>,<span className="p-postal-code">{SITE_NAP.zipCode}</span>
               </Link>
             </div>
           </div>
@@ -45,7 +45,7 @@ export const Footer: React.FC = () => {
             <h3 className="after:bg-accent relative mb-4 after:absolute after:bottom-0 after:mt-2 after:block after:h-[3px] after:w-16">Hours</h3>
 
             <div className="flex flex-col gap-2">
-              {siteNAP.openingHours.map(({ days, hours }) => (
+              {SITE_NAP.openingHours.map(({ days, hours }) => (
                 <p key={days}>
                   <span className="text-nowrap">{days}: </span>
                   <span className="text-nowrap">{hours}</span>
@@ -62,13 +62,13 @@ export const Footer: React.FC = () => {
           <div className="flex w-fit flex-col items-center lg:items-start lg:justify-between">
             {/* Logo */}
             <div className="h-card flex w-fit items-center">
-              {/* <Image src={Logo} alt={`{siteConfig.title} Kirkland Logo" width={50} height={50} className="u-logo`} /> */}
-              <span className="p-name text-compliment xs:text-[24px] text-xl font-extrabold text-nowrap uppercase italic">{siteConfig.title}</span>
+              {/* <Image src={Logo} alt={`{SITE_CONFIG.title} Kirkland Logo" width={50} height={50} className="u-logo`} /> */}
+              <span className="p-name text-compliment xs:text-[24px] text-xl font-extrabold text-nowrap uppercase italic">{SITE_CONFIG.title}</span>
             </div>
 
             {/* Copyright */}
             <p className="body-display-sm mt-4 w-full text-center text-base! text-neutral-500 md:mt-0 lg:text-start">
-              {year} Copyright © {siteConfig.title} | Website by
+              {year} Copyright © {SITE_CONFIG.title} | Website by
               <Link title="Seattle Web Design & SEO | Serbyte Development" href="https://www.serbyte.net/" className="text-accent font-medium hover:underline">
                 {" "}
                 Serbyte Development
@@ -76,11 +76,19 @@ export const Footer: React.FC = () => {
             </p>
           </div>
           <div className="mt-4 flex w-fit items-center justify-center lg:mt-0">
-            <Link title={`Terms of Service | ${siteConfig.title}`} href={`${siteConfig.url}/privacy-policy`} className="text-sm! text-nowrap text-neutral-500">
+            <Link
+              title={`Terms of Service | ${SITE_CONFIG.title}`}
+              href={`${SITE_CONFIG.url}/privacy-policy`}
+              className="text-sm! text-nowrap text-neutral-500"
+            >
               Privacy Policy{" "}
             </Link>
             <span className="mx-1 text-neutral-500">|</span>
-            <Link title={`Privacy Policy | ${siteConfig.title}`} href={`${siteConfig.url}/terms-of-service`} className="text-sm! text-nowrap text-neutral-500">
+            <Link
+              title={`Privacy Policy | ${SITE_CONFIG.title}`}
+              href={`${SITE_CONFIG.url}/terms-of-service`}
+              className="text-sm! text-nowrap text-neutral-500"
+            >
               Terms of Service
             </Link>
           </div>

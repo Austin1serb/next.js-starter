@@ -2,6 +2,7 @@
   "name": "next.js-starter",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -11,20 +12,24 @@
     "prepare": "husky",
     "format": "prettier --write .",
     "clean": "rm -rf .next",
-    "analyze": "ANALYZE=true npm run build"
+    "analyze": "ANALYZE=true npm run build",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "framer-motion": "^12.9.1",
     "lucide-react": "^0.479.0",
-    "next": "15.2.1",
+    "next": "^15.2.4",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "schema-dts": "^1.1.5"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^15.2.1",
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.2.1",
+    "@playwright/test": "^1.52.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^22.13.10",
     "@types/react": "^19",
