@@ -20,37 +20,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Node + built-in npm cache
+      # ── Node + npm cache ────────────────────────────────────────────────
       - uses: actions/setup-node@v4
         with:
-          node-version: 20 # explicit ≥18
+          node-version: 20
           cache: npm
 
       - name: Install dependencies
         run: npm ci --prefer-offline --no-audit --progress=false
 
-      # ── Playwright browsers cache ────────────────────────────────────────
+      # ── Playwright browsers cache ───────────────────────────────────────
       - name: Restore Playwright browsers cache
-        id: pw-cache
-        uses: actions/cache@v4
+        id: pw-restore
+        uses: actions/cache/restore@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-pw-1 # bump “1” when Playwright major version changes
+          key: ${{ runner.os }}-pw-1 # bump “1” when Playwright major changes
+          restore-keys: |
+            ${{ runner.os }}-pw-
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
       - name: Save Playwright browsers cache
-        if: steps.pw-cache.outputs.cache-hit != 'true'
-        uses: actions/cache@v4
+        if: steps.pw-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ steps.pw-cache.outputs.cache-primary-key }}
+          key: ${{ steps.pw-restore.outputs.cache-primary-key }}
 
       # ── Next.js build cache ─────────────────────────────────────────────
       - name: Restore Next.js build cache
-        id: next-cache
-        uses: actions/cache@v4
+        id: next-restore
+        uses: actions/cache/restore@v4
         with:
           path: .next/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}
@@ -61,11 +63,11 @@ jobs:
         run: npm run build
 
       - name: Save Next.js build cache
-        if: steps.next-cache.outputs.cache-hit != 'true'
-        uses: actions/cache@v4
+        if: steps.next-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
         with:
           path: .next/cache
-          key: ${{ steps.next-cache.outputs.cache-primary-key }}
+          key: ${{ steps.next-restore.outputs.cache-primary-key }}
 
       # ── Tests ───────────────────────────────────────────────────────────
       - name: Run Playwright tests
