@@ -43,6 +43,9 @@
   .screen {
     @apply h-screen w-screen;
   }
+  .full {
+    @apply h-full w-full;
+  }
   .icon-display {
     @apply relative h-10 w-10 duration-300 will-change-transform hover:scale-110;
   }

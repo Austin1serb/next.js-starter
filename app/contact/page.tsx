@@ -1,5 +1,15 @@
-const Page: React.FC = () => {
+import { SITE_SLUGS } from "@/config/siteConfig"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Contact",
+  alternates: {
+    canonical: SITE_SLUGS.contact,
+  },
+}
+const ContactPage: React.FC = () => {
   return <div>Contact</div>
 }
 
-export default Page
+export default ContactPage

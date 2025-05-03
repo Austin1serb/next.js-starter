@@ -3,7 +3,7 @@ import { Privacy } from "./PrivacyPolicy"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: SITE_CONFIG.title + " - Privacy Policy",
+  title: "Privacy Policy",
   description: "Read the privacy policy for " + SITE_CONFIG.title,
   alternates: {
     canonical: SITE_SLUGS.privacy,

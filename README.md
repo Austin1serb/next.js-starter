@@ -1,26 +1,13 @@
-# Next.js 15 Starter Repo with TypeScript, Tailwind, shadcn/ui, and Best Practices
+# Next.js 15 Starter Repo with TypeScript, Tailwind v4, Framer Motion, and Playwright
 
 ## Setup
 
 ### 1. Initialize the Next.js Project
 
-```sh
-npx create-next-app@latest my-project --typescript --tailwind --eslint
-cd my-project
-```
 
-### 2. Install Dependencies
-
-```sh
-npm install
-```
-
-## Project Structure
-
-```tsx
 📂 next.js-starter/
 │── 📂 .vscode
-│   └── settings.json \\ Updated TypeScript Interpretor to Next.js
+│   └── settings.json  
 │── 📂 app
 │   │── 📂 privacy-policy
 │   │   │── PrivacyPolicy.tsx
@@ -28,13 +15,14 @@ npm install
 │   │── 📂 terms-of-service
 │   │   │── Terms.tsx
 │   │   └── page.tsx
-│   │── error.tsx
+│   │── 📂 contact
+│   │   └── page.tsx
 │   │── favicon.ico
 │   │── globals.css
 │   │── layout.tsx
 │   │── page.tsx
 │   │── robots.ts
-│   └── sitemap.ts // Automcatic sitemap generation
+│   │── sitemap.ts
 │── 📂 config
 │   └── site.ts // Company information will be used in Metadata & Terms and Policy pages
 │── 📂 public

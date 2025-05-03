@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   title: "My Next.js Starter",
   description: "A fully optimized Next.js 15 starter template.",
-  url: process.env.NEXT_PUBLIC_URL || "https://yourwebsite.com",
+  url: process.env.NEXT_PUBLIC_URL || "http://localhost:3000",
   siteName: "My Next.js Starter",
   keywords: ["Next.js", "Tailwind CSS", "SEO", "TypeScript"],
   ogImage: "/og-image.png",
@@ -17,7 +17,7 @@ export const SITE_NAP = {
   phone: "+1123456789",
   formattedPhone: "+1 (123) 456-789",
   address: "123 Street",
-  addressLink: "https://goo.gl/maps/youraddress",
+  addressLink: "https://goo.gl/maps/",
   city: "City",
   state: "State",
   zipCode: "12345",
@@ -52,3 +52,9 @@ export const SITE_SLUGS = {
   privacy: "/privacy-policy",
   // quote: "/quote",
 } as const
+
+const flattenSlugs = (obj: Record<string, string | Record<string, string>>): string[] => {
+  return Object.values(obj).flatMap((value) => (typeof value === "string" ? [value] : flattenSlugs(value)))
+}
+
+export const ALL_PAGES: string[] = Object.values(SITE_SLUGS).flatMap((value) => (typeof value === "string" ? [value] : flattenSlugs(value)))

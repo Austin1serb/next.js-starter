@@ -26,12 +26,12 @@ export const metadata: Metadata = {
   //   description: SITE_CONFIG.description,
   //   url: SITE_CONFIG.url,
   // },
-  twitter: {
-    card: "summary_large_image",
-    title: SITE_CONFIG.title,
-    description: SITE_CONFIG.description,
-    images: [SITE_CONFIG.ogImage],
-  },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   title: SITE_CONFIG.title,
+  //   description: SITE_CONFIG.description,
+  //   images: [SITE_CONFIG.ogImage],
+  // },
 }
 
 export default function RootLayout({

@@ -3,7 +3,7 @@ import { Terms } from "./Terms"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: SITE_CONFIG.title + " - Terms of Service",
+  title: "Terms of Service",
   description: "Read the terms of service for " + SITE_CONFIG.title,
   alternates: {
     canonical: SITE_SLUGS.terms,

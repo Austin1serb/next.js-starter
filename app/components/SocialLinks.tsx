@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export const SocialLinks: React.FC = () => {
   return (
-    <div className="flex gap-7.5" style={{ position: "relative" }}>
+    <div className="relative flex gap-7.5">
       <Link prefetch={false} rel="noopener nofollow" target="_blank" href={SITE_NAP.profiles.gbp} className="relative h-2 w-2">
         <Image src="/google.png" alt="Google Logo" fill sizes="10vw" />
       </Link>
