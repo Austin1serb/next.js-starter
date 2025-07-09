@@ -29,14 +29,20 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "@zero-ui/attributes": [
+        "./.zero-ui/attributes.js"
       ]
-    }
+    },
+    "baseUrl": "."
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/**/*.d.ts",
+    ".next/types/**/*.ts",
+    ".zero-ui/**/*.d.ts",
+    "next-env.d.ts"
   ],
   "exclude": [
     "node_modules"
