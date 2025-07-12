@@ -63,7 +63,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
         </h1>
         <p className="py-5">
           <em className="border-l-4 border-gray-300 bg-gray-50 px-4 py-2 text-gray-800 italic dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200">
-            Last updated: Mar 5, 2025 8:11 PM
+            Last updated: Jul 12, 2025 12:00 PM
           </em>
         </p>
         <hr className="mt-5 mb-5 border-gray-300" />
@@ -72,12 +72,12 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
           <a href={fullWebAddress} target="_blank" rel="noopener noreferrer" className="text-black underline duration-300 hover:text-blue-600">
             {fullWebAddress}
           </a>{" "}
-          Website (the &quot; <strong className="-:text-black font-bold"> Website</strong>&quot;) operated by{" "}
-          <strong className="-:text-black font-bold"> {fullCompanyName}</strong>, a Corporation formed in Washington, United States (
-          <strong className="-:text-black font-bold"> us</strong>,&quot; &quot;
-          <strong className="-:text-black font-bold"> we</strong>,&quot; &quot;
-          <strong className="-:text-black font-bold"> our</strong>&quot;) as this Privacy Policy contains important information regarding your privacy and how
-          we may use the information we collect about you.
+          Website (the &quot; <strong className="font-bold text-black"> Website</strong>&quot;) operated by{" "}
+          <strong className="font-bold text-black"> {fullCompanyName}</strong>, a Corporation formed in Washington, United States (
+          <strong className="font-bold text-black"> us</strong>,&quot; &quot;
+          <strong className="font-bold text-black"> we</strong>,&quot; &quot;
+          <strong className="font-bold text-black"> our</strong>&quot;) as this Privacy Policy contains important information regarding your privacy and how we
+          may use the information we collect about you.
         </p>
         <p className="py-5">
           Your access to and use of the Website is conditional upon your acceptance of and compliance with this Privacy Policy. This Privacy Policy applies to
@@ -115,9 +115,9 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
           Name
         </h3>
         <p className="py-5">
-          <strong className="-:text-black font-bold"> Specific piece of information</strong>: Name
+          <strong className="font-bold text-black"> Specific piece of information</strong>: Name
           <br />
-          <strong className="-:text-black font-bold"> Legal basis for processing this information</strong>:
+          <strong className="font-bold text-black"> Legal basis for processing this information</strong>:
         </p>
         <ol className="space-y-2.5">
           <li className="flex items-center">
@@ -126,7 +126,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               Processing is necessary in order to take steps that the user has requested prior to entering into a contract.
-              <strong className="-:text-black font-bold"> Where we get this information</strong>:
+              <strong className="font-bold text-black"> Where we get this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -135,7 +135,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               Information submitted by the consumer.
-              <strong className="-:text-black font-bold"> How we use this information</strong>:
+              <strong className="font-bold text-black"> How we use this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -156,7 +156,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               Verifying customer information
-              <strong className="-:text-black font-bold"> What happens if we don&apos;t have this information</strong>:
+              <strong className="font-bold text-black"> What happens if we don&apos;t have this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -197,9 +197,9 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
           Phone number
         </h3>
         <p className="py-5">
-          <strong className="-:text-black font-bold"> Specific piece of information</strong>: Phone number
+          <strong className="font-bold text-black"> Specific piece of information</strong>: Phone number
           <br />
-          <strong className="-:text-black font-bold"> Legal basis for processing this information</strong>:
+          <strong className="font-bold text-black"> Legal basis for processing this information</strong>:
         </p>
         <ol className="space-y-2.5">
           <li className="flex items-center">
@@ -208,7 +208,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               Processing is necessary in order to take steps that the user has requested prior to entering into a contract.
-              <strong className="-:text-black font-bold"> Where we get this information</strong>:
+              <strong className="font-bold text-black"> Where we get this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -217,7 +217,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               Information submitted by the consumer.
-              <strong className="-:text-black font-bold"> How we use this information</strong>:
+              <strong className="font-bold text-black"> How we use this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -238,7 +238,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               Verifying customer information
-              <strong className="-:text-black font-bold"> What happens if we don&apos;t have this information</strong>:
+              <strong className="font-bold text-black"> What happens if we don&apos;t have this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -279,9 +279,9 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
           IP address
         </h3>
         <p className="py-5">
-          <strong className="-:text-black font-bold"> Specific piece of information</strong>: IP address
+          <strong className="font-bold text-black"> Specific piece of information</strong>: IP address
           <br />
-          <strong className="-:text-black font-bold"> Legal basis for processing this information</strong>:
+          <strong className="font-bold text-black"> Legal basis for processing this information</strong>:
         </p>
         <ol className="space-y-2.5">
           <li className="flex items-center">
@@ -290,7 +290,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               Processing is necessary for compliance with a legal obligation.
-              <strong className="-:text-black font-bold"> Where we get this information</strong>:
+              <strong className="font-bold text-black"> Where we get this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -305,7 +305,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               The observation and recording of activities by the business, such as through the use of cookies
-              <strong className="-:text-black font-bold"> How we use this information</strong>:
+              <strong className="font-bold text-black"> How we use this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -314,7 +314,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               Analytics
-              <strong className="-:text-black font-bold"> What happens if we don&apos;t have this information</strong>:
+              <strong className="font-bold text-black"> What happens if we don&apos;t have this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -343,9 +343,9 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
           Email address
         </h3>
         <p className="py-5">
-          <strong className="-:text-black font-bold"> Specific piece of information</strong>: Email address
+          <strong className="font-bold text-black"> Specific piece of information</strong>: Email address
           <br />
-          <strong className="-:text-black font-bold"> Legal basis for processing this information</strong>:
+          <strong className="font-bold text-black"> Legal basis for processing this information</strong>:
         </p>
         <ol className="space-y-2.5">
           <li className="flex items-center">
@@ -360,7 +360,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               Processing is necessary in order to take steps that the user has requested prior to entering into a contract
-              <strong className="-:text-black font-bold"> Where we get this information</strong>:
+              <strong className="font-bold text-black"> Where we get this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -369,7 +369,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               Information submitted by the consumer.
-              <strong className="-:text-black font-bold"> How we use this information</strong>:
+              <strong className="font-bold text-black"> How we use this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -390,7 +390,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               Verifying customer information
-              <strong className="-:text-black font-bold"> What happens if we don&apos;t have this information</strong>:
+              <strong className="font-bold text-black"> What happens if we don&apos;t have this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -431,9 +431,9 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
           Device identifier
         </h3>
         <p className="py-5">
-          <strong className="-:text-black font-bold"> Specific piece of information</strong>: Device identifier
+          <strong className="font-bold text-black"> Specific piece of information</strong>: Device identifier
           <br />
-          <strong className="-:text-black font-bold"> Legal basis for processing this information</strong>:
+          <strong className="font-bold text-black"> Legal basis for processing this information</strong>:
         </p>
         <ol className="space-y-2.5">
           <li className="flex items-center">
@@ -442,7 +442,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               Processing is necessary for compliance with a legal obligation.
-              <strong className="-:text-black font-bold"> Where we get this information</strong>:
+              <strong className="font-bold text-black"> Where we get this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -457,7 +457,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               The observation and recording of activities by the business, such as through the use of cookies
-              <strong className="-:text-black font-bold"> How we use this information</strong>:
+              <strong className="font-bold text-black"> How we use this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -466,7 +466,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </svg>
             <span>
               Analytics
-              <strong className="-:text-black font-bold"> What happens if we don&apos;t have this information</strong>:
+              <strong className="font-bold text-black"> What happens if we don&apos;t have this information</strong>:
             </span>
           </li>
           <li className="flex items-center">
@@ -610,7 +610,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
           We use the information that we collect about you for direct marketing purposes. Direct marketing is the act of selling products or services directly
           to consumers rather than through retailers. Residents of the European Union and/or the European Economic Area and the United Kingdom - You may, at any
           time, request that we cease to use your information for direct marketing purposes by emailing us at{" "}
-          <strong className="-:text-black font-bold">
+          <strong className="font-bold text-black">
             <a href={`mailto:${contact.email}`} target="_blank" rel="noopener noreferrer" className="text-black underline duration-300 hover:text-blue-600">
               {contact.email}
             </a>
@@ -631,7 +631,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
               <p className="py-5">
                 The right to access the personal information that we have collected about you.
                 <br />
-                <strong className="-:text-black font-bold"> Applies To</strong>: Residents of Canada, the European Union and/or the European Economic Area, the
+                <strong className="font-bold text-black"> Applies To</strong>: Residents of Canada, the European Union and/or the European Economic Area, the
                 United Kingdom, and Quebec only
               </p>
             </span>
@@ -644,7 +644,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
               <p className="py-5">
                 The right to say no to the sale of your personal information.
                 <br />
-                <strong className="-:text-black font-bold"> Applies To</strong>: Residents of Nevada only
+                <strong className="font-bold text-black"> Applies To</strong>: Residents of Nevada only
               </p>
             </span>
           </li>
@@ -656,8 +656,8 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
               <p className="py-5">
                 The right to request that we delete all or some of the personal information that we have collected on you.
                 <br />
-                <strong className="-:text-black font-bold"> Applies To</strong>: Residents of the European Union and/or the European Economic Area and the
-                United Kingdom only
+                <strong className="font-bold text-black"> Applies To</strong>: Residents of the European Union and/or the European Economic Area and the United
+                Kingdom only
               </p>
             </span>
           </li>
@@ -669,8 +669,8 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
               <p className="py-5">
                 The right to ask us to transmit your personal information that we have collected on you to another provider (where technically feasible).
                 <br />
-                <strong className="-:text-black font-bold"> Applies To</strong>: Residents of the European Union and/or the European Economic Area and the
-                United Kingdom only
+                <strong className="font-bold text-black"> Applies To</strong>: Residents of the European Union and/or the European Economic Area and the United
+                Kingdom only
               </p>
             </span>
           </li>
@@ -682,7 +682,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
               <p className="py-5">
                 The right to request that we amend any of the information that we have collected about you.
                 <br />
-                <strong className="-:text-black font-bold"> Applies To</strong>: Residents of Canada, the European Union and/or the European Economic Area, the
+                <strong className="font-bold text-black"> Applies To</strong>: Residents of Canada, the European Union and/or the European Economic Area, the
                 United Kingdom, and Quebec only
               </p>
             </span>
@@ -695,7 +695,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
               <p className="py-5">
                 The right to withdraw your consent to the processing of your data.
                 <br />
-                <strong className="-:text-black font-bold"> Applies To</strong>: Residents of Canada, the European Union and/or the European Economic Area, the
+                <strong className="font-bold text-black"> Applies To</strong>: Residents of Canada, the European Union and/or the European Economic Area, the
                 United Kingdom, and Quebec only
               </p>
             </span>
@@ -708,8 +708,8 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
               <p className="py-5">
                 The right to request that we restrict the processing of your data.
                 <br />
-                <strong className="-:text-black font-bold"> Applies To</strong>: Residents of the European Union and/or the European Economic Area and the
-                United Kingdom only
+                <strong className="font-bold text-black"> Applies To</strong>: Residents of the European Union and/or the European Economic Area and the United
+                Kingdom only
               </p>
             </span>
           </li>
@@ -721,7 +721,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
               <p className="py-5">
                 The right to lodge a complaint regarding our collection, sharing, and processing of data with competent authorities in the proper jurisdiction.
                 <br />
-                <strong className="-:text-black font-bold"> Applies To</strong>: Residents of Canada, the European Union and/or the European Economic Area, the
+                <strong className="font-bold text-black"> Applies To</strong>: Residents of Canada, the European Union and/or the European Economic Area, the
                 United Kingdom, and Quebec only
               </p>
             </span>
@@ -734,7 +734,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
               <p className="py-5">
                 The right to stop receiving unwanted direct marketing.
                 <br />
-                <strong className="-:text-black font-bold"> Applies To</strong>: Residents of the European Union and/or the European Economic Area only
+                <strong className="font-bold text-black"> Applies To</strong>: Residents of the European Union and/or the European Economic Area only
               </p>
             </span>
           </li>
@@ -747,8 +747,8 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
                 The right to receive the personal information that we hold about you in a portable and, to the extent feasible, a readily usable format that
                 allows you to transmit this information to another entity.
                 <br />
-                <strong className="-:text-black font-bold"> Applies To</strong>: Residents of the European Union and/or the European Economic Area and the
-                United Kingdom only
+                <strong className="font-bold text-black"> Applies To</strong>: Residents of the European Union and/or the European Economic Area and the United
+                Kingdom only
               </p>
             </span>
           </li>
@@ -759,7 +759,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
         </h2>
         <p className="py-5">You may exercise the rights specified above by submitting a consumer request to:</p>
         <p className="py-5">
-          <strong className="-:text-black font-bold"> {contact.name}</strong>
+          <strong className="font-bold text-black"> {contact.name}</strong>
           <br />
           {contact.title}
           <br />
@@ -804,7 +804,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
         </h2>
         <p className="py-5">The following person(s) is accountable and responsible for our privacy practices and procedures:</p>
         <p className="py-5">
-          <strong className="-:text-black font-bold"> {contact.name}</strong>
+          <strong className="font-bold text-black"> {contact.name}</strong>
           <br />
           {contact.title}
           <br />
@@ -824,8 +824,8 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
           Data Protection Officer
         </h2>
         <p className="py-5">
-          <strong className="-:text-black font-bold"> {contact.name}</strong>
-          {contact?.name?.includes("&") ? "are" : "is"} our Data Protection Officer and may be reached via email at{" "}
+          <strong className="font-bold text-black"> {contact.name}</strong>
+          {contact?.name?.includes("&") ? " are" : " is"} our Data Protection Officer and may be reached via email at{" "}
           <a href={`mailto:${contact.email}`} target="_blank" rel="noopener noreferrer" className="text-black underline duration-300 hover:text-blue-600">
             {contact.email}
           </a>
@@ -846,7 +846,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
           Do Not Track
         </h2>
         <p className="py-5">
-          Do Not Track (<strong className="-:text-black font-bold"> DNT</strong>) is a preference you can set on your browser to inform websites that you do not
+          Do Not Track (<strong className="font-bold text-black"> DNT</strong>) is a preference you can set on your browser to inform websites that you do not
           want to be tracked. We do not support Do Not Track. You can enable or disable Do Not Track by visiting the Preferences or Settings page of your
           browser.
         </p>

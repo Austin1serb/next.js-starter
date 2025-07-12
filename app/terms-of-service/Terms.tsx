@@ -63,23 +63,23 @@ export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fu
         </h1>
         <p className="py-5">
           <em className="border-l-4 border-gray-300 bg-gray-50 px-4 py-2 text-gray-800 italic dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200">
-            Last updated: Mar 5, 2025 3:40 PM
+            Last updated: Jul 12, 2025 12:00 PM
           </em>
         </p>
         <hr className="mt-5 mb-5 border-gray-300" />
         <p className="py-5">
-          Please read these Terms of Service (&quot;<strong className="-:text-black font-bold">Terms</strong>,&quot; &quot;
-          <strong className="-:text-black font-bold">Terms of Service</strong>&quot;) carefully before using the{" "}
+          Please read these Terms of Service (&quot;<strong className="font-bold text-black">Terms</strong>,&quot; &quot;
+          <strong className="font-bold text-black">Terms of Service</strong>&quot;) carefully before using the{" "}
           <a href={`${fullWebAddress}`} target="_blank" rel="noopener noreferrer" className="text-black underline duration-300 hover:text-blue-600">
             {fullWebAddress}
           </a>{" "}
-          website (the &quot;<strong className="-:text-black font-bold">Website</strong>&quot;) operated by{" "}
-          <strong className="-:text-black font-bold">{fullCompanyName}</strong> (&quot;
-          <strong className="-:text-black font-bold">we</strong>,&quot; &quot;
-          <strong className="-:text-black font-bold">us</strong>
-          ,&quot; &quot;<strong className="-:text-black font-bold">our</strong>&quot;). These Terms outline the rules and regulations for accessing and using
-          the Website. By accessing or using the Website, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not
-          agree with any part of these Terms, you must not access or use the Website. These Terms apply to all visitors, users, and others who interact with the
+          website (the &quot;<strong className="font-bold text-black">Website</strong>&quot;) operated by{" "}
+          <strong className="font-bold text-black">{fullCompanyName}</strong> (&quot;
+          <strong className="font-bold text-black">we</strong>,&quot; &quot;
+          <strong className="font-bold text-black">us</strong>
+          ,&quot; &quot;<strong className="font-bold text-black">our</strong>&quot;). These Terms outline the rules and regulations for accessing and using the
+          Website. By accessing or using the Website, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree
+          with any part of these Terms, you must not access or use the Website. These Terms apply to all visitors, users, and others who interact with the
           Website.
         </p>
         <p className="py-5">
@@ -92,7 +92,7 @@ export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fu
         </h2>
         <p className="py-5">
           You agree that you will use this Website in accordance with all applicable laws, rules, regulations, and these Terms at all times. The following is a
-          non-exhaustive list of prohibited uses of this Website. You agree that you will <strong className="-:text-black font-bold">not</strong> perform any of
+          non-exhaustive list of prohibited uses of this Website. You agree that you will <strong className="font-bold text-black">not</strong> perform any of
           the following prohibited uses:
         </p>
 
@@ -154,7 +154,7 @@ export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fu
         </h2>
         <p className="py-5">
           The Website is provided &quot;as is&quot; and without any warranties, express or implied, including but not limited to implied warranties of
-          merchantability, fitness for a particular purpose, or non-infringement. <strong className="-:text-black font-bold">{fullCompanyName}</strong> does not
+          merchantability, fitness for a particular purpose, or non-infringement. <strong className="font-bold text-black">{fullCompanyName}</strong> does not
           guarantee the Website will be error-free or available at all times.
         </p>
         <hr className="mt-5 mb-5 border-gray-300" />
@@ -174,7 +174,7 @@ export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fu
           Damages and Limitation of Liability
         </h2>
         <p className="py-5">
-          In no event shall <strong className="-:text-black font-bold">{fullCompanyName}</strong> be liable for any direct, indirect, punitive, incidental,
+          In no event shall <strong className="font-bold text-black">{fullCompanyName}</strong> be liable for any direct, indirect, punitive, incidental,
           special, or consequential damages arising out of, relating to, or in any way connected with your access to, display of, or use of this Website or with
           the delay or inability to access, display, or use this Website, including but not limited to your reliance upon opinions or information appearing on
           this Website; any computer viruses, information, software, linked websites operated by third parties, products, or services obtained through this
@@ -197,10 +197,10 @@ export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fu
           Intellectual Property &amp; DMCA Notice
         </h2>
         <p className="py-5">
-          All contents of this Website are ©2019 - {year} <strong className="-:text-black font-bold">{fullCompanyName}</strong> or third parties. All rights
+          All contents of this Website are ©2019 - {year} <strong className="font-bold text-black">{fullCompanyName}</strong> or third parties. All rights
           reserved. Unless specified otherwise, this Website and all content and other materials on this Website, including but not limited to all logos,
           designs, text, graphics, pictures, information, data, software, sound files, and arrangement thereof (collectively, &quot;
-          <strong className="-:text-black font-bold">Content</strong>&quot;), are the proprietary property of {fullCompanyName} and are either registered
+          <strong className="font-bold text-black">Content</strong>&quot;), are the proprietary property of {fullCompanyName} and are either registered
           trademarks, trademarks, or otherwise protected intellectual property of {fullCompanyName} or third parties in the United States and/or other
           countries.
         </p>
@@ -218,7 +218,7 @@ export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fu
         <p className="py-5">
           If you believe in good faith that the Content infringes on your intellectual property rights, you or your agent may send us a written notice of such
           infringement titled &quot;
-          <strong className="-:text-black font-bold">Infringement of Intellectual Property Rights - DMCA</strong>.&quot; Your notice to us must include the
+          <strong className="font-bold text-black">Infringement of Intellectual Property Rights - DMCA</strong>.&quot; Your notice to us must include the
           following information:
         </p>
         <ol className="list-inside list-decimal space-y-2.5">
@@ -265,9 +265,9 @@ export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fu
         </p>
         <p className="py-5">You may submit your claim to us by contacting us at:</p>
         <p className="py-5">
-          <strong className="-:text-black font-bold">{fullCompanyName}</strong>
+          <strong className="font-bold text-black">{fullCompanyName}</strong>
           <br />
-          Attn: <strong className="-:text-black font-bold">{contact.email}</strong>
+          Attn: <strong className="font-bold text-black">{contact.email}</strong>
           <br />
           {contact.phone}
           <br />
@@ -280,7 +280,7 @@ export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fu
           Indemnification
         </h2>
         <p className="py-5">
-          You agree to defend, indemnify, and hold harmless <strong className="-:text-black font-bold">{fullCompanyName}</strong>, its affiliates, and their
+          You agree to defend, indemnify, and hold harmless <strong className="font-bold text-black">{fullCompanyName}</strong>, its affiliates, and their
           respective officers, directors, employees, and agents from and against any and all claims, damages, obligations, losses, liabilities, costs, or debt,
           and expenses (including but not limited to attorneys&quot; fees) arising from:
           <br />
