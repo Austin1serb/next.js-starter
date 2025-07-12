@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useCallback, useState, useRef } from "react"
-import { motion, useMotionValue, useSpring, useInView } from "framer-motion"
+import { motion, useMotionValue, useSpring, useInView } from "motion/react"
 
 interface ParallaxWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
@@ -22,13 +22,13 @@ export function ParallaxWrapper({ children, intensity = 10, mobileIntensity = 10
   const smoothX = useSpring(x, { stiffness: 120, damping: 20 })
   const smoothY = useSpring(y, { stiffness: 120, damping: 20 })
 
-  let resizeTimer: NodeJS.Timeout | null = null
+  const resizeTimer = useRef<NodeJS.Timeout | null>(null)
 
   const updateMobile = () => {
-    if (resizeTimer) return
-    resizeTimer = setTimeout(() => {
+    if (resizeTimer.current) return
+    resizeTimer.current = setTimeout(() => {
       setIsMobile(window.innerWidth < mobileBreakpoint)
-      resizeTimer = null
+      resizeTimer.current = null
     }, 250)
   }
 
@@ -40,7 +40,7 @@ export function ParallaxWrapper({ children, intensity = 10, mobileIntensity = 10
     window.addEventListener("resize", updateMobile)
     return () => {
       window.removeEventListener("resize", updateMobile)
-      if (resizeTimer) clearTimeout(resizeTimer)
+      if (resizeTimer.current) clearTimeout(resizeTimer.current)
     }
   }, [mobileBreakpoint])
 
