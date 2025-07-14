@@ -1,10 +1,11 @@
+import { SITE_CONFIG } from "@/config/siteConfig"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Home",
   description: "Home",
   alternates: {
-    canonical: "/",
+    canonical: SITE_CONFIG.url,
   },
 }
 
