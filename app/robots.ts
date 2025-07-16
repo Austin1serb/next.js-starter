@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { SITE_CONFIG } from "@/config/siteConfig"
+import { DOMAIN_URL } from "@/config/siteConfig"
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: `${SITE_CONFIG.url}/sitemap.xml`,
+    sitemap: `${DOMAIN_URL}/sitemap.xml`,
   }
 }

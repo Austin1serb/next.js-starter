@@ -5,7 +5,8 @@ import "./globals.css"
 import { DOMAIN_URL, SITE_CONFIG } from "@/config/siteConfig"
 import { TopBar } from "./components/TopBar/TopBar"
 import { Footer } from "./components/Footer"
-import { domAnimation, LazyMotion } from "motion/react"
+import { LazyMotion } from "motion/react"
+import { MotionWrapper } from "@/utils/motion-wrapper"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -40,13 +41,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <LazyMotion features={domAnimation}>
+      <MotionWrapper>
         <body {...bodyAttributes} className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <TopBar />
           {children}
           <Footer />
         </body>
-      </LazyMotion>
+      </MotionWrapper>
     </html>
   )
 }
