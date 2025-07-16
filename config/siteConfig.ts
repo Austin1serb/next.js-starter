@@ -1,3 +1,5 @@
+export const DOMAIN_URL = "https://www.vetschoiceinsurance.com"
+
 export const SITE_CONFIG = {
   title: "My Next.js Starter",
   description: "A fully optimized Next.js 15 starter template.",
