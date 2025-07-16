@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   title: "My Next.js Starter",
   description: "A fully optimized Next.js 15 starter template.",
-  url: process.env.NEXT_PUBLIC_URL || "http://localhost:3000",
+  url: process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000",
   siteName: "My Next.js Starter",
   keywords: ["Next.js", "Tailwind CSS", "SEO", "TypeScript"],
   ogImage: "/og-image.png",
