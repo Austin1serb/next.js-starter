@@ -3,6 +3,7 @@
 
 # testing
 /coverage
+/playwright-report
 
 # next.js
 /.next/
@@ -11,8 +12,7 @@
 dist/
 
 # playwright
-# /playwright-report
-# /test-results
+/test-results
 
 # production
 /build
