@@ -1,4 +1,4 @@
 /* AUTO-GENERATED - DO NOT EDIT */
 export declare const bodyAttributes: {
-  [key: string]: string;
+  "data-phase": "1" | "2" | "3" | "4" | "5";
 };

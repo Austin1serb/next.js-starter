@@ -1,18 +1,17 @@
 "use client"
-
 import { useEffect, useCallback, useState, useRef } from "react"
-import { motion, useMotionValue, useSpring, useInView } from "motion/react"
+import { useMotionValue, useSpring, useInView } from "motion/react"
+import * as motion from "motion/react-m"
 
-interface ParallaxWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ParallaxWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   intensity?: number
   mobileIntensity?: number
-  mobileBreakpoint?: number
   className?: string
 }
 
-export function ParallaxWrapper({ children, intensity = 10, mobileIntensity = 10, mobileBreakpoint = 768, className = "" }: ParallaxWrapperProps) {
-  const [isMobile, setIsMobile] = useState(false)
+export function ParallaxWrapper({ children, intensity = 20, mobileIntensity = 0, className = "" }: ParallaxWrapperProps) {
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" && window.matchMedia("(pointer: coarse), (hover: none)").matches)
   const containerRef = useRef<HTMLDivElement>(null)
   const inView = useInView(containerRef, { amount: 0.8 })
 
@@ -22,39 +21,25 @@ export function ParallaxWrapper({ children, intensity = 10, mobileIntensity = 10
   const smoothX = useSpring(x, { stiffness: 120, damping: 20 })
   const smoothY = useSpring(y, { stiffness: 120, damping: 20 })
 
-  const resizeTimer = useRef<NodeJS.Timeout | null>(null)
-
-  const updateMobile = () => {
-    if (resizeTimer.current) return
-    resizeTimer.current = setTimeout(() => {
-      setIsMobile(window.innerWidth < mobileBreakpoint)
-      resizeTimer.current = null
-    }, 250)
-  }
-
-  // ✅ Detect if mobile with throttled resize (250ms)
+  // ✅ Detect coarse-pointer devices;
   useEffect(() => {
-    if (!window) return
-    setIsMobile(window.innerWidth < mobileBreakpoint)
-
-    window.addEventListener("resize", updateMobile)
-    return () => {
-      window.removeEventListener("resize", updateMobile)
-      if (resizeTimer.current) clearTimeout(resizeTimer.current)
-    }
-  }, [mobileBreakpoint])
+    const mql = window.matchMedia("(pointer: coarse), (hover: none)")
+    const update = () => setIsMobile(mql.matches)
+    mql.addEventListener("change", update)
+    return () => mql.removeEventListener("change", update)
+  }, [])
 
   // ✅ Mouse movement for desktop
-  const handleMouseMove = useCallback(
-    (e: MouseEvent) => {
+  const handlePointerMove = useCallback(
+    (e: PointerEvent) => {
       if (isMobile || !inView) return
 
       const { innerWidth, innerHeight } = window
       const offsetX = (e.clientX / innerWidth - 0.5) * intensity
       const offsetY = (e.clientY / innerHeight - 0.5) * intensity
 
-      x.set(Math.max(-4, Math.min(offsetX, 4)))
-      y.set(Math.max(-2, Math.min(offsetY, 2)))
+      x.set(Math.max(-intensity, Math.min(offsetX, intensity)))
+      y.set(Math.max(-intensity, Math.min(offsetY, intensity)))
     },
     [intensity, isMobile, inView, x, y]
   )
@@ -87,15 +72,15 @@ export function ParallaxWrapper({ children, intensity = 10, mobileIntensity = 10
       window.addEventListener("scroll", handleScroll, { passive: true })
       return () => window.removeEventListener("scroll", handleScroll)
     } else {
-      window.addEventListener("mousemove", handleMouseMove)
-      return () => window.removeEventListener("mousemove", handleMouseMove)
+      window.addEventListener("pointermove", handlePointerMove)
+      return () => window.removeEventListener("pointermove", handlePointerMove)
     }
-  }, [isMobile, handleMouseMove, handleScroll, inView])
+  }, [isMobile, handlePointerMove, handleScroll, inView])
 
   return (
     <motion.div
       ref={containerRef}
-      className={`absolute inset-0 m-[-4px] will-change-transform ${className}`}
+      className={`absolute inset-0 m-[-4px] will-change-transform ${className} `}
       style={{
         x: smoothX,
         y: smoothY,

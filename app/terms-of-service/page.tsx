@@ -1,6 +1,7 @@
 import { SITE_NAP, SITE_CONFIG, SITE_SLUGS } from "@/config/siteConfig"
 import { Terms } from "./Terms"
 import type { Metadata } from "next"
+import { useUI } from "@react-zero-ui/core"
 
 export const metadata: Metadata = {
   title: "Terms of Service",

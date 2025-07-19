@@ -42,7 +42,9 @@
     ".next/**/*.d.ts",
     ".next/types/**/*.ts",
     ".zero-ui/**/*.d.ts",
-    "next-env.d.ts"
+    "next-env.d.ts",
+    "utils/init-zero-ui.ts",
+    ".zero-ui/init-zero-ui.ts"
   ],
   "exclude": [
     "node_modules"

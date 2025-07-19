@@ -9,6 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return allRoutes.map((url) => ({
     url: DOMAIN_URL + url,
     lastModified: new Date().toISOString(),
+    changeFrequency: "daily",
     priority: url === "/" ? 1.0 : 0.8,
   }))
 }
