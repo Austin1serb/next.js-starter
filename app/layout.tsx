@@ -7,7 +7,7 @@ import { TopBar } from "./components/TopBar/TopBar"
 import { Footer } from "./components/Footer"
 import { LazyMotion } from "motion/react"
 import { MotionWrapper } from "@/utils/motion-wrapper"
-import InitZeroUI from "./test/init-zero-ui"
+import InitZeroUI from "./test-zero-ssr/init-zero-ui"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
