@@ -10,5 +10,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: DOMAIN_URL + url,
     lastModified: new Date().toISOString(),
     priority: url === "/" ? 1.0 : 0.8,
+    changeFrequency: url === "/" ? "daily" : "weekly",
   }))
 }

@@ -2,14 +2,14 @@ import { SITE_CONFIG } from "@/config/siteConfig"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Home",
-  description: "Home",
+  title: SITE_CONFIG.title,
+  description: SITE_CONFIG.description,
   alternates: {
     canonical: SITE_CONFIG.url,
   },
 }
 
 const Home: React.FC = () => {
-  return <div className="flex-center py-40 text-8xl font-black uppercase">NEXT.js Starter</div>
+  return <div className="flex-center text-surface py-40 text-8xl font-black uppercase">NEXT.js Starter</div>
 }
 export default Home

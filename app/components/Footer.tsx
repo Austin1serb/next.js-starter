@@ -6,13 +6,13 @@ const year = new Date().getFullYear()
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="footer bg-background-alt text-foreground-alt mt-10 overflow-hidden">
+    <footer className="bg-background-alt mt-10 overflow-hidden">
       <div className="p-10">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 gap-12 pt-16 pb-8 md:pt-32 lg:grid-cols-3">
           {/* Navigation Links */}
           <div>
-            <h3 className="after:bg-accent relative mb-4 after:absolute after:bottom-0 after:mt-2 after:block after:h-[3px] after:w-12">Navigate</h3>
+            <h3 className="after:bg-primary relative mb-4 after:absolute after:bottom-0 after:mt-2 after:block after:h-[3px] after:w-12">Navigate</h3>
             <nav className="flex flex-col gap-5">
               <Link href={SITE_SLUGS.home}>Home</Link>
               <Link href={SITE_SLUGS.contact}>Contact</Link>
@@ -25,12 +25,12 @@ export const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <div className="h-card">
-            <h3 className="after:bg-accent relative mb-4 after:absolute after:bottom-0 after:mt-2 after:block after:h-[3px] after:w-16">Contact</h3>
+            <h3 className="after:bg-primary relative mb-4 after:absolute after:bottom-0 after:mt-2 after:block after:h-[3px] after:w-16">Contact</h3>
             <div className="grid grid-cols-1 gap-4">
-              <Link href={`tel:${SITE_NAP.phone}`} className="p-tel" aria-label={`Call ${SITE_CONFIG.title} in Bellevue at ${SITE_NAP.formattedPhone}`}>
+              <Link href={`tel:${SITE_NAP.phone}`} className="p-tel" aria-label={`Call ${SITE_CONFIG.title} in ${SITE_NAP.city} at ${SITE_NAP.formattedPhone}`}>
                 {SITE_NAP.formattedPhone}
               </Link>
-              <Link href={`mailto:${SITE_NAP.email}`} className="u-email" ria-label={`Email ${SITE_CONFIG.title} at ${SITE_NAP.email}`}>
+              <Link href={`mailto:${SITE_NAP.email}`} className="u-email" aria-label={`Email ${SITE_CONFIG.title} at ${SITE_NAP.email}`}>
                 {SITE_NAP.email}
               </Link>
               <Link href={SITE_NAP.profiles.gbp} className="p-adr" target="_blank" rel="noopener noreferrer" aria-label="View our location on Google Maps">
@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
 
           {/* Business Hours Column */}
           <div>
-            <h3 className="after:bg-accent relative mb-4 after:absolute after:bottom-0 after:mt-2 after:block after:h-[3px] after:w-16">Hours</h3>
+            <h3 className="after:bg-primary relative mb-4 after:absolute after:bottom-0 after:mt-2 after:block after:h-[3px] after:w-16">Hours</h3>
 
             <div className="flex flex-col gap-2">
               {SITE_NAP.openingHours.map(({ days, hours }) => (
@@ -63,13 +63,13 @@ export const Footer: React.FC = () => {
             {/* Logo */}
             <div className="h-card flex w-fit items-center">
               {/* <Image src={Logo} alt={`{SITE_CONFIG.title} Kirkland Logo" width={50} height={50} className="u-logo`} /> */}
-              <span className="p-name text-compliment xs:text-[24px] text-xl font-extrabold text-nowrap uppercase italic">{SITE_CONFIG.title}</span>
+              <span className="p-name xs:text-[24px] text-xl font-extrabold text-nowrap uppercase italic">{SITE_CONFIG.title}</span>
             </div>
 
             {/* Copyright */}
-            <p className="body-display-sm mt-4 w-full text-center text-base! text-neutral-500 md:mt-0 lg:text-start">
+            <p className="mt-4 w-full text-center text-base! text-neutral-500 md:mt-0 lg:text-start">
               {year} Copyright © {SITE_CONFIG.title} | Website by
-              <Link title="Seattle Web Design & SEO | Serbyte Development" href="https://www.serbyte.net/" className="text-accent font-medium hover:underline">
+              <Link title="Seattle Web Design & SEO | Serbyte Development" href="https://www.serbyte.net/" className="text-primary font-medium hover:underline">
                 {" "}
                 Serbyte Development
               </Link>

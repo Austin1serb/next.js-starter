@@ -5,7 +5,6 @@ import "./globals.css"
 import { DOMAIN_URL, SITE_CONFIG } from "@/config/siteConfig"
 import { TopBar } from "./components/TopBar/TopBar"
 import { Footer } from "./components/Footer"
-import { LazyMotion } from "motion/react"
 import { MotionWrapper } from "@/utils/motion-wrapper"
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,17 +21,6 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_CONFIG.title}`,
   },
   description: SITE_CONFIG.description,
-  // openGraph: {
-  //   title: SITE_CONFIG.title,
-  //   description: SITE_CONFIG.description,
-  //   url: SITE_CONFIG.url,
-  // },
-  // twitter: {
-  //   card: "summary_large_image",
-  //   title: SITE_CONFIG.title,
-  //   description: SITE_CONFIG.description,
-  //   images: [SITE_CONFIG.ogImage],
-  // },
 }
 export default function RootLayout({
   children,

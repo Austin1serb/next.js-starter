@@ -1,34 +1,33 @@
-import React from "react"
 import Link from "next/link"
-import Image from "next/image"
-import brandImage from "@/app/images/serbyte-logo.jpg"
-import { MobileMenu } from "./MobileMenu"
+import { MobileMenu } from "@/app/components/TopBar/MobileMenu"
 import { SITE_SLUGS } from "@/config/siteConfig"
+import { Logo } from "@/app/components/Logo"
+
 export const TopBar = () => {
   return (
-    <header className="bg-background-alt text-foreground-alt z-50 flex w-full items-center justify-between overflow-hidden px-5 py-2.5">
-      {/* Logo and Tagline */}
-      <Link href="/" aria-label="Serbyte Next.js Starter" className="group flex w-full items-center gap-2">
-        <Image
-          src={brandImage}
-          alt="Serbyte Next.js Starter"
-          priority
-          placeholder="blur"
-          height={50}
-          className="duration-300 will-change-transform group-hover:scale-95"
-        />
-        SERBYTE
-      </Link>
+    <header className="bg-primary scrolled750-true:py-1 scrolled750-true:border-black border-primary fixed z-5 flex w-full items-center justify-between overflow-hidden border-b p-2.5 text-black duration-300 md:px-5">
+      <Logo />
+      <div className="flex w-full flex-col items-center justify-between">
+        <nav className="flex w-full items-center justify-center">
+          <div className="flex w-full items-center justify-center gap-20 text-base font-medium max-lg:hidden">
+            <Link className="text-nowrap duration-200 hover:text-white" href={SITE_SLUGS.home}>
+              Home
+            </Link>
+            <Link className="text-nowrap duration-200 hover:text-white" href={SITE_SLUGS.about}>
+              About Us
+            </Link>
 
-      <div className="bg-background-alt flex w-full flex-col items-center justify-between gap-5">
-        <nav className="flex w-full items-center justify-end">
-          <MobileMenu />
-          <div className="flex w-full items-center justify-end gap-10 max-lg:hidden">
-            <Link href={SITE_SLUGS.services}>Services</Link>
-            <Link href={SITE_SLUGS.about}>About</Link>
-            <Link href={SITE_SLUGS.contact}>Contact</Link>
+            <Link className="text-nowrap duration-200 hover:text-white" href={SITE_SLUGS.services}>
+              Services
+            </Link>
           </div>
         </nav>
+      </div>
+      <div className="flex w-full items-center justify-end gap-5">
+        <Link className="hidden md:block" href={SITE_SLUGS.contact} title="Start Now With Pets Choice Insurance">
+          Get a Quote
+        </Link>
+        <MobileMenu />
       </div>
     </header>
   )
