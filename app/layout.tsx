@@ -6,6 +6,7 @@ import { DOMAIN_URL, SITE_CONFIG } from "@/config/siteConfig"
 import { TopBar } from "./components/TopBar/TopBar"
 import { Footer } from "./components/Footer"
 import { MotionWrapper } from "@/utils/motion-wrapper"
+
 const geistSans = Geist({
   variable: "--font-primary",
   subsets: ["latin"],
