@@ -5,7 +5,7 @@ import { Logo } from "@/app/components/Logo"
 
 export const TopBar = () => {
   return (
-    <header className="bg-primary scrolled750-true:py-1 scrolled750-true:border-black border-primary fixed z-5 flex w-full items-center justify-between overflow-hidden border-b p-2.5 text-black duration-300 md:px-5">
+    <header className="bg-primary border-primary fixed z-5 flex w-full items-center justify-between overflow-hidden border-b p-2.5 text-black duration-300 md:px-5">
       <Logo />
       <div className="flex w-full flex-col items-center justify-between">
         <nav className="flex w-full items-center justify-center">

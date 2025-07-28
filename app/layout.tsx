@@ -7,11 +7,11 @@ import { TopBar } from "./components/TopBar/TopBar"
 import { Footer } from "./components/Footer"
 import { MotionWrapper } from "@/utils/motion-wrapper"
 const geistSans = Geist({
-  variable: "--font-geist-sans",
+  variable: "--font-primary",
   subsets: ["latin"],
 })
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-secondary",
   subsets: ["latin"],
 })
 export const metadata: Metadata = {
