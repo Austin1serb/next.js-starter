@@ -19,13 +19,16 @@
   },
   "dependencies": {
     "@react-zero-ui/core": "^0.2.4",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.525.0",
+    "lucide-static": "^0.525.0",
     "motion": "^12.23.0",
     "next": "^15.3.1",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "svgstore": "^3.0.1"
   },
   "devDependencies": {
-    "prettier-plugin-tailwindcss": "^0.6.11",
     "@eslint/eslintrc": "^3.3.1",
     "@next/bundle-analyzer": "^15.3.1",
     "@playwright/test": "^1.52.0",
@@ -40,8 +43,10 @@
     "husky": "^9.1.7",
     "postcss": "^8.5.6",
     "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "schema-dts": "^1.1.5",
     "tailwindcss": "^4.1.11",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
 }

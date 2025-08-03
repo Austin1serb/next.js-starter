@@ -1,5 +1,7 @@
 # dependencies
 /node_modules
+/lucide-static
+/lucide-react
 
 # package-lock.json
 package-lock.json
