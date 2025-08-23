@@ -9,7 +9,7 @@ export const MobileMenuButton: React.FC = () => {
 
   return (
     <div className="flex h-full items-center justify-between gap-4 sm:hidden">
-      <LinkButton className="h-10 max-[460px]:hidden" href={SITE_SLUGS.contact}>
+      <LinkButton className="" href={SITE_SLUGS.contact}>
         Contact
       </LinkButton>
       <div className="border-primary animate-click flex h-full items-center justify-center rounded-full border-2 p-1.5">

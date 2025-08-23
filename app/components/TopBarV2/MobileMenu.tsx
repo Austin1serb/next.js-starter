@@ -51,8 +51,8 @@ export const MobileMenu: React.FC<{ navItems: { name: string; href: string }[] }
           <hr className="my-4 h-px text-zinc-700" />
 
           {/* Contact button */}
-          <div className="mobile-menu-item">
-            <LinkButton href={SITE_SLUGS.contact} onClick={() => toggle()} className="w-full justify-center py-3">
+          <div className="mobile-menu-item flex w-full justify-center">
+            <LinkButton href={SITE_SLUGS.contact} onClick={() => toggle()} className="w-fit justify-center py-3">
               Contact Us
             </LinkButton>
           </div>
