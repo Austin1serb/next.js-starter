@@ -1,4 +1,4 @@
-import type { LocalBusiness, WithContext } from "schema-dts"
+import type { LocalBusiness, Organization, WebSite, WithContext } from "schema-dts"
 import { SITE_CONFIG, SITE_NAP } from "./siteConfig"
 
 export const localBusinessSchema: WithContext<LocalBusiness> = {
@@ -14,7 +14,6 @@ export const localBusinessSchema: WithContext<LocalBusiness> = {
     postalCode: SITE_NAP.zipCode,
     addressCountry: "US",
   },
-
   // review: {
   //   "@type": "Review",
   //   reviewRating: { "@type": "Rating", ratingValue: 4.9, bestRating: 5 },
@@ -34,5 +33,32 @@ export const localBusinessSchema: WithContext<LocalBusiness> = {
     },
     { "@type": "OpeningHoursSpecification", dayOfWeek: ["Friday"], opens: "08:00", closes: "14:00" },
   ],
-  sameAs: Object.values(SITE_NAP.profiles),
+  sameAs: Object.values(SITE_NAP.profiles).filter(Boolean),
+}
+
+export const websiteSchema: WithContext<WebSite> = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_NAP.name,
+  alternateName: SITE_NAP.name,
+  description: SITE_CONFIG.description,
+  url: SITE_CONFIG.url,
+}
+
+export const organizationSchema: WithContext<Organization> = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_NAP.name,
+  url: SITE_CONFIG.url,
+  logo: SITE_CONFIG.logo,
+  sameAs: Object.values(SITE_NAP.profiles).filter(Boolean),
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: SITE_NAP.email,
+      telephone: SITE_NAP.phone,
+      availableLanguage: ["English"],
+    },
+  ],
 }

@@ -3,9 +3,11 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import { DOMAIN_URL, SITE_CONFIG } from "@/config/siteConfig"
-import { TopBar } from "./components/TopBar/TopBar"
 import { Footer } from "./components/Footer"
 import { MotionWrapper } from "@/utils/motion-wrapper"
+import { LazyUi } from "./components/LazyUi"
+import { TopBarV2 } from "./components/TopBarV2/TopBarV2"
+import { ZeroUiRuntime } from "@/utils/init-zero-runtime"
 
 const geistSans = Geist({
   variable: "--font-primary",
@@ -17,10 +19,7 @@ const geistMono = Geist_Mono({
 })
 export const metadata: Metadata = {
   metadataBase: new URL(DOMAIN_URL),
-  title: {
-    default: SITE_CONFIG.title,
-    template: `%s | ${SITE_CONFIG.title}`,
-  },
+  title: SITE_CONFIG.title,
   description: SITE_CONFIG.description,
 }
 export default function RootLayout({
@@ -32,9 +31,11 @@ export default function RootLayout({
     <html lang="en">
       <MotionWrapper>
         <body {...bodyAttributes} className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <TopBar />
+          <TopBarV2 />
+          <LazyUi />
           {children}
           <Footer />
+          <ZeroUiRuntime />
         </body>
       </MotionWrapper>
     </html>

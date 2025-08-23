@@ -12,7 +12,7 @@ export const Logo: React.FC<{ className?: string }> = ({ className }) => {
         className
       }
     >
-      <Image src="/serbyte-logo.png" alt={SITE_NAP.name} width={300} height={300} className="aspect-square h-10 w-10 rounded-lg md:h-12 md:w-12" />
+      <Image src="/serbyte-logo.jpg" alt={SITE_NAP.name} width={300} height={300} className="aspect-square h-10 w-10 rounded-lg md:h-12 md:w-12" />
       <span className="mt-1.5 w-fit leading-4">
         Serbyte
         <br />

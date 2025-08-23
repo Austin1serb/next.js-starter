@@ -1,4 +1,4 @@
-# Next.js 15 Starter Repo with TypeScript, Tailwind v4, Framer Motion, and Playwright
+# Next.js 15 Starter Repo with TypeScript, Tailwind v4, React Zero UI, Framer Motion, and Playwright
 
 ## Setup
 

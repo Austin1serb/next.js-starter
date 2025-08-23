@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 }
 export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fullWebAddress, contact }) => {
   return (
-    <main className="relative mx-auto -mt-5 bg-white px-10 pt-20 pb-20 md:px-20">
+    <main className="relative mx-auto -mt-5 bg-white px-10 pt-20 pb-20 text-black md:px-20">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         style={{ position: "absolute", maxWidth: 0, maxHeight: 0, overflow: "hidden", display: "hidden" }}
@@ -296,9 +296,9 @@ export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fu
           Governing Law &amp; Venue
         </h2>
         <p className="py-5">
-          These Terms shall be governed and construed in accordance with the laws of the state of Washington, United States, without regard to its conflict of
-          laws provisions. These terms shall not be governed by the United Nations convention on contracts for the sale of international goods, the Uniform
-          Commercial Code, nor Incoterms.
+          These Terms shall be governed and construed in accordance with the laws of the state of {SITE_NAP.state}, United States, without regard to its
+          conflict of laws provisions. These terms shall not be governed by the United Nations convention on contracts for the sale of international goods, the
+          Uniform Commercial Code, nor Incoterms.
         </p>
         <p className="py-5">
           Our failure to enforce any right or provision of these Terms will not be considered a waiver of that right or provision. If any provision of these
@@ -308,7 +308,7 @@ export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fu
         </p>
         <p className="py-5">
           Any controversy or claim arising out of or relating to these Terms (including but not limited to the interpretation or breach thereof) shall be
-          resolved in a court of competent jurisdiction in King County, Washington.
+          resolved in a court of competent jurisdiction in King County, {SITE_NAP.state}.
         </p>
         <p className="py-5">
           You and {fullCompanyName} agree that each may bring claims against the other only in your or its individual capacity and not as a plaintiff or class

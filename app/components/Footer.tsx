@@ -1,8 +1,28 @@
 import Link from "next/link"
 import { SITE_CONFIG, SITE_NAP, SITE_SLUGS } from "@/config/siteConfig"
-import { SocialLinks } from "./SocialLinks"
+import { Socials } from "./Socials"
 
 const year = new Date().getFullYear()
+
+export const socialLinks = [
+  {
+    href: SITE_NAP.profiles.linkedIn,
+    icon: "linkedin",
+  },
+  {
+    href: SITE_NAP.profiles.facebook,
+    icon: "facebook",
+  },
+
+  {
+    href: SITE_NAP.profiles.gbp,
+    icon: "google",
+  },
+  {
+    href: SITE_NAP.profiles.instagram,
+    icon: "instagram",
+  },
+]
 
 export const Footer: React.FC = () => {
   return (
@@ -55,7 +75,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
         <div className="mb-5 flex justify-center">
-          <SocialLinks />
+          <Socials socialLinks={socialLinks} />
         </div>
         {/* Bottom Section */}
         <div className="flex flex-col items-center justify-between border-t border-neutral-600 pt-4 pb-4 lg:flex-row lg:items-end">
@@ -76,19 +96,11 @@ export const Footer: React.FC = () => {
             </p>
           </div>
           <div className="mt-4 flex w-fit items-center justify-center lg:mt-0">
-            <Link
-              title={`Terms of Service | ${SITE_CONFIG.title}`}
-              href={`${SITE_CONFIG.url}/privacy-policy`}
-              className="text-sm! text-nowrap text-neutral-500"
-            >
+            <Link title={`Terms of Service | ${SITE_CONFIG.title}`} href="/privacy-policy" className="text-sm! text-nowrap text-neutral-500">
               Privacy Policy{" "}
             </Link>
             <span className="mx-1 text-neutral-500">|</span>
-            <Link
-              title={`Privacy Policy | ${SITE_CONFIG.title}`}
-              href={`${SITE_CONFIG.url}/terms-of-service`}
-              className="text-sm! text-nowrap text-neutral-500"
-            >
+            <Link title={`Privacy Policy | ${SITE_CONFIG.title}`} href="/terms-of-service" className="text-sm! text-nowrap text-neutral-500">
               Terms of Service
             </Link>
           </div>

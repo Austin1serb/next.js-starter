@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { SITE_SLUGS } from "@/config/siteConfig"
+
 export const metadata: Metadata = {
   title: "Services",
   description: "Services",

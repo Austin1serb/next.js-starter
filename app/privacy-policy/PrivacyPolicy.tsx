@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 }
 export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fullWebAddress, contact }) => {
   return (
-    <main className="relative mx-auto -mt-5 bg-white px-10 pt-20 pb-20 md:px-20">
+    <main className="relative mx-auto -mt-5 bg-white px-10 pt-20 pb-20 text-black md:px-20">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         style={{ position: "absolute", maxWidth: 0, maxHeight: 0, overflow: "hidden", display: "hidden" }}
@@ -73,7 +73,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             {fullWebAddress}
           </a>{" "}
           Website (the &quot; <strong className="font-bold text-black"> Website</strong>&quot;) operated by{" "}
-          <strong className="font-bold text-black"> {fullCompanyName}</strong>, a Corporation formed in Washington, United States (
+          <strong className="font-bold text-black"> {fullCompanyName}</strong>, a Corporation formed in {SITE_NAP.state}, United States (
           <strong className="font-bold text-black"> us</strong>,&quot; &quot;
           <strong className="font-bold text-black"> we</strong>,&quot; &quot;
           <strong className="font-bold text-black"> our</strong>&quot;) as this Privacy Policy contains important information regarding your privacy and how we
