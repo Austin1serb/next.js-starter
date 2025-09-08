@@ -1,42 +1,75 @@
-# Next.js 15 Starter Repo with TypeScript, Tailwind v4, React Zero UI, Framer Motion, and Playwright
+# Next.js Starter
 
-## Setup
+Minimal starter powered by Next.js 15, React 19, TypeScript, Tailwind CSS v4, Motion, React Zero UI, and Playwright for E2E tests.
 
-### 1. Initialize the Next.js Project
+## Features
 
-📂 next.js-starter/
-│── 📂 .vscode
-│ └── settings.json  
-│── 📂 app
-│ │── 📂 privacy-policy
-│ │ │── PrivacyPolicy.tsx
-│ │ └── page.tsx
-│ │── 📂 terms-of-service
-│ │ │── Terms.tsx
-│ │ └── page.tsx
-│ │── 📂 contact
-│ │ └── page.tsx
-│ │── favicon.ico
-│ │── globals.css
-│ │── layout.tsx
-│ │── page.tsx
-│ │── robots.ts
-│ │── sitemap.ts
-│── 📂 config
-│ └── site.ts // Company information will be used in Metadata & Terms and Policy pages
-│── 📂 public
-│── .env
-│── .prettierignore
-│── .prettierrc
-│── README.md
-│── components.json
-│── eslint.config.mjs
-│── next.config.ts
-│── package-lock.json
-│── package.json
-│── postcss.config.mjs
-└── tsconfig.json
+- Next.js 15 (App Router) with React 19
+- TypeScript
+- Tailwind CSS v4
+- Motion animations
+- React Zero UI State management and icon sprite
+- Playwright end‑to‑end testing
+- ESLint + Prettier
 
+## Prerequisites
+
+- Node.js 20+
+- npm 10+
+
+## Quick start
+
+```bash
+npm install
+npm run dev
 ```
 
+Then open `http://localhost:3000`.
+
+## Scripts
+
+- `dev`: Start the dev server (Turbopack)
+- `build`: Create a production build
+- `start`: Start the production server (after `build`)
+- `lint`: Run ESLint
+- `type-check`: Run TypeScript in no‑emit mode
+- `format`: Prettier format
+- `clean`: Remove `.next`, `node_modules`, and lockfile
+- `test`: Run Playwright tests
+
+## Testing (Playwright)
+
+This project runs tests against the production server.
+
+```bash
+npm run build
+npm test
 ```
+
+Notes:
+
+- Base URL defaults to `http://localhost:3000`. You can override with `NEXT_PUBLIC_VERCEL_URL`.
+- The test runner will reuse an existing server locally when possible.
+
+## Environment variables
+
+Next.js automatically loads variables from `.env.local`, `.env.development`, `.env.production`, etc.
+
+Common variables:
+
+- `NEXT_PUBLIC_VERCEL_URL` – Used by Playwright as `baseURL` when set.
+
+## Project layout
+
+```
+app/                # Routes, layouts, pages, and UI components
+e2e/                # Playwright tests
+public/             # Static assets and icon sprite
+utils/              # Utilities (env helpers, motion wrappers)
+```
+
+Icons: an SVG sprite is generated via the prebuild step and placed at `public/icons.svg`.
+
+## License
+
+This starter is provided as‑is; add a license file if you plan to distribute.

@@ -1,19 +1,18 @@
 import { ALL_PAGES, SITE_CONFIG } from "@/config/siteConfig"
 import { test, expect, type Page } from "@playwright/test"
 
-const SKIP_LINK_VALIDATION = "true"
+// const SKIP_LINK_VALIDATION = "true"
 
-if (SKIP_LINK_VALIDATION === "true") {
-  console.warn("Skipping link validation")
-  test.skip()
-}
+// if (SKIP_LINK_VALIDATION === "true") {
+//   console.warn("Skipping link validation")
+//   test.skip()
+// }
 
 async function getAllLinksFromPage(page: Page) {
   const links = page.locator("a")
   const allLinks = await links.all()
-  console.log("allLinks: ", allLinks)
+
   const allHrefs = await Promise.all(allLinks.map((link) => link.getAttribute("href")))
-  console.log("allHrefs: ", allHrefs)
 
   // Debug: Log empty hrefs with their text content
   for (let i = 0; i < allHrefs.length; i++) {

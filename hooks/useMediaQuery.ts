@@ -1,7 +1,7 @@
 // hooks/useMediaQuery.ts
 "use client"
 import { useSyncExternalStore } from "react"
-import { getMediaQueryStore } from "@/utils/getMediaQueryStore"
+import { getMediaQueryStore } from "../utils/getMediaQueryStore"
 
 // Generic hook: pass any valid media query string
 export function useMediaQuery(query: string) {
@@ -17,9 +17,10 @@ export function useMediaQuery(query: string) {
 }
 
 // Convenience shims mirroring your API
-export function useIsMobile(bp = 768) {
-  // -0.1px to avoid overlap at the exact pixel boundary
-  return useMediaQuery(`(max-width: ${bp - 0.1}px)`)
+export function useIsMobile(bp = 768, fn?: () => void) {
+  const isMobile = useMediaQuery(`(max-width: ${bp - 0.1}px)`)
+  if (isMobile && fn) fn()
+  return isMobile
 }
 export function useTouch() {
   return useMediaQuery(`(any-hover: none) and (any-pointer: coarse)`)
