@@ -1,15 +1,18 @@
 # echo "🔍 Running Full Pre-Commit Checks..."
 
-# # Run Prettier on all files
+# # # Run Prettier on all files
 # npx prettier --write . --ignore-unknown
 
-# # Run ESLint on all JavaScript/TypeScript files
-# npx eslint --cache --fix . || exit 1
+# # # Run ESLint on all JavaScript/TypeScript files
+# npm run lint || exit 1
 
-# # Re-stage all modified files so only one commit is needed
-# git add .
-
-# # Type check the entire project (fails commit if there are errors)
+# # # Type check the entire project (fails commit if there are errors)
 # npx tsc --noEmit || exit 1
+
+# # # Run the build script to ensure the project builds without errors
+# npm run build || exit 1
+
+# # # Re-stage all modified files so only one commit is needed
+# git add .
 
 # echo "✅ Pre-commit checks passed!"

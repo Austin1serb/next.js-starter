@@ -1,0 +1,16 @@
+name: Commit Email Summary
+on:
+  workflow_run:
+    workflows: ["Playwright Tests"]
+    branches: [main, master]
+    types: [completed]
+
+jobs:
+  email_summary:
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' }}
+    uses: Austin1serb/Serbyte-Actions/.github/workflows/send_commit_email.yaml@main
+    secrets:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
