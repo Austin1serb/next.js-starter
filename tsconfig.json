@@ -28,7 +28,7 @@
     ],
     "paths": {
       "@/*": [
-        "./*"
+        "./src/*"
       ],
       "@zero-ui/attributes": [
         "./.zero-ui/attributes.js"
