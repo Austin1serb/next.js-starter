@@ -54,7 +54,7 @@ export const Socials: React.FC<{
           <Link
             rel="noopener noreferrer"
             target="_blank"
-            className={`footer-link ${iconClassName}`}
+            className={`social-link ${iconClassName}`}
             href={link.href === "" ? "/services" : link.href}
             aria-label={link.icon}
             title={link.icon}

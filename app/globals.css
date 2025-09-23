@@ -33,7 +33,7 @@ body {
     cursor: pointer;
   }
 
-  .footer-link {
+  .social-link {
     @apply flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700 p-1 transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:bg-zinc-600;
   }
 
