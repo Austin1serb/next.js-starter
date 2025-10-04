@@ -15,4 +15,5 @@
     "list.hoverBackground": "#0f74e0d8"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
+  "postman.settings.dotenv-detection-notification-visibility": false,
 }

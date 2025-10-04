@@ -1,4 +1,4 @@
-import { SITE_CONFIG, SITE_NAP, SITE_SLUGS } from "@/config/siteConfig"
+import { SITE_CONFIG, SITE_NAP, SITE_SLUGS, DOMAIN_URL } from "@/config/siteConfig"
 import { Privacy } from "./PrivacyPolicy"
 import type { Metadata } from "next"
 
@@ -15,7 +15,7 @@ const Page: React.FC = () => {
     <Privacy
       accentColor="--primary"
       fullCompanyName={SITE_NAP.name}
-      fullWebAddress={SITE_CONFIG.url}
+      fullWebAddress={DOMAIN_URL}
       contact={{
         name: SITE_NAP.contact,
         title: SITE_NAP.contactTitle,

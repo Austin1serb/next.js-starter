@@ -1,4 +1,4 @@
-import { ALL_PAGES, SITE_CONFIG } from "@/config/siteConfig"
+import { ALL_PAGES, DOMAIN_URL } from "@/config/siteConfig"
 import { test, expect, type Page } from "@playwright/test"
 
 async function getAllImagesFromPage(page: Page) {
@@ -20,7 +20,7 @@ async function getAllImagesFromPage(page: Page) {
 
 test("Validate images", async ({ page }) => {
   for (const pageUrl of ALL_PAGES) {
-    await page.goto(SITE_CONFIG.url + pageUrl)
+    await page.goto(DOMAIN_URL + pageUrl)
     const imageUrls = await getAllImagesFromPage(page)
 
     for (const url of imageUrls) {

@@ -4,8 +4,6 @@ import * as m from "motion/react-m"
 
 export const Motion = m.div
 
-export const MotionPath = m.path
-
 export const LazyUi = () => {
   const ScrollTrigger = dynamic(() => import("./ScrollTrigger").then((mod) => mod.ScrollTrigger), {
     ssr: false,

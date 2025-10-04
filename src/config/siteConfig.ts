@@ -1,9 +1,9 @@
-export const DOMAIN_URL = "http://localhost:3000"
+// change this to the domain of your site when you deploy
+export const DOMAIN_URL = process.env.NEXT_PUBLIC_VERCEL_URL ?? "http://localhost:3000"
 
 export const SITE_CONFIG = {
   title: "My Next.js Starter",
   description: "A fully optimized Next.js 15 starter template.",
-  url: DOMAIN_URL ?? process.env.NEXT_PUBLIC_VERCEL_URL ?? "http://localhost:3000",
   siteName: "My Next.js Starter",
   keywords: ["Next.js", "Tailwind CSS", "SEO", "TypeScript"],
   ogImage: "/og-image.png",

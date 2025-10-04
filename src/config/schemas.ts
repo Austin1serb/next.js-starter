@@ -1,5 +1,5 @@
 import type { LocalBusiness, Organization, WebSite, WithContext } from "schema-dts"
-import { SITE_CONFIG, SITE_NAP } from "./siteConfig"
+import { DOMAIN_URL, SITE_CONFIG, SITE_NAP } from "./siteConfig"
 
 export const localBusinessSchema: WithContext<LocalBusiness> = {
   "@context": "https://schema.org",
@@ -21,7 +21,7 @@ export const localBusinessSchema: WithContext<LocalBusiness> = {
   // },
   // geo: { "@type": "GeoCoordinates", latitude: 47.709356, longitude: -122.177239 },\
 
-  url: SITE_CONFIG.url,
+  url: DOMAIN_URL,
   telephone: SITE_NAP.phone,
   priceRange: "$$",
   openingHoursSpecification: [
@@ -42,14 +42,14 @@ export const websiteSchema: WithContext<WebSite> = {
   name: SITE_NAP.name,
   alternateName: SITE_NAP.name,
   description: SITE_CONFIG.description,
-  url: SITE_CONFIG.url,
+  url: DOMAIN_URL,
 }
 
 export const organizationSchema: WithContext<Organization> = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: SITE_NAP.name,
-  url: SITE_CONFIG.url,
+  url: DOMAIN_URL,
   logo: SITE_CONFIG.logo,
   sameAs: Object.values(SITE_NAP.profiles).filter(Boolean),
   contactPoint: [

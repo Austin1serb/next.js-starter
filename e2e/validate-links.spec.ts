@@ -1,4 +1,4 @@
-import { ALL_PAGES, SITE_CONFIG } from "@/config/siteConfig"
+import { ALL_PAGES, DOMAIN_URL } from "@/config/siteConfig"
 import { test, expect, type Page } from "@playwright/test"
 
 // const SKIP_LINK_VALIDATION = "true"
@@ -42,7 +42,7 @@ async function getAllLinksFromPage(page: Page) {
 
 for (const pageUrl of ALL_PAGES) {
   test(`Validate links on ${pageUrl}`, async ({ page }) => {
-    await page.goto(SITE_CONFIG.url + pageUrl)
+    await page.goto(DOMAIN_URL + pageUrl)
     const linkUrls = await getAllLinksFromPage(page)
 
     for (const url of linkUrls) {

@@ -1,4 +1,4 @@
-import { SITE_CONFIG, SITE_NAP } from "@/config/siteConfig"
+import { SITE_NAP, DOMAIN_URL } from "@/config/siteConfig"
 import type { Metadata } from "next"
 
 interface PrivacyProps {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description: `Read our Terms of Service to learn about the rules and regulations for accessing and using the ${SITE_NAP.name} website.`,
   keywords: ["terms of service", "terms and conditions"],
   alternates: {
-    canonical: `${SITE_CONFIG.url}/terms-of-service`,
+    canonical: `${DOMAIN_URL}/terms-of-service`,
   },
 }
 export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fullWebAddress, contact }) => {

@@ -1,4 +1,4 @@
-import { SITE_CONFIG, SITE_NAP } from "@/config/siteConfig"
+import { SITE_NAP, DOMAIN_URL } from "@/config/siteConfig"
 import type { Metadata } from "next"
 
 interface PrivacyProps {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "We value your privacy. Please read this Privacy Policy carefully before using the Website operated by us as this Privacy Policy contains important information regarding your privacy and how we may use the information we collect about you.",
   keywords: "privacy policy, privacy, policy, data protection, data privacy, data security",
   alternates: {
-    canonical: `${SITE_CONFIG.url}/privacy-policy`,
+    canonical: `${DOMAIN_URL}/privacy-policy`,
   },
 }
 export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fullWebAddress, contact }) => {

@@ -4,7 +4,7 @@ import { Socials } from "./Socials"
 
 const year = new Date().getFullYear()
 
-export const socialLinks = [
+const socialLinks = [
   {
     href: SITE_NAP.profiles.linkedIn,
     icon: "linkedin",

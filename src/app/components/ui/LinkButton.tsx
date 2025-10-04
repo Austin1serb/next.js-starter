@@ -8,7 +8,7 @@ interface LinkButtonProps extends React.ComponentProps<typeof Link> {
 
 export const LinkButton: React.FC<LinkButtonProps> = ({ href, children, className, ...props }) => {
   return (
-    <Link href={href} className={`link-button ${className}`} {...props}>
+    <Link href={href} className={`${className}`} {...props}>
       {children}
     </Link>
   )
