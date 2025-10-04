@@ -33,6 +33,24 @@ body {
     cursor: pointer;
   }
 
+  .animate-click {
+    animation: click 200ms ease-in-out;
+    &:active {
+      animation: none;
+    }
+  }
+
+  @keyframes click {
+    0%,
+    100% {
+      transform: scaleY(1) scaleX(1);
+    }
+    50% {
+      transform: scaleY(0.8) scaleX(1.1);
+      filter: saturate(2) brightness(1.2);
+    }
+  }
+
   .social-link {
     @apply flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700 p-1 transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:bg-zinc-600;
   }

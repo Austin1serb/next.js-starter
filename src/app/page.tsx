@@ -10,6 +10,6 @@ export const metadata: Metadata = {
 }
 
 const Home: React.FC = () => {
-  return <div className="flex-center text-surface mx-auto h-[50vh] w-full pt-20 text-center text-8xl font-black uppercase">NEXT.js Starter</div>
+  return <div className="flex-center text-surface mx-auto h-full w-full pt-20 text-center text-8xl font-black uppercase">NEXT.js Starter</div>
 }
 export default Home
