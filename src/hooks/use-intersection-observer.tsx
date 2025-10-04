@@ -157,7 +157,7 @@ export function useIOOverlay(rootMargin: string, sensorEl: HTMLElement | null) {
       ([entry]) => {
         // overwrite only the ratio readout; boxes already show geometry
         const txt = label.textContent || ""
-        const r = entry.intersectionRatio
+        const r = entry?.intersectionRatio ?? 0
         label.textContent = txt.replace(/ratio:\s*[\d.]+$/, `ratio: ${r.toFixed(2)}`)
       },
       { root: null, rootMargin, threshold: Array.from({ length: 11 }, (_, i) => i / 10) }

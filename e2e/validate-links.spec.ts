@@ -17,8 +17,8 @@ async function getAllLinksFromPage(page: Page) {
   // Debug: Log empty hrefs with their text content
   for (let i = 0; i < allHrefs.length; i++) {
     if (!allHrefs[i] || allHrefs[i] === "") {
-      const linkText = await allLinks[i].textContent()
-      const linkHTML = await allLinks[i].innerHTML()
+      const linkText = await allLinks[i]?.textContent()
+      const linkHTML = await allLinks[i]?.innerHTML()
       console.log(`Empty href found: text="${linkText}", html="${linkHTML}"`)
     }
   }
