@@ -1,7 +1,7 @@
 "use client"
-import { DotMenuIcon } from "./DotMenuIcon"
+import { DotMenuIcon } from "./dot-menu-icon"
 import { useUI } from "@react-zero-ui/core"
-import { SITE_SLUGS } from "@/config/siteConfig"
+import { SITE_SLUGS } from "@/config/site-config"
 import { LinkButton } from "../ui/LinkButton"
 
 export const MobileMenuButton: React.FC = () => {

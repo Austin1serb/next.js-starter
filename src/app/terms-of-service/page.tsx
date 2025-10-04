@@ -1,5 +1,5 @@
-import { SITE_NAP, SITE_CONFIG, SITE_SLUGS, DOMAIN_URL } from "@/config/siteConfig"
-import { Terms } from "./Terms"
+import { SITE_NAP, SITE_CONFIG, SITE_SLUGS, DOMAIN_URL } from "@/config/site-config"
+import { Terms } from "./terms"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {

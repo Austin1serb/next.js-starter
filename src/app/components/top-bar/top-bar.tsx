@@ -1,8 +1,8 @@
 import Link from "next/link"
-import { MobileMenuButton } from "./MobileMenuButton"
-import { MobileMenu } from "./MobileMenu"
-import { Logo } from "../Logo"
-import { SITE_SLUGS } from "@/config/siteConfig"
+import { MobileMenuButton } from "./mobile-menu-button"
+import { MobileMenu } from "./mobile-menu"
+import { Logo } from "../logo"
+import { SITE_SLUGS } from "@/config/site-config"
 import { LinkButton } from "@/app/components/ui/LinkButton"
 
 const navItems = [

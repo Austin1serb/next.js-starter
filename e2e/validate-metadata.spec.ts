@@ -1,4 +1,4 @@
-import { ALL_PAGES } from "@/config/siteConfig"
+import { ALL_PAGES } from "@/config/site-config"
 import { test, expect } from "@playwright/test"
 
 test.describe("Validate metadata", () => {

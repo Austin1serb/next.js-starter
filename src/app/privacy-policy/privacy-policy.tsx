@@ -1,4 +1,4 @@
-import { SITE_NAP, DOMAIN_URL } from "@/config/siteConfig"
+import { SITE_NAP, DOMAIN_URL } from "@/config/site-config"
 import type { Metadata } from "next"
 
 interface PrivacyProps {

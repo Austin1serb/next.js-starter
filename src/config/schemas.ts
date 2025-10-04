@@ -1,5 +1,5 @@
 import type { LocalBusiness, Organization, WebSite, WithContext } from "schema-dts"
-import { DOMAIN_URL, SITE_CONFIG, SITE_NAP } from "./siteConfig"
+import { DOMAIN_URL, SITE_CONFIG, SITE_NAP } from "./site-config"
 
 export const localBusinessSchema: WithContext<LocalBusiness> = {
   "@context": "https://schema.org",

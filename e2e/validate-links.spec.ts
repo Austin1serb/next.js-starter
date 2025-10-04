@@ -1,4 +1,4 @@
-import { ALL_PAGES, DOMAIN_URL } from "@/config/siteConfig"
+import { ALL_PAGES, DOMAIN_URL } from "@/config/site-config"
 import { test, expect, type Page } from "@playwright/test"
 
 // const SKIP_LINK_VALIDATION = "true"

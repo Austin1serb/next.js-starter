@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { SITE_CONFIG, SITE_NAP, SITE_SLUGS } from "@/config/siteConfig"
-import { Socials } from "./Socials"
+import { SITE_CONFIG, SITE_NAP, SITE_SLUGS } from "@/config/site-config"
+import { Socials } from "./social"
 
 const year = new Date().getFullYear()
 

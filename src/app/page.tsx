@@ -1,4 +1,4 @@
-import { SITE_CONFIG, DOMAIN_URL } from "@/config/siteConfig"
+import { SITE_CONFIG, DOMAIN_URL } from "@/config/site-config"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {

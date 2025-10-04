@@ -1,4 +1,4 @@
-import { SITE_SLUGS } from "@/config/siteConfig"
+import { SITE_SLUGS } from "@/config/site-config"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {

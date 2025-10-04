@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { SITE_SLUGS } from "@/config/siteConfig"
+import { SITE_SLUGS } from "@/config/site-config"
 
 export const metadata: Metadata = {
   title: "About",

@@ -2,7 +2,7 @@ import Link from "next/link"
 import type { Variants } from "motion"
 
 import { CustomIcon } from "@react-zero-ui/icon-sprite"
-import { Motion } from "./LazyUi"
+import { Motion } from "./lazy-ui"
 
 const container: Variants = {
   hidden: {

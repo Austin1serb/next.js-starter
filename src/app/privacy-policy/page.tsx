@@ -1,5 +1,5 @@
-import { SITE_CONFIG, SITE_NAP, SITE_SLUGS, DOMAIN_URL } from "@/config/siteConfig"
-import { Privacy } from "./PrivacyPolicy"
+import { SITE_CONFIG, SITE_NAP, SITE_SLUGS, DOMAIN_URL } from "@/config/site-config"
+import { Privacy } from "./privacy-policy"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {

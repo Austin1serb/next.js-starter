@@ -1,4 +1,4 @@
-import { SITE_SLUGS, DOMAIN_URL } from "@/config/siteConfig"
+import { SITE_SLUGS, DOMAIN_URL } from "@/config/site-config"
 import type { MetadataRoute } from "next"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

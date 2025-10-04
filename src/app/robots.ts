@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { DOMAIN_URL } from "@/config/siteConfig"
+import { DOMAIN_URL } from "@/config/site-config"
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [

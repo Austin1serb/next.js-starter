@@ -5,7 +5,7 @@ import * as m from "motion/react-m"
 export const Motion = m.div
 
 export const LazyUi = () => {
-  const ScrollTrigger = dynamic(() => import("./ScrollTrigger").then((mod) => mod.ScrollTrigger), {
+  const ScrollTrigger = dynamic(() => import("./scroll-trigger").then((mod) => mod.ScrollTrigger), {
     ssr: false,
     loading: () => null,
   })

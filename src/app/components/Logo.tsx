@@ -1,4 +1,4 @@
-import { SITE_NAP } from "@/config/siteConfig"
+import { SITE_NAP } from "@/config/site-config"
 import Link from "next/link"
 import Image from "next/image"
 
