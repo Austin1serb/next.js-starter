@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 }
 export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fullWebAddress, contact }) => {
   return (
-    <main className="relative mx-auto -mt-5 bg-white px-10 pt-20 pb-20 text-black md:px-20">
+    <main className="relative mx-auto bg-white px-10 py-20 text-black md:px-20 mt-20">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         style={{ position: "absolute", maxWidth: 0, maxHeight: 0, overflow: "hidden", display: "hidden" }}
@@ -37,16 +37,16 @@ export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fu
           ></path>
         </symbol>
       </svg>
-      <div className="relative z-10 mx-auto max-w-7xl text-base">
+      <div className="relative z-1 mx-auto max-w-7xl text-base">
         <h1 className="relative mt-2.5 mb-2.5 text-2xl font-bold text-blue-600">
           <span
-            className={`absolute top-[-10px] left-[-25px] -z-10 mr-2 flex h-10 w-10 items-center justify-center rounded-full font-bold opacity-15`}
+            className={`absolute top-[-10px] left-[-25px] -z-1 mr-2 flex h-10 w-10 items-center justify-center rounded-full font-bold opacity-15`}
             style={{
               background: `var(${accentColor})`,
             }}
           ></span>
           <span
-            className="-z-10 mr-2 rounded-full text-sm font-bold text-blue-600 opacity-15"
+            className="-z-1 mr-2 rounded-full text-sm font-bold text-blue-600 opacity-15"
             style={{
               background: `var(${accentColor}, )`,
               height: "40px",
