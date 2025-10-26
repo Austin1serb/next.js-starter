@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_SLUGS.terms,
   },
+  robots: { index: false, follow: true }
 }
 
 const Page: React.FC = () => {
