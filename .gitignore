@@ -30,8 +30,7 @@ dist/
 npm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
-!.env.example
+.env
 
 # typescript
 *.tsbuildinfo
