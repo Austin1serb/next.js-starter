@@ -8,6 +8,7 @@ import { MotionWrapper } from "@/utils/motion-wrapper"
 import { LazyUi } from "./components/lazy-ui"
 import { TopBarV2 } from "./components/top-bar/top-bar"
 import { ZeroUiRuntime } from "@/utils/init-zero-runtime"
+import { siteGraph } from "@/config/schemas"
 
 const geistSans = Geist({
   variable: "--font-primary",
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <script id="structured-data-graph" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteGraph) }} />
       <MotionWrapper>
         <body {...bodyAttributes} className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <TopBarV2 />

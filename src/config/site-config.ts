@@ -8,8 +8,9 @@ export const SITE_CONFIG = {
 
 export const SITE_NAP = {
   name: "Your Company Name",
+  nameSlug: "your-company-name",
   googleBusinessType: "ProfessionalService" as const,
-  contact: "John Does",
+  contact: "John Doe",
   contactTitle: "CEO",
   email: "example@gmail.com",
   phone: "+1123456789",
@@ -18,11 +19,14 @@ export const SITE_NAP = {
   addressLink: "https://goo.gl/maps/",
   city: "City",
   state: "State",
+  stateCode: "ST",
   zipCode: "12345",
+  geo: { latitude: 40.7128, longitude: -74.006 },
+  areaServed: ["City", "Nearby City"],
   openingHours: [
-    { days: "Mon - Thurs", hours: "8am - 5pm" },
-    { days: "Friday", hours: "8am - 2pm" },
-    { days: "Sat - Sun", hours: "Closed" },
+    { days: "Mon - Fri", hours: "8am - 5pm" },
+    { days: "Sat", hours: "Closed" },
+    { days: "Sun", hours: "Closed" },
   ] as const,
   googleReviewLink: "https://g.page/yourbusiness/review",
   profiles: {
@@ -37,7 +41,7 @@ export const SITE_NAP = {
   } as const,
   logo: DOMAIN_URL + "/logo.png",
   favicon: DOMAIN_URL + "/favicon.ico",
-  images: [DOMAIN_URL + "/business-image.png"],
+  images: [DOMAIN_URL + "/opengraph-image.png"],
 } as const
 
 export const SITE_SLUGS = {

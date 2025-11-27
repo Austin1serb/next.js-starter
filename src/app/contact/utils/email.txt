@@ -1,0 +1,12 @@
+New Contact Form Submission
+
+Name: {{name}}
+Email: {{email}}
+Phone: {{phone}}
+Project Address: {{address}}
+How did you find us?: {{howDidYouHearAboutUs}} {{howDidYouHearAboutUsOther}}
+ Message:
+{{message}}
+
+---
+Received on: {{timestamp}}

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { MobileMenuButton } from "./mobile-menu-button"
 import { MobileMenu } from "./mobile-menu"
-import { Logo } from "../ogo"
+import { Logo } from "../logo"
 import { SITE_SLUGS } from "@/config/site-config"
 import { LinkButton } from "@/app/components/ui/LinkButton"
 

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light only" />
+    <meta name="supported-color-schemes" content="light" />
+    <title>{{siteName}} Contact Request</title>
+    <style>
+      :root {
+        color-scheme: light only;
+        supported-color-schemes: light;
+      }
+
+      @media print {
+        body {
+          background-color: #ffffff !important;
+          padding: 0 !important;
+          margin: 0 !important;
+        }
+
+        * {
+          border: none !important;
+          box-shadow: none !important;
+          padding: 0 !important;
+          margin: 0 !important;
+        }
+
+        table[role="presentation"] {
+          box-shadow: none !important;
+          border: none !important;
+        }
+
+        body > table {
+          padding: 0 !important;
+          background-color: #ffffff !important;
+        }
+
+        td[style*="background-color: #0f2847"] {
+          display: none !important;
+        }
+
+        td[style*="This notification was generated"] {
+          display: none !important;
+        }
+
+        div[style*="text-transform: uppercase"] {
+          display: none !important;
+        }
+
+        * {
+          color: #000000 !important;
+          background-color: transparent !important;
+        }
+
+        div[style*="border-left: 4px solid #ffbb00"] {
+          border-left: 3px solid #ffbb00 !important;
+          border-top: none !important;
+          border-right: none !important;
+          border-bottom: none !important;
+          background-color: transparent !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+          padding: 4px 0 4px 8px !important;
+          margin: 4px 0 !important;
+          font-size: 13px !important;
+          line-height: 1.4 !important;
+        }
+
+        td {
+          padding: 4px !important;
+        }
+
+        table {
+          border-spacing: 0 !important;
+          margin: 0 !important;
+        }
+
+        div {
+          margin: 2px 0 !important;
+          padding: 2px 4px !important;
+          font-size: 13px !important;
+        }
+
+        div[style*="text-align: right"] {
+          font-size: 11px !important;
+          margin-top: 4px !important;
+        }
+
+        tr {
+          height: auto !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    style="margin: 0; padding: 0; background-color: #f4f5f7; font-family: &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, Arial, sans-serif; color: #0f2847"
+  >
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f5f7; padding: 32px 0">
+      <tr>
+        <td align="center" style="padding: 0 16px">
+          <table
+            role="presentation"
+            width="100%"
+            cellpadding="0"
+            cellspacing="0"
+            style="
+              max-width: 640px;
+              background-color: #ffffff;
+              border-radius: 16px;
+              overflow: hidden;
+              border: 1px solid #e0e7f1;
+              box-shadow: 0 10px 30px rgba(15, 40, 71, 0.1);
+            "
+          >
+            <tr>
+              <td style="background-color: #0f2847; padding: 32px; color: #ffffff">
+                <div style="font-size: 12px; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(255, 255, 255, 0.75)">Website Inquiry</div>
+                <div style="font-size: 28px; font-weight: 700; margin-top: 12px">{{siteName}}</div>
+                <p style="margin: 12px 0 0; font-size: 15px; line-height: 1.5; color: rgba(255, 255, 255, 0.85)">
+                  You have a new inquiry from your website. <br />Replying to this email sends your response to the client.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 32px; background-color: #f4f5f7">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: separate; border-spacing: 0 16px">
+                  <tr>
+                    <td style="width: 50%; padding-right: 8px">
+                      <div style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #234c91; font-weight: 600; margin-bottom: 6px">
+                        Name
+                      </div>
+                      <div style="background-color: #f8fafc; border: 1px solid #dbe5f5; border-radius: 10px; padding: 12px 16px; font-size: 16px">{{name}}</div>
+                    </td>
+                    <td style="width: 50%; padding-left: 8px">
+                      <div style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #234c91; font-weight: 600; margin-bottom: 6px">
+                        Email
+                      </div>
+                      <div style="background-color: #f8fafc; border: 1px solid #dbe5f5; border-radius: 10px; padding: 12px 16px; font-size: 16px">
+                        <a href="mailto:{{email}}" style="color: #0f2847; text-decoration: none">{{email}}</a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #234c91; font-weight: 600; margin-bottom: 6px">
+                        Phone
+                      </div>
+                      <div style="background-color: #f8fafc; border: 1px solid #dbe5f5; border-radius: 10px; padding: 12px 16px; font-size: 16px">
+                        <a href="tel:{{phone}}" style="color: #0f2847; text-decoration: none">{{phone}}</a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #234c91; font-weight: 600; margin-bottom: 6px">
+                        Project Address
+                      </div>
+                      <div style="background-color: #f8fafc; border: 1px solid #dbe5f5; border-radius: 10px; padding: 12px 16px; font-size: 16px">
+                        {{address}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #234c91; font-weight: 600; margin-bottom: 6px">
+                        How did you find us?
+                      </div>
+                      <div style="background-color: #f8fafc; border: 1px solid #dbe5f5; border-radius: 10px; padding: 12px 16px; font-size: 16px">
+                        {{howDidYouHearAboutUs}}{{howDidYouHearAboutUsOther}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                <div style="margin-top: 24px">
+                  <div style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #234c91; font-weight: 600; margin-bottom: 10px">
+                    Message
+                  </div>
+                  <div
+                    style="
+                      border-left: 4px solid #ffbb00;
+                      background-color: #fff9e6;
+                      border-top-right-radius: 10px;
+                      border-bottom-right-radius: 10px;
+                      border-top-left-radius: 0;
+                      border-bottom-left-radius: 0;
+                      padding: 18px 20px;
+                      font-size: 16px;
+                      line-height: 1.6;
+                      color: #0f2847;
+                    "
+                  >
+                    {{message}}
+                  </div>
+                </div>
+                <div style="margin-top: 32px; text-align: right; font-size: 13px; color: #6b7280">Received on {{timestamp}}</div>
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #f4f5f7; padding: 20px 32px; font-size: 12px; color: #5f6c85">
+                <p style="margin: 0">This notification was generated by the {{siteName}} website contact form.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

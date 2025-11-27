@@ -1,4 +1,4 @@
-import { SITE_NAP, DOMAIN_URL } from "@/config/site-config"
+import { SITE_NAP, DOMAIN_URL, SITE_SLUGS } from "@/config/site-config"
 import { Terms } from "./terms"
 import type { Metadata } from "next"
 
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: `Read our Terms of Service to learn about the rules and regulations for accessing and using the ${SITE_NAP.name} website.`,
   keywords: ["terms of service", "terms and conditions"],
   alternates: {
-    canonical: `${DOMAIN_URL}/terms-of-service`,
+    canonical: SITE_SLUGS.terms,
   },
   robots: { index: false, follow: true },
 }
