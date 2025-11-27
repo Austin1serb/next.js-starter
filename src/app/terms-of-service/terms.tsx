@@ -1,5 +1,4 @@
-import { SITE_NAP, DOMAIN_URL } from "@/config/site-config"
-import type { Metadata } from "next"
+import { SITE_NAP } from "@/config/site-config"
 
 interface PrivacyProps {
   accentColor: string
@@ -14,17 +13,9 @@ interface PrivacyProps {
 }
 const year = new Date().getFullYear()
 
-export const metadata: Metadata = {
-  title: `Terms of Service | ${SITE_NAP.name}`,
-  description: `Read our Terms of Service to learn about the rules and regulations for accessing and using the ${SITE_NAP.name} website.`,
-  keywords: ["terms of service", "terms and conditions"],
-  alternates: {
-    canonical: `${DOMAIN_URL}/terms-of-service`,
-  },
-}
 export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fullWebAddress, contact }) => {
   return (
-    <main className="relative mx-auto bg-white px-10 py-20 text-black md:px-20 mt-20">
+    <main className="relative mx-auto mt-20 bg-white px-10 py-20 text-black md:px-20">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         style={{ position: "absolute", maxWidth: 0, maxHeight: 0, overflow: "hidden", display: "hidden" }}

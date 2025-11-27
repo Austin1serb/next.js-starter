@@ -50,7 +50,7 @@ export const organizationSchema: WithContext<Organization> = {
   "@type": "Organization",
   name: SITE_NAP.name,
   url: DOMAIN_URL,
-  logo: SITE_CONFIG.logo,
+  logo: SITE_NAP.logo,
   sameAs: Object.values(SITE_NAP.profiles).filter(Boolean),
   contactPoint: [
     {

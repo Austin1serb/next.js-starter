@@ -1,5 +1,4 @@
-import { SITE_NAP, DOMAIN_URL } from "@/config/site-config"
-import type { Metadata } from "next"
+import { SITE_NAP } from "@/config/site-config"
 
 interface PrivacyProps {
   accentColor: string
@@ -13,18 +12,9 @@ interface PrivacyProps {
   }
 }
 
-export const metadata: Metadata = {
-  title: `Privacy Policy | ${SITE_NAP.name}`,
-  description:
-    "We value your privacy. Please read this Privacy Policy carefully before using the Website operated by us as this Privacy Policy contains important information regarding your privacy and how we may use the information we collect about you.",
-  keywords: "privacy policy, privacy, policy, data protection, data privacy, data security",
-  alternates: {
-    canonical: `${DOMAIN_URL}/privacy-policy`,
-  },
-}
 export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fullWebAddress, contact }) => {
   return (
-    <main className="relative mx-auto bg-white px-10 py-20 text-black md:px-20 mt-20">
+    <main className="relative mx-auto mt-20 bg-white px-10 py-20 text-black md:px-20">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         style={{ position: "absolute", maxWidth: 0, maxHeight: 0, overflow: "hidden", display: "hidden" }}

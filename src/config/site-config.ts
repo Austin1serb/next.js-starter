@@ -1,13 +1,9 @@
 // change this to the domain of your site when you deploy
-export const DOMAIN_URL = process.env.NEXT_PUBLIC_VERCEL_URL ?? "http://localhost:3000"
+export const DOMAIN_URL = process.env.NODE_ENV === "production" ? "https://nextjs-starter.vercel.app" : "http://localhost:3000"
 
 export const SITE_CONFIG = {
   title: "My Next.js Starter",
   description: "A fully optimized Next.js 15 starter template.",
-  siteName: "My Next.js Starter",
-  keywords: ["Next.js", "Tailwind CSS", "SEO", "TypeScript"],
-  ogImage: "/og-image.png",
-  logo: "/logo.png",
 } as const
 
 export const SITE_NAP = {
@@ -39,9 +35,9 @@ export const SITE_NAP = {
     bbb: "",
     gbp: "https://g.co/yourbusiness",
   } as const,
-  logo: "/logo.png",
-  favicon: "/favicon.ico",
-  images: ["business-image.png"],
+  logo: DOMAIN_URL + "/logo.png",
+  favicon: DOMAIN_URL + "/favicon.ico",
+  images: [DOMAIN_URL + "/business-image.png"],
 } as const
 
 export const SITE_SLUGS = {

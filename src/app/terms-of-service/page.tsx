@@ -1,16 +1,16 @@
-import { SITE_NAP, SITE_CONFIG, SITE_SLUGS, DOMAIN_URL } from "@/config/site-config"
+import { SITE_NAP, DOMAIN_URL } from "@/config/site-config"
 import { Terms } from "./terms"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Terms of Service",
-  description: "Read the terms of service for " + SITE_CONFIG.title,
+  title: `Terms of Service | ${SITE_NAP.name}`,
+  description: `Read our Terms of Service to learn about the rules and regulations for accessing and using the ${SITE_NAP.name} website.`,
+  keywords: ["terms of service", "terms and conditions"],
   alternates: {
-    canonical: SITE_SLUGS.terms,
+    canonical: `${DOMAIN_URL}/terms-of-service`,
   },
-  robots: { index: false, follow: true }
+  robots: { index: false, follow: true },
 }
-
 const Page: React.FC = () => {
   return (
     <Terms
