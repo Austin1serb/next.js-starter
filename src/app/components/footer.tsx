@@ -26,7 +26,7 @@ const socialLinks = [
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-background-alt mt-10 overflow-hidden">
+    <footer className="bg-background mt-10 overflow-hidden">
       <div className="p-10">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 gap-12 pt-16 pb-8 md:pt-32 lg:grid-cols-3">

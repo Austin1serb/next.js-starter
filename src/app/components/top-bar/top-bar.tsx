@@ -11,7 +11,7 @@ const navItems = [
   // { name: "Pricing", href: SITE_SLUGS.pricing },
 ]
 
-export const TopBarV2: React.FC = () => {
+export const TopBar: React.FC = () => {
   return (
     <nav className="fixed top-0 right-0 left-0 z-10 flex w-full min-w-56 justify-center text-base sm:text-sm">
       {/* Wrapper that grows/shrinks on mobile */}

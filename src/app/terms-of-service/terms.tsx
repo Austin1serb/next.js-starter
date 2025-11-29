@@ -15,7 +15,7 @@ const year = new Date().getFullYear()
 
 export const Terms: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fullWebAddress, contact }) => {
   return (
-    <main className="relative mx-auto mt-20 bg-white px-10 py-20 text-black md:px-20">
+    <main className="relative mx-auto mt-20 bg-white px-10 py-20 text-black md:px-20 [&_svg]:mr-2 [&_svg]:h-5 [&_svg]:min-h-5 [&_svg]:w-5 [&_svg]:min-w-5 [&_svg]:p-1">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         style={{ position: "absolute", maxWidth: 0, maxHeight: 0, overflow: "hidden", display: "hidden" }}

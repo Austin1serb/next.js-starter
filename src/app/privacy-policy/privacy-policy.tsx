@@ -14,7 +14,7 @@ interface PrivacyProps {
 
 export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, fullWebAddress, contact }) => {
   return (
-    <main className="relative mx-auto mt-20 bg-white px-10 py-20 text-black md:px-20">
+    <main className="relative mx-auto mt-20 bg-white px-10 py-20 text-black md:px-20 [&_svg]:mr-2 [&_svg]:h-5 [&_svg]:min-h-5 [&_svg]:w-5 [&_svg]:min-w-5 [&_svg]:p-1">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         style={{ position: "absolute", maxWidth: 0, maxHeight: 0, overflow: "hidden", display: "hidden" }}
@@ -111,7 +111,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
         </p>
         <ol className="space-y-2.5">
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -120,7 +120,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -129,19 +129,19 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Performing services</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Providing customer service</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -150,19 +150,19 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Our use of your data for performing services will not be possible</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Our use of your data for providing customer service will not be possible</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Our use of your data for verifying customer information will not be possible</span>
@@ -193,7 +193,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
         </p>
         <ol className="space-y-2.5">
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -202,7 +202,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -211,19 +211,19 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Performing services</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Providing customer service</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -232,19 +232,19 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Our use of your data for performing services will not be possible</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Our use of your data for providing customer service will not be possible</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Our use of your data for verifying customer information will not be possible</span>
@@ -275,7 +275,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
         </p>
         <ol className="space-y-2.5">
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -284,13 +284,13 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Tracking pixels</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -299,7 +299,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -308,7 +308,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Our use of your data for analytics will not be possible</span>
@@ -339,13 +339,13 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
         </p>
         <ol className="space-y-2.5">
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Processing is necessary to perform a contract with the user</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -354,7 +354,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -363,19 +363,19 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Performing services</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Providing customer service</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -384,19 +384,19 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Our use of your data for performing services will not be possible</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Our use of your data for providing customer service will not be possible</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Our use of your data for verifying customer information will not be possible</span>
@@ -427,7 +427,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
         </p>
         <ol className="space-y-2.5">
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -436,13 +436,13 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Tracking pixels</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -451,7 +451,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -460,7 +460,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Our use of your data for analytics will not be possible</span>
@@ -478,31 +478,31 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
         <p className="py-5">We have implemented the following measures to protect and safeguard your personal information:</p>
         <ol className="space-y-2.5">
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Limiting the amount of personal information that we collect to strictly necessary only</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Using SSL or other secure connection technologies when receiving or sending personal information beyond internal networks</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Destroying the personal information that we no longer need</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Having comprehensive security policies and procedures</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Training our employees</span>
@@ -523,37 +523,37 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
         </p>
         <ol className="space-y-2.5">
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Analyzing our Website traffic</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Analyzing your interactions with advertisements</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Identifying if you are signed in to the Website</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Testing content on the Website</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Storing information about your preferences</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Recognizing when you return to the Website</span>
@@ -614,7 +614,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
         <p className="py-5">Depending upon where you reside, you may have the following rights with regard to your personal information:</p>
         <ol className="list-inside list-decimal space-y-2.5">
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -627,7 +627,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -639,7 +639,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -652,7 +652,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -665,7 +665,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -678,7 +678,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -691,7 +691,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -704,7 +704,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -717,7 +717,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -729,7 +729,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
             </span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>
@@ -770,13 +770,13 @@ export const Privacy: React.FC<PrivacyProps> = ({ accentColor, fullCompanyName, 
         </p>
         <ol className="space-y-2.5">
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Name</span>
           </li>
           <li className="flex items-center">
-            <svg height="25" width="25" className="mr-2 p-1">
+            <svg height="25" width="25">
               <use href="#list-arrow-right" />
             </svg>
             <span>Email address</span>

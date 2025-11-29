@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const Page: React.FC = () => {
   return (
     <Privacy
-      accentColor="--primary"
+      accentColor="--color-primary"
       fullCompanyName={SITE_NAP.name}
       fullWebAddress={DOMAIN_URL}
       contact={{
