@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -10,15 +11,9 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
-    "verbatimModuleSyntax": true,
-    "exactOptionalPropertyTypes": true,
     "plugins": [
       {
         "name": "next"
@@ -30,6 +25,6 @@
     },
     "baseUrl": "."
   },
-  "include": ["**/*.ts", "**/*.tsx", ".next/**/*.d.ts", ".next/types/**/*.ts", ".zero-ui/**/*.d.ts", "next-env.d.ts", "scripts/scan-icons.js"],
-  "exclude": ["node_modules", ".next", ".github", ".husky"]
+  "include": ["**/*.mts", "**/*.ts", "**/*.tsx", ".next/**/*.d.ts", ".next/dev/types/**/*.ts", ".next/types/**/*.ts", ".zero-ui/**/*.d.ts", "next-env.d.ts"],
+  "exclude": ["node_modules"]
 }

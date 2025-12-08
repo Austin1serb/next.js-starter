@@ -3,7 +3,7 @@
 /* *:not(.no-border) {
   border: .1px dotted red;
 } */
- 
+
 @theme inline {
   --color-primary: var(--color-primary);
   --color-secondary: var(--color-secondary);

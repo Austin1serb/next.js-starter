@@ -1,8 +1,7 @@
 # echo "🔍 Running Full Pre-Commit Checks..."
 
 # # # Run Prettier on all files
-npx prettier --write . --ignore-unknown
-
+npm run format || exit 1
 # # # Run ESLint on all JavaScript/TypeScript files
 npm run lint || exit 1
 
