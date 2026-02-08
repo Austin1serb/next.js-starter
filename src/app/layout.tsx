@@ -26,9 +26,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <script id="structured-data-graph" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteGraph) }} />
       <MotionWrapper>
         <body {...bodyAttributes} className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <script id="structured-data-graph" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteGraph) }} />
           <TopBar />
           <LazyUi />
           {children}
