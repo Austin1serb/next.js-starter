@@ -1,10 +1,16 @@
 {
   "workbench.colorCustomizations": {
+    "editor.findMatchHighlightBorder": "#ff0000",
+    "editor.selectionHighlightBackground": "#006eff55",
+    "editor.selectionBackground": "#006effA5",
+    "highlight": "#ff0000",
+    "editor.findMatchBackground": "#3cff0085",
+    "editor.findMatchHighlightForeground": "#000000ea",
+    "editorLineNumber.foreground": "#9e95ffdf",
     "activityBar.background": "#1731b1",
-    "activityBar.inactiveForeground": "#a9a9a9",
-    "activityBar.foreground": "#fdfdfd",
     "titleBar.activeBackground": "#1731b1",
     "titleBar.activeForeground": "#FBFBFE",
+    "editor.lineHighlightBorder": "#9fced11f",
     "tab.activeBackground": "#232635",
     "tab.hoverBackground": "#2d3144",
     "editorIndentGuide.activeBackground1": "#95ff00",
@@ -12,7 +18,12 @@
     "list.activeSelectionBackground": "#0f74e098",
     "list.activeSelectionForeground": "#ffffff",
     "list.inactiveSelectionBackground": "#0f74e083",
-    "list.hoverBackground": "#0f74e0d8"
+    "list.hoverBackground": "#0f74e0d8",
+    "terminal.background": "#00000000",
+    "activityBar.inactiveForeground": "#a9a9a9",
+    "activityBar.foreground": "#fdfdfd",
+    "titleBar.inactiveBackground": "#210796",
+    "titleBar.inactiveForeground": "#FDFDFF"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "postman.settings.dotenv-detection-notification-visibility": false,

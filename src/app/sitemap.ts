@@ -2,6 +2,9 @@ import { SITE_SLUGS, DOMAIN_URL } from "@/config/site-config"
 import type { MetadataRoute } from "next"
 import { execSync } from "child_process"
 import { existsSync } from "fs"
+import { join } from "path"
+
+const APP_DIR = ["src/app", "app"].find((dir) => existsSync(join(process.cwd(), dir))) ?? "src/app"
 
 /**
  * Convert a route to its corresponding file path in the Next.js app directory
@@ -11,11 +14,16 @@ import { existsSync } from "fs"
  *   "/blog/post" -> "app/blog/post/page.tsx"
  */
 function routeToFilePath(route: string): string {
-  if (route === "/") return "app/page.tsx"
+  if (route === "/") return join(APP_DIR, "page.tsx")
 
   // Remove leading slash and convert to app directory structure
   const cleanRoute = route.replace(/^\//, "")
-  const possiblePaths = [`app/${cleanRoute}/page.tsx`, `app/${cleanRoute}/page.ts`, `app/${cleanRoute}.tsx`, `app/${cleanRoute}.ts`]
+  const possiblePaths = [
+    join(APP_DIR, cleanRoute, "page.tsx"),
+    join(APP_DIR, cleanRoute, "page.ts"),
+    join(APP_DIR, `${cleanRoute}.tsx`),
+    join(APP_DIR, `${cleanRoute}.ts`),
+  ]
 
   // Check which file actually exists
   for (const path of possiblePaths) {
@@ -25,7 +33,7 @@ function routeToFilePath(route: string): string {
   }
 
   // Default to the most common structure
-  return `app/${cleanRoute}/page.tsx`
+  return join(APP_DIR, cleanRoute, "page.tsx")
 }
 
 /**
