@@ -2,9 +2,12 @@
 export const DOMAIN_URL = process.env.NODE_ENV === "production" ? "https://nextjs-starter.vercel.app" : "http://localhost:3000"
 
 export const SITE_CONFIG = {
+  // This information is also used in the metadata for the home page and schema
   title: "My Next.js Starter",
   description: "A fully optimized Next.js 15 starter template.",
 } as const
+
+const foundingYear = 1976
 
 export const SITE_NAP = {
   name: "Your Company Name",
@@ -23,6 +26,9 @@ export const SITE_NAP = {
   zipCode: "12345",
   geo: { latitude: 40.7128, longitude: -74.006 },
   areaServed: ["City", "Nearby City"],
+  foundingYear: foundingYear,
+  yearsInBusiness: new Date().getFullYear() - foundingYear,
+  employeeCount: 15,
   openingHours: [
     { days: "Mon - Fri", hours: "8am - 5pm" },
     { days: "Sat", hours: "Closed" },
