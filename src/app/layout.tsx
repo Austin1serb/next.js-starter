@@ -3,10 +3,8 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import { DOMAIN_URL, SITE_CONFIG } from "@/config/site-config"
-import { Footer } from "./components/footer"
 import { MotionWrapper } from "@/utils/motion-wrapper"
 import { LazyUi } from "./components/lazy-ui"
-import { TopBar } from "./components/top-bar/top-bar"
 import { ZeroUiRuntime } from "@/utils/init-zero-runtime"
 import { siteGraph } from "@/config/schemas"
 
@@ -29,10 +27,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <MotionWrapper>
         <body {...bodyAttributes} className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <script id="structured-data-graph" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteGraph) }} />
-          <TopBar />
           <LazyUi />
           {children}
-          <Footer />
           <ZeroUiRuntime />
         </body>
       </MotionWrapper>
