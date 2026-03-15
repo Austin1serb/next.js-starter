@@ -1,21 +1,17 @@
-import { ALL_PAGES } from "@/config/site-config"
 import { test, expect } from "@playwright/test"
+import { ROUTES_TO_CHECK } from "./test-utils"
 
 test.describe("Page load tests", () => {
-  for (const pageUrl of ALL_PAGES) {
+  for (const pageUrl of ROUTES_TO_CHECK) {
     test(`should load ${pageUrl} page correctly`, async ({ page }) => {
-      // Navigate to the page
-      const response = await page.goto(pageUrl)
+      const response = await page.goto(pageUrl, { waitUntil: "domcontentloaded" })
 
-      // Verify the page loaded with 200 status
       expect(response?.status()).toBe(200)
 
-      // Wait for the page to be fully loaded
-      await page.waitForLoadState("domcontentloaded")
+      await page.waitForLoadState("networkidle")
 
-      // Check that the page has content - minimum validation
-      const body = page.locator("body")
-      await expect(body).toBeVisible()
+      await expect(page.locator("body")).toBeVisible()
+      await expect(page.locator("main, [role='main'], article, h1").first()).toBeVisible()
     })
   }
 })

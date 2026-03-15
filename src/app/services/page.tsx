@@ -10,7 +10,14 @@ export const metadata: Metadata = {
 }
 
 const ServicesPage: React.FC = () => {
-  return <div>Services</div>
+  return (
+    <main className="mx-auto min-h-screen w-full max-w-5xl px-6 pt-28 pb-16">
+      <h1 className="text-surface text-4xl font-bold">Services</h1>
+      <p className="text-surface/80 mt-4 max-w-2xl text-lg">
+        Replace this with the client&apos;s service groups, supporting details, and clear calls to action for each offer.
+      </p>
+    </main>
+  )
 }
 
 export default ServicesPage

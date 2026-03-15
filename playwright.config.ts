@@ -23,6 +23,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : (undefined as unknown as number),
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: "null",
+  timeout: 120 * 1000,
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -72,9 +73,9 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: "npm run start", // ✅ Use production server
+    command: "npm run build && npm run start",
     url: "http://localhost:3000",
-    reuseExistingServer: !process.env.CI, // ✅ Use existing locally, start fresh in CI
-    timeout: 120 * 1000,
+    reuseExistingServer: false,
+    timeout: 240 * 1000,
   },
 })

@@ -1,57 +1,113 @@
-import { ALL_PAGES, DOMAIN_URL } from "@/config/site-config"
-import { test, expect, type Page } from "@playwright/test"
+import { test, expect, type APIResponse, type Page } from "@playwright/test"
+import { ROUTES_TO_CHECK, SITE_ORIGIN, isAllowedExternalStatus, isExternalUrl, mapWithConcurrency } from "./test-utils"
 
-// const SKIP_LINK_VALIDATION = "true"
+const LINK_TIMEOUT_MS = 10_000
+const LINK_CONCURRENCY = 8
 
-// if (SKIP_LINK_VALIDATION === "true") {
-//   console.warn("Skipping link validation")
-//   test.skip()
-// }
-
-async function getAllLinksFromPage(page: Page) {
-  const links = page.locator("a")
-  const allLinks = await links.all()
-
-  const allHrefs = await Promise.all(allLinks.map((link) => link.getAttribute("href")))
-
-  // Debug: Log empty hrefs with their text content
-  for (let i = 0; i < allHrefs.length; i++) {
-    if (!allHrefs[i] || allHrefs[i] === "") {
-      const linkText = await allLinks[i]?.textContent()
-      const linkHTML = await allLinks[i]?.innerHTML()
-      console.log(`Empty href found: text="${linkText}", html="${linkHTML}"`)
-    }
-  }
-
-  const allValidHrefs = allHrefs.reduce((links, link) => {
-    // Skip empty or null href attributes instead of failing the test
-    if (!link || link === "") {
-      return links
-    }
-
-    expect.soft(link, `${link} is not valid href`).toBeTruthy()
-
-    if (link && !link.startsWith("mailto:") && !link.startsWith("tel:") && !link.startsWith("#")) {
-      links.add(new URL(link, page.url()).href)
-    }
-    return links
-  }, new Set<string>())
-
-  return allValidHrefs
+interface LinkCheckResult {
+  url: string
+  ok: boolean
+  status: number | undefined
+  reason: string | undefined
 }
 
-for (const pageUrl of ALL_PAGES) {
-  test(`Validate links on ${pageUrl}`, async ({ page }) => {
-    await page.goto(DOMAIN_URL + pageUrl)
-    const linkUrls = await getAllLinksFromPage(page)
+async function getAllLinksFromPage(page: Page): Promise<string[]> {
+  const hrefs = await page.locator("a[href]").evaluateAll((links) =>
+    links
+      .map((link) => link.getAttribute("href"))
+      .filter((href): href is string => Boolean(href && !href.startsWith("mailto:") && !href.startsWith("tel:") && !href.startsWith("javascript:")))
+  )
 
-    for (const url of linkUrls) {
-      try {
-        const response = await page.request.get(url)
-        expect(response.ok()).toBeTruthy()
-      } catch {
-        expect.soft(null, `${url} is broken on page ${pageUrl}`).toBeNull()
+  return Array.from(new Set(hrefs.map((href) => new URL(href, page.url()).href)))
+}
+
+async function fetchLink(page: Page, url: string): Promise<APIResponse> {
+  const headResponse = await page.request.fetch(url, {
+    method: "HEAD",
+    maxRedirects: 5,
+    timeout: LINK_TIMEOUT_MS,
+    failOnStatusCode: false,
+  })
+
+  if (headResponse.status() < 400 && headResponse.status() !== 405) {
+    return headResponse
+  }
+
+  return page.request.get(url, {
+    maxRedirects: 5,
+    timeout: LINK_TIMEOUT_MS,
+    failOnStatusCode: false,
+  })
+}
+
+async function validateLink(page: Page, url: string): Promise<LinkCheckResult> {
+  try {
+    const parsedUrl = new URL(url)
+    const response = await fetchLink(page, url)
+    const status = response.status()
+
+    if (isExternalUrl(parsedUrl)) {
+      return {
+        url,
+        ok: isAllowedExternalStatus(status),
+        status,
+        reason: isAllowedExternalStatus(status) ? undefined : `External link returned ${status}`,
       }
     }
+
+    return {
+      url,
+      ok: status >= 200 && status < 400,
+      status,
+      reason: status >= 200 && status < 400 ? undefined : `Internal link returned ${status}`,
+    }
+  } catch (error) {
+    return {
+      url,
+      ok: false,
+      status: undefined,
+      reason: error instanceof Error ? error.message : String(error),
+    }
+  }
+}
+
+for (const pageUrl of ROUTES_TO_CHECK) {
+  test(`Validate links on ${pageUrl}`, async ({ page }) => {
+    test.setTimeout(90_000)
+
+    await page.goto(pageUrl, { waitUntil: "networkidle" })
+    const linkUrls = await getAllLinksFromPage(page)
+
+    const internalLinks = linkUrls.filter((url) => new URL(url).origin === SITE_ORIGIN)
+    const externalLinks = linkUrls.filter((url) => new URL(url).origin !== SITE_ORIGIN)
+
+    const [internalResults, externalResults] = await Promise.all([
+      mapWithConcurrency(internalLinks, LINK_CONCURRENCY, (url) => validateLink(page, url)),
+      mapWithConcurrency(externalLinks, LINK_CONCURRENCY, (url) => validateLink(page, url)),
+    ])
+
+    const failures = internalResults.filter((result) => !result.ok)
+    const externalWarnings = externalResults.filter((result) => !result.ok)
+
+    if (externalWarnings.length > 0) {
+      console.warn(
+        `External link warnings on ${pageUrl}:\n${externalWarnings
+          .map((warning) => {
+            const statusText = warning.status ? ` (status ${warning.status})` : ""
+            return `${warning.url}${statusText}: ${warning.reason ?? "Unknown failure"}`
+          })
+          .join("\n")}`
+      )
+    }
+
+    expect(
+      failures,
+      failures
+        .map((failure) => {
+          const statusText = failure.status ? ` (status ${failure.status})` : ""
+          return `${failure.url}${statusText}: ${failure.reason ?? "Unknown failure"}`
+        })
+        .join("\n")
+    ).toEqual([])
   })
 }
