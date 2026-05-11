@@ -89,7 +89,7 @@ export const Footer: React.FC = () => {
             {/* Copyright */}
             <p className="mt-4 w-full text-center text-base! text-neutral-500 md:mt-0 lg:text-start">
               {year} Copyright © {SITE_CONFIG.title} | Website by
-              <Link title="Seattle Web Design & SEO | Serbyte Development" href="https://www.serbyte.net/" className="text-primary font-medium hover:underline">
+              <Link title="Seattle Web Design & SEO | Serbyte Development" href="https://www.serbyte.net/" className="text-display font-medium hover:underline">
                 {" "}
                 Serbyte Development
               </Link>

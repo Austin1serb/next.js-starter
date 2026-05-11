@@ -5,24 +5,150 @@
 } */
 
 @theme inline {
-  --color-primary: var(--color-primary);
-  --color-secondary: var(--color-secondary);
-  --color-background: var(--color-background);
-  --color-surface: var(--color-surface);
-  --font-primary: var(--font-primary);
-  --font-secondary: var(--font-secondary);
+  /* Fonts */
+
+  --font-display: var(--font-display), "Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: var(--font-body), "Inter", "Helvetica Now Display", system-ui, sans-serif;
+  --text-hero: clamp(4rem, 6vw, 4.375rem); /* 64px to 70px */
+  --text-hero--line-height: clamp(4rem, 6vw, 4.5rem); /* 64px to 72px */
+  --text-hero--font-weight: 700;
+  --text-hero--letter-spacing: -0.05em;
+
+  --text-title: 2.5rem; /* 40px */
+  --text-title--line-height: 2.8125rem; /* 45px */
+  --text-title--font-weight: 700;
+  --text-title--letter-spacing: -0.03em;
+
+  --text-subtitle: 1.375rem; /* 22px */
+  --text-subtitle--line-height: 1.75rem; /* 28px */
+  --text-subtitle--font-weight: 700;
+  --text-subtitle--letter-spacing: -0.02em;
+
+  --text-lead: 1.25rem; /* 20px */
+  --text-lead--line-height: 1.625rem; /* 26px */
+  --text-lead--font-weight: 400;
+
+  --text-body: 1.125rem; /* 18px */
+  --text-body--line-height: 1.5rem; /* 24px */
+  --text-body--font-weight: 400;
+
+  --text-body-sm: 0.9375rem; /* 15px */
+  --text-body-sm--line-height: 1.375rem; /* 22px */
+  --text-body-sm--font-weight: 400;
+
+  --text-caption: 0.8125rem; /* 13px */
+  --text-caption--line-height: 1.125rem; /* 18px */
+  --text-caption--font-weight: 500;
+
   --breakpoint-xs: 28rem;
+
+  /* COLORS */
+  /* Background */
+  --color-background: var(--ui-background);
+  --color-background-muted: var(--ui-background-muted);
+  --color-background-inverse: var(--ui-background-inverse);
+
+  /* Foreground */
+  --color-foreground: var(--ui-foreground);
+  --color-foreground-muted: var(--ui-foreground-muted);
+  --color-foreground-subtle: var(--ui-foreground-subtle);
+  --color-foreground-disabled: var(--ui-foreground-disabled);
+  --color-foreground-inverse: var(--ui-foreground-inverse);
+
+  /* Surface */
+  --color-surface: var(--ui-surface);
+  --color-surface-muted: var(--ui-surface-muted);
+  --color-surface-inverse: var(--ui-surface-inverse);
+
+  /* Overlay */
+  --color-overlay: var(--ui-overlay);
+
+  /* Borders */
+  --color-border: var(--ui-border);
+  --color-border-strong: var(--ui-border-strong);
+
+  /* Brand / Primary action */
+  --color-primary: var(--ui-primary);
+  --color-primary-hover: var(--ui-primary-hover);
+  --color-primary-foreground: var(--ui-primary-foreground);
+  --color-primary-muted: var(--ui-primary-muted);
+
+  /* Secondary action */
+  --color-secondary: var(--ui-secondary);
+  --color-secondary-hover: var(--ui-secondary-hover);
+  --color-secondary-foreground: var(--ui-secondary-foreground);
+
+  /* Success status */
+  --color-success: var(--ui-success);
+  --color-success-background: var(--ui-success-background);
+  --color-success-foreground: var(--ui-success-foreground);
+  --color-success-border: var(--ui-success-border);
+
+  /* Warning status */
+  --color-warning: var(--ui-warning);
+  --color-warning-background: var(--ui-warning-background);
+  --color-warning-foreground: var(--ui-warning-foreground);
+  --color-warning-border: var(--ui-warning-border);
+
+  /* Danger status */
+  --color-danger: var(--ui-danger);
+  --color-danger-background: var(--ui-danger-background);
+  --color-danger-foreground: var(--ui-danger-foreground);
+  --color-danger-border: var(--ui-danger-border);
 }
 
 :root {
-  --color-primary: #fff;
-  --color-secondary: #f9f4ee;
-  --color-accent: #bb2528;
-  --color-background: oklch(0.955 0 0);
-  --color-surface: #262626;
+  /* Page */
+  --ui-background: var(--color-neutral-50);
+  --ui-background-muted: var(--color-neutral-100);
+  --ui-background-inverse: var(--color-neutral-950);
+
+  /* Foreground */
+  --ui-foreground: var(--color-neutral-950);
+  --ui-foreground-muted: var(--color-neutral-600);
+  --ui-foreground-subtle: var(--color-neutral-500);
+  --ui-foreground-disabled: var(--color-neutral-400);
+  --ui-foreground-inverse: var(--color-white);
+
+  /* Containers */
+  --ui-surface: var(--color-white);
+  --ui-surface-muted: var(--color-neutral-100);
+  --ui-surface-inverse: var(--color-neutral-950);
+  --ui-overlay: rgb(0 0 0 / 0.35);
+
+  /* Borders */
+  --ui-border: var(--color-neutral-200);
+  --ui-border-strong: var(--color-neutral-300);
+
+  /* Primary action */
+  --ui-primary: var(--color-cyan-500);
+  --ui-primary-hover: var(--color-cyan-600);
+  --ui-primary-foreground: var(--color-white);
+  --ui-primary-muted: var(--color-cyan-50);
+
+  /* Secondary action */
+  --ui-secondary: var(--color-neutral-100);
+  --ui-secondary-hover: var(--color-neutral-200);
+  --ui-secondary-foreground: var(--color-neutral-950);
+
+  /* Status */
+  --ui-success: var(--color-green-700);
+  --ui-success-background: var(--color-green-50);
+  --ui-success-foreground: var(--color-green-900);
+  --ui-success-border: var(--color-green-200);
+
+  --ui-warning: var(--color-amber-700);
+  --ui-warning-background: var(--color-amber-50);
+  --ui-warning-foreground: var(--color-amber-900);
+  --ui-warning-border: var(--color-amber-200);
+
+  --ui-danger: var(--color-red-700);
+  --ui-danger-background: var(--color-red-50);
+  --ui-danger-foreground: var(--color-red-900);
+  --ui-danger-border: var(--color-red-200);
 }
 body {
-  @apply text-surface bg-background;
+  @apply text-surface bg-background font-body;
 }
 
 @layer base {

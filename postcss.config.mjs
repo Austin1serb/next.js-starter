@@ -1,10 +1,6 @@
 const config = {
   plugins: [
-    "@react-zero-ui/core/postcss",
-    "@react-zero-ui/core/postcss",
-    "@react-zero-ui/core/postcss",
-    "@react-zero-ui/core/postcss",
-    "@react-zero-ui/core/postcss",
+    // "@react-zero-ui/core/postcss",
     "@tailwindcss/postcss",
   ],
 }

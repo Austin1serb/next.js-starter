@@ -193,4 +193,8 @@ export const SPAM_KEYWORDS = [
   "work-from-home opportunity",
   "limited time offer",
   "—", // em dash signals AI generated content
+
+  // Cleaning company spam
+  "cleaning",
+  "complimentary",
 ] as const
