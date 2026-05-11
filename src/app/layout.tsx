@@ -31,7 +31,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <MotionWrapper>
-        <body {...bodyAttributes} className={`${displayFont.variable} ${bodyFont.variable} antialiased`}>
+        <body {...bodyAttributes} className={`${displayFont.variable} ${bodyFont.variable} bg-background text-foreground font-body antialiased`}>
           <script id="structured-data-graph" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteGraph) }} />
           <LazyUi />
           {children}
