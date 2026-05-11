@@ -9,11 +9,11 @@ import { ZeroUiRuntime } from "@/utils/init-zero-runtime"
 import { siteGraph } from "@/config/schemas"
 
 const displayFont = Inter_Tight({
-  variable: "--font-display",
+  variable: "--font-primary",
   subsets: ["latin"],
 })
-const sansFont = Inter_Tight({
-  variable: "--font-body",
+const bodyFont = Inter_Tight({
+  variable: "--font-secondary",
   subsets: ["latin"],
 })
 
@@ -31,7 +31,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <MotionWrapper>
-        <body {...bodyAttributes} className={`${displayFont.variable} ${sansFont.variable} antialiased`}>
+        <body {...bodyAttributes} className={`${displayFont.variable} ${bodyFont.variable} antialiased`}>
           <script id="structured-data-graph" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteGraph) }} />
           <LazyUi />
           {children}
