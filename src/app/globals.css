@@ -44,6 +44,9 @@
   - Toast/popover: z-5 or z-[6] only when necessary */
 
   /* Fonts */
+  --font-display: var(--font-primary);
+  --font-body: var(--font-secondary);
+
   /* Type scale */
   --text-hero: clamp(3rem, 8vw, 4.375rem); /* 48px to 70px */
   --text-hero--line-height: clamp(3.125rem, 8.4vw, 4.5rem); /* 50px to 72px */
