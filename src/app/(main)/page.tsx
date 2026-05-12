@@ -1,5 +1,6 @@
 import { SITE_CONFIG, DOMAIN_URL } from "@/config/site-config"
 import type { Metadata } from "next"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: SITE_CONFIG.title,
@@ -18,9 +19,10 @@ const Home: React.FC = () => {
           Serbyte Development
         </a>
       </h1>
-      <p className="text-foreground/80 mt-6 max-w-2xl text-base sm:text-lg">
-        Starter homepage for a service business website. Replace this with the client hero, trust signals, and primary call to action.
-      </p>
+      <p className="text-foreground/80 mt-6 max-w-2xl text-base sm:text-lg">Starter homepage for a service business website.</p>
+      <Link href="/design-preview" className="text-primary hover:text-primary-hover transition-colors">
+        View Design Preview
+      </Link>
     </main>
   )
 }

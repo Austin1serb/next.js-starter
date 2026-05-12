@@ -1,112 +1,175 @@
 import Link from "next/link"
+import { IconBrandFacebook, IconBrandInstagram, IconBrandLinkedin, IconBrandGoogle } from "@react-zero-ui/icon-sprite"
 import { SITE_CONFIG, SITE_NAP, SITE_SLUGS } from "@/config/site-config"
-import { Socials } from "./social"
 
 const year = new Date().getFullYear()
 
-const socialLinks = [
+const socials = [
   {
+    label: "LinkedIn",
     href: SITE_NAP.profiles.linkedIn,
-    icon: "linkedin",
+    icon: IconBrandLinkedin,
   },
   {
+    label: "Facebook",
     href: SITE_NAP.profiles.facebook,
-    icon: "facebook",
+    icon: IconBrandFacebook,
   },
 
   {
+    label: "Google",
     href: SITE_NAP.profiles.gbp,
-    icon: "google",
+    icon: IconBrandGoogle,
   },
   {
+    label: "Instagram",
     href: SITE_NAP.profiles.instagram,
-    icon: "instagram",
+    icon: IconBrandInstagram,
   },
+]
+
+const navigateLinks: { label: string; href: string; external?: boolean }[] = [
+  { label: "Home", href: SITE_SLUGS.home },
+  { label: "About", href: SITE_SLUGS.about },
+  { label: "Services", href: SITE_SLUGS.allServices },
+  { label: "Contact", href: SITE_SLUGS.contact },
+  { label: "Write a Review", href: SITE_NAP.googleReviewLink, external: true },
 ]
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-background mt-10 overflow-hidden">
-      <div className="p-10">
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 gap-12 pt-16 pb-8 md:pt-32 lg:grid-cols-3">
-          {/* Navigation Links */}
-          <div>
-            <h3 className="after:bg-primary relative mb-4 after:absolute after:bottom-0 after:mt-2 after:block after:h-[3px] after:w-12">Navigate</h3>
-            <nav className="flex flex-col gap-5">
-              <Link href={SITE_SLUGS.home}>Home</Link>
-              <Link href={SITE_SLUGS.contact}>Contact</Link>
-              <Link href={SITE_SLUGS.allServices}>Services</Link>
-              <Link rel="nofollow noopener noreferrer" target="_blank" href={SITE_NAP.googleReviewLink}>
-                Write Review
-              </Link>
-            </nav>
-          </div>
-
-          {/* Contact Info */}
+    <footer className="bg-surface-inverse text-foreground-inverse mt-10">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-[1.5fr_repeat(3,1fr)]">
+          {/* Brand */}
           <div className="h-card">
-            <h3 className="after:bg-primary relative mb-4 after:absolute after:bottom-0 after:mt-2 after:block after:h-[3px] after:w-16">Contact</h3>
-            <div className="grid grid-cols-1 gap-4">
-              <Link href={`tel:${SITE_NAP.phone}`} className="p-tel" aria-label={`Call ${SITE_CONFIG.title} in ${SITE_NAP.city} at ${SITE_NAP.formattedPhone}`}>
-                {SITE_NAP.formattedPhone}
-              </Link>
-              <Link href={`mailto:${SITE_NAP.email}`} className="u-email" aria-label={`Email ${SITE_CONFIG.title} at ${SITE_NAP.email}`}>
-                {SITE_NAP.email}
-              </Link>
-              <Link
-                href={SITE_NAP.profiles.gbp}
-                className="p-adr"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                aria-label="View our location on Google Maps"
-              >
-                <span className="p-street-address">{SITE_NAP.address}</span>,<span className="p-locality"> {SITE_NAP.city}</span>,
-                <span className="p-region"> {SITE_NAP.state}</span>,<span className="p-postal-code">{SITE_NAP.zipCode}</span>
-              </Link>
-            </div>
+            <span className="p-name font-display text-subtitle text-foreground-inverse block">{SITE_CONFIG.title}</span>
+            <p className="text-body-sm text-foreground-inverse/60 mt-3 max-w-xs">{SITE_CONFIG.description}</p>
+
+            {socials.length > 0 && (
+              <div className="mt-6 flex items-center gap-2">
+                {socials.map((social) => {
+                  const Icon = social.icon
+                  return (
+                    <Link
+                      key={social.label}
+                      href={social.href}
+                      aria-label={social.label}
+                      title={social.label}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+                      className="text-foreground-inverse/60 hover:bg-foreground-inverse/10 hover:text-foreground-inverse flex size-9 items-center justify-center rounded-full transition"
+                    >
+                      <Icon size={16} />
+                    </Link>
+                  )
+                })}
+              </div>
+            )}
           </div>
 
-          {/* Business Hours Column */}
+          {/* Navigate */}
           <div>
-            <h3 className="after:bg-primary relative mb-4 after:absolute after:bottom-0 after:mt-2 after:block after:h-[3px] after:w-16">Hours</h3>
-
-            <div className="flex flex-col gap-2">
-              {SITE_NAP.openingHours.map(({ days, hours }) => (
-                <p key={days}>
-                  <span className="text-nowrap">{days}: </span>
-                  <span className="text-nowrap">{hours}</span>
-                </p>
+            <p className="text-caption text-foreground-inverse/60 font-mono tracking-wider uppercase">Navigate</p>
+            <ul className="mt-4 space-y-2">
+              {navigateLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    {...(link.external ? { target: "_blank", rel: "nofollow noopener noreferrer" } : {})}
+                    className="text-body-sm text-foreground-inverse/70 hover:text-foreground-inverse transition"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-        </div>
-        <div className="mb-5 flex justify-center">
-          <Socials socialLinks={socialLinks} />
-        </div>
-        {/* Bottom Section */}
-        <div className="flex flex-col items-center justify-between border-t border-neutral-600 pt-4 pb-4 lg:flex-row lg:items-end">
-          <div className="flex w-fit flex-col items-center lg:items-start lg:justify-between">
-            {/* Logo */}
-            <div className="h-card flex w-fit items-center">
-              {/* <Image src={Logo} alt={`{SITE_CONFIG.title} Kirkland Logo" width={50} height={50} className="u-logo`} /> */}
-              <span className="p-name xs:text-[24px] text-xl font-extrabold text-nowrap uppercase italic">{SITE_CONFIG.title}</span>
-            </div>
 
-            {/* Copyright */}
-            <p className="mt-4 w-full text-center text-base! text-neutral-500 md:mt-0 lg:text-start">
-              {year} Copyright © {SITE_CONFIG.title} | Website by
-              <Link title="Seattle Web Design & SEO | Serbyte Development" href="https://www.serbyte.net/" className="text-display font-medium hover:underline">
-                {" "}
-                Serbyte Development
-              </Link>
-            </p>
+          {/* Contact (h-card microformats preserved) */}
+          <div className="h-card">
+            <p className="text-caption text-foreground-inverse/60 font-mono tracking-wider uppercase">Contact</p>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <Link
+                  href={`tel:${SITE_NAP.phone}`}
+                  className="p-tel text-body-sm text-foreground-inverse/70 hover:text-foreground-inverse transition"
+                  aria-label={`Call ${SITE_CONFIG.title} in ${SITE_NAP.city} at ${SITE_NAP.formattedPhone}`}
+                >
+                  {SITE_NAP.formattedPhone}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`mailto:${SITE_NAP.email}`}
+                  className="u-email text-body-sm text-foreground-inverse/70 hover:text-foreground-inverse transition"
+                  aria-label={`Email ${SITE_CONFIG.title} at ${SITE_NAP.email}`}
+                >
+                  {SITE_NAP.email}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={SITE_NAP.profiles.gbp}
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  aria-label="View our location on Google Maps"
+                  className="p-adr text-body-sm text-foreground-inverse/70 hover:text-foreground-inverse block leading-relaxed transition"
+                >
+                  <span className="p-street-address">{SITE_NAP.address}</span>
+                  <br />
+                  <span className="p-locality">{SITE_NAP.city}</span>, <span className="p-region">{SITE_NAP.stateCode}</span>{" "}
+                  <span className="p-postal-code">{SITE_NAP.zipCode}</span>
+                </Link>
+              </li>
+            </ul>
           </div>
-          <div className="mt-4 flex w-fit items-center justify-center lg:mt-0">
-            <Link title={`Terms of Service | ${SITE_CONFIG.title}`} href="/privacy-policy" className="text-sm! text-nowrap text-neutral-500">
-              Privacy Policy{" "}
+
+          {/* Hours */}
+          <div>
+            <p className="text-caption text-foreground-inverse/60 font-mono tracking-wider uppercase">Hours</p>
+            <ul className="mt-4 space-y-2">
+              {SITE_NAP.openingHours.map(({ days, hours }) => (
+                <li key={days} className="text-body-sm text-foreground-inverse/70 flex justify-between gap-3">
+                  <span className="text-nowrap">{days}</span>
+                  <span className="text-foreground-inverse/90 text-nowrap">{hours}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="border-border-strong/20 mt-12 flex flex-col gap-4 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-caption text-foreground-inverse/50">
+            © {year} {SITE_CONFIG.title} · Website by{" "}
+            <Link
+              href="https://www.serbyte.net/"
+              title="Seattle Web Design & SEO | Serbyte Development"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground-inverse/70 hover:text-foreground-inverse underline-offset-4 hover:underline"
+            >
+              Serbyte Development
             </Link>
-            <span className="mx-1 text-neutral-500">|</span>
-            <Link title={`Privacy Policy | ${SITE_CONFIG.title}`} href="/terms-of-service" className="text-sm! text-nowrap text-neutral-500">
+          </p>
+
+          <div className="flex items-center gap-4">
+            <Link
+              href={SITE_SLUGS.privacy}
+              title={`Privacy Policy | ${SITE_CONFIG.title}`}
+              className="text-caption text-foreground-inverse/60 hover:text-foreground-inverse transition"
+            >
+              Privacy Policy
+            </Link>
+            <span aria-hidden className="text-foreground-inverse/30">
+              ·
+            </span>
+            <Link
+              href={SITE_SLUGS.terms}
+              title={`Terms of Service | ${SITE_CONFIG.title}`}
+              className="text-caption text-foreground-inverse/60 hover:text-foreground-inverse transition"
+            >
               Terms of Service
             </Link>
           </div>

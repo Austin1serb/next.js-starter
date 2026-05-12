@@ -1,4 +1,5 @@
-import { isClient } from "./env"
+export const isServer = typeof window === "undefined"
+export const isClient = !isServer
 
 const stores = new Map<
   string,

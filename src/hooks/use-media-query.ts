@@ -1,7 +1,7 @@
 // hooks/useMediaQuery.ts
 "use client"
 import { useSyncExternalStore } from "react"
-import { getMediaQueryStore } from "../utils/get-media-query-store"
+import { getMediaQueryStore } from "../lib/get-media-query-store"
 
 // Generic hook: pass any valid media query string
 export function useMediaQuery(query: string) {

@@ -1,11 +1,11 @@
 import { bodyAttributes } from "@zero-ui/attributes"
 import type { Metadata } from "next"
-import { DM_Sans, Inter_Tight } from "next/font/google"
+import { Inter_Tight } from "next/font/google"
 import "./globals.css"
 import { DOMAIN_URL, SITE_CONFIG } from "@/config/site-config"
-import { MotionWrapper } from "@/utils/motion-wrapper"
+import { MotionWrapper } from "@/lib/motion-wrapper"
 import { LazyUi } from "./components/lazy-ui"
-import { ZeroUiRuntime } from "@/utils/init-zero-runtime"
+import { ZeroUiRuntime } from "@/lib/init-zero-runtime"
 import { siteGraph } from "@/config/schemas"
 
 const displayFont = Inter_Tight({
