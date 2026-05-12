@@ -36,7 +36,7 @@ export const Footer: React.FC = () => {
             <nav className="flex flex-col gap-5">
               <Link href={SITE_SLUGS.home}>Home</Link>
               <Link href={SITE_SLUGS.contact}>Contact</Link>
-              <Link href={SITE_SLUGS.services}>Services</Link>
+              <Link href={SITE_SLUGS.allServices}>Services</Link>
               <Link rel="nofollow noopener noreferrer" target="_blank" href={SITE_NAP.googleReviewLink}>
                 Write Review
               </Link>

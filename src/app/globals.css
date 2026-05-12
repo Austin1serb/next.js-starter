@@ -9,6 +9,11 @@
   background = the page or section behind everything
   surface    = containers placed on top of the background, like cards, modals, etc.
   foreground = text/icons/content placed on top of backgrounds or surfaces, like text, icons, etc.
+
+  Primary and secondary are brand colors.
+  They do not mean primary button and secondary button.
+  Use primary for the main brand color.
+  Use secondary only when the project has a real supporting brand color.
   */
 
   /*   Layout / shape / effects convention
@@ -193,18 +198,17 @@
   --ui-border-strong: var(--color-neutral-300);
 
   /* Brand / Primary action */
-  --ui-primary: var(--color-cyan-500);
-  --ui-primary-hover: var(--color-cyan-600);
+  --ui-primary: #00adec;
+  --ui-primary-hover: #0076a2;
   --ui-primary-foreground: var(--color-white);
-  --ui-primary-muted: var(--color-cyan-50);
-  --ui-primary-border: var(--color-cyan-200);
+  --ui-primary-muted: #dff4fc;
+  --ui-primary-border: #8dd4f0;
 
   /* Secondary action */
-  --ui-secondary: var(--color-indigo-100);
-  --ui-secondary-hover: var(--color-indigo-200);
-  --ui-secondary-foreground: var(--color-indigo-950);
-
-  --ui-secondary-border: var(--color-indigo-200);
+  --ui-secondary: #003c75;
+  --ui-secondary-hover: #1968a5;
+  --ui-secondary-foreground: #ecf0fb;
+  --ui-secondary-border: #b8d8ec;
 
   /* Input */
 

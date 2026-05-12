@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 
 const Home: React.FC = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-6 pt-24 pb-16 text-center">
+    <main className="flex flex-col items-center justify-center px-6 pt-24 pb-16 text-center">
       <h1 className="text-foreground text-hero">
         Next.js Starter by <br />
-        <a href="https://www.serbyte.net/" className="text-display font-medium hover:underline">
+        <a href="https://www.serbyte.net/" className="text-primary hover:text-primary-hover transition-colors">
           Serbyte Development
         </a>
       </h1>

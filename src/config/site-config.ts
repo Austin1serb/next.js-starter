@@ -5,13 +5,16 @@ export const SITE_CONFIG = {
   // This information is also used in the metadata for the home page and schema
   title: "My Next.js Starter",
   description: "A fully optimized Next.js 15 starter template.",
+  placeId: "ChIJN1t_t2Z44AR4PVM_67p7...",
+  cid: "1234567890",
+  mapId: "1234567890",
 } as const
 
-const foundingYear = 1976
-
 export const SITE_NAP = {
-  name: "Your Company Name",
-  nameSlug: "your-company-name",
+  name: "Serbyte Development",
+  nameSlug: "serbyte-development",
+  legalName: "Serbyte LLC",
+  alternateNames: ["Serbyte LLC", "Serbyte Development"],
   googleBusinessType: "ProfessionalService" as const,
   contact: "John Doe",
   contactTitle: "CEO",
@@ -26,9 +29,12 @@ export const SITE_NAP = {
   zipCode: "12345",
   geo: { latitude: 40.7128, longitude: -74.006 },
   areaServed: ["City", "Nearby City"],
-  foundingYear: foundingYear,
-  yearsInBusiness: new Date().getFullYear() - foundingYear,
+  foundingYear: 1984,
+  get yearsInBusiness() {
+    return new Date().getFullYear() - this.foundingYear
+  },
   employeeCount: 15,
+  areasServed: ["City", "Nearby City"],
   openingHours: [
     { days: "Mon - Fri", hours: "8am - 5pm" },
     { days: "Sat", hours: "Closed" },
@@ -54,7 +60,12 @@ export const SITE_SLUGS = {
   home: "/",
   about: "/about",
   contact: "/contact",
-  services: "/services",
+  allServices: "/services",
+  services: {
+    service1: "/services/service1",
+    service2: "/services/service2",
+    service3: "/services/service3",
+  },
   // gallery: "/gallery",
   terms: "/terms-of-service",
   privacy: "/privacy-policy",

@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Services",
   description: "Services",
   alternates: {
-    canonical: SITE_SLUGS.services,
+    canonical: SITE_SLUGS.allServices,
   },
 }
 

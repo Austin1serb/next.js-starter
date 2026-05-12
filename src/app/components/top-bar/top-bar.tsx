@@ -1,50 +1,41 @@
+import { SITE_CONFIG, SITE_NAP, SITE_SLUGS } from "@/config/site-config"
 import Link from "next/link"
-import { MobileMenuButton } from "./mobile-menu-button"
-import { MobileMenu } from "./mobile-menu"
-import { Logo } from "../logo"
-import { SITE_SLUGS } from "@/config/site-config"
-import { LinkButton } from "@/app/components/ui/LinkButton"
 
 const navItems = [
   { name: "About", href: SITE_SLUGS.about },
-  { name: "Services", href: SITE_SLUGS.services },
+  { name: "Services", href: SITE_SLUGS.allServices },
   // { name: "Pricing", href: SITE_SLUGS.pricing },
 ]
 
-export const TopBar: React.FC = () => {
+export function TopBar() {
   return (
-    <nav className="fixed top-0 right-0 left-0 z-10 flex w-full min-w-56 justify-center text-base sm:text-sm">
-      {/* Wrapper that grows/shrinks on mobile */}
-      <div className="bg-background/40 flex min-h-12 w-full items-center justify-center overflow-hidden backdrop-blur-xs">
-        <div className="relative flex w-full flex-col">
-          {/* Top Row (always visible) */}
-          <div className="flex w-full items-center gap-4 px-4 py-2.5 sm:gap-8">
-            {/* Logo */}
-            <div className="flex w-full items-center justify-between gap-4">
-              <Logo />
-              {/* Mobile Dots Menu */}
-              <MobileMenuButton />
-            </div>
+    <header className="border-border bg-surface border-b">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-8">
+          <Link href={SITE_SLUGS.home} className="font-display text-foreground text-subtitle">
+            {SITE_NAP.name}
+          </Link>
+          <nav className="hidden items-center gap-6 md:flex">
+            {navItems.map((item) => (
+              <Link key={item.name} href={item.href} className="text-foreground-muted hover:text-foreground text-body-sm transition hover:underline">
+                {item.name}
+              </Link>
+            ))}
+          </nav>
+        </div>
 
-            {/* Desktop Navigation */}
-            <ul className="body-lg hidden items-center gap-4 transition-all duration-300 ease-in-out sm:flex lg:gap-5">
-              {navItems.map((item) => (
-                <li key={item.name} className="flex">
-                  <Link href={item.href} className="rounded-full p-1 px-2 transition-colors duration-300 hover:text-gray-400">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-              <li className="flex">
-                <LinkButton href={SITE_SLUGS.contact}>Contact</LinkButton>
-              </li>
-            </ul>
-          </div>
-
-          {/* Mobile Menu (renders always but hidden via overflow on wrapper) */}
-          <MobileMenu navItems={navItems} />
+        <div className="flex items-center gap-4">
+          <a href="#" className="text-link hover:text-link-hover text-body-sm hidden underline-offset-4 hover:underline sm:inline">
+            Sign in
+          </a>
+          <button
+            type="button"
+            className="bg-primary text-primary-foreground hover:bg-primary-hover focus-visible:ring-ring focus-visible:ring-offset-ring-offset text-body-sm rounded-md px-4 py-2 font-medium transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+          >
+            Get started
+          </button>
         </div>
       </div>
-    </nav>
+    </header>
   )
 }
