@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 const Page: React.FC = () => {
   return (
     <main className="mx-auto min-h-screen w-full max-w-5xl px-6 pt-28 pb-16">
-      <h1 className="text-surface text-4xl font-bold">About</h1>
-      <p className="text-surface/80 mt-4 max-w-2xl text-lg">
+      <h1 className="text-foreground text-4xl font-bold">About</h1>
+      <p className="text-foreground/80 mt-4 max-w-2xl text-lg">
         Replace this section with the company story, why the team is qualified, and the proof points that build trust for a new client site.
       </p>
     </main>

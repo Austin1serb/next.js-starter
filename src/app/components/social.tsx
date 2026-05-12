@@ -59,7 +59,7 @@ export const Socials: React.FC<{
             aria-label={link.icon}
             title={link.icon}
           >
-            <CustomIcon name={link.icon} size={15} className="text-surface" />
+            <CustomIcon name={link.icon} size={15} className="text-foreground" />
           </Link>
         </Motion>
       ))}

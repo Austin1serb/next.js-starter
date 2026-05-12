@@ -39,7 +39,7 @@ export const MobileMenu: React.FC<{ navItems: { name: string; href: string }[] }
                 <Link
                   href={item.href}
                   onClick={() => toggle()}
-                  className="hover:text-surface block rounded-lg border border-transparent px-4 py-3 text-base font-medium text-zinc-300 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-800/50"
+                  className="hover:text-foreground block rounded-lg border border-transparent px-4 py-3 text-base font-medium text-zinc-300 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-800/50"
                 >
                   {item.name}
                 </Link>
