@@ -200,7 +200,8 @@
   /* Brand / Primary action */
   --ui-primary: #00adec;
   --ui-primary-hover: #0076a2;
-  --ui-primary-foreground: var(--color-white);
+
+  --ui-primary-foreground: var(--color-black);
   --ui-primary-muted: #dff4fc;
   --ui-primary-border: #8dd4f0;
 

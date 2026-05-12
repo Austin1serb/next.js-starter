@@ -60,7 +60,7 @@ export const Footer: React.FC = () => {
                       rel="nofollow noopener noreferrer"
                       className="text-foreground-inverse/60 hover:bg-foreground-inverse/10 hover:text-foreground-inverse flex size-9 items-center justify-center rounded-full transition"
                     >
-                      <Icon size={16} />
+                      <Icon size={16} strokeWidth={1} />
                     </Link>
                   )
                 })}

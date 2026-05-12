@@ -1,4 +1,4 @@
-import { SITE_CONFIG, SITE_NAP, SITE_SLUGS } from "@/config/site-config"
+import { SITE_NAP, SITE_SLUGS } from "@/config/site-config"
 import Link from "next/link"
 
 const navItems = [
