@@ -52,7 +52,7 @@ export const Socials: React.FC<{
       {socialLinks.map((link, i) => (
         <Motion variants={linkLogo} key={link.href + i}>
           <Link
-            rel="noopener noreferrer"
+            rel="nofollow noopener noreferrer"
             target="_blank"
             className={`social-link ${iconClassName}`}
             href={link.href === "" ? "/services" : link.href}

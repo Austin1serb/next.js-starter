@@ -1,6 +1,6 @@
 import { bodyAttributes } from "@zero-ui/attributes"
 import type { Metadata } from "next"
-import { Inter_Tight } from "next/font/google"
+import { DM_Sans, Inter_Tight } from "next/font/google"
 import "./globals.css"
 import { DOMAIN_URL, SITE_CONFIG } from "@/config/site-config"
 import { MotionWrapper } from "@/utils/motion-wrapper"

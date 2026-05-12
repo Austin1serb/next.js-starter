@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
               <Link href={SITE_SLUGS.home}>Home</Link>
               <Link href={SITE_SLUGS.contact}>Contact</Link>
               <Link href={SITE_SLUGS.services}>Services</Link>
-              <Link rel="noopener noreferrer" target="_blank" href={SITE_NAP.googleReviewLink}>
+              <Link rel="nofollow noopener noreferrer" target="_blank" href={SITE_NAP.googleReviewLink}>
                 Write Review
               </Link>
             </nav>
@@ -53,7 +53,13 @@ export const Footer: React.FC = () => {
               <Link href={`mailto:${SITE_NAP.email}`} className="u-email" aria-label={`Email ${SITE_CONFIG.title} at ${SITE_NAP.email}`}>
                 {SITE_NAP.email}
               </Link>
-              <Link href={SITE_NAP.profiles.gbp} className="p-adr" target="_blank" rel="noopener noreferrer" aria-label="View our location on Google Maps">
+              <Link
+                href={SITE_NAP.profiles.gbp}
+                className="p-adr"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                aria-label="View our location on Google Maps"
+              >
                 <span className="p-street-address">{SITE_NAP.address}</span>,<span className="p-locality"> {SITE_NAP.city}</span>,
                 <span className="p-region"> {SITE_NAP.state}</span>,<span className="p-postal-code">{SITE_NAP.zipCode}</span>
               </Link>

@@ -52,6 +52,7 @@
   /* Fonts */
   --font-display: var(--font-primary);
   --font-body: var(--font-secondary);
+  /* --font-mono: var(--font-mono); */
 
   /* Type scale */
   --text-hero: clamp(3rem, 8vw, 4.375rem); /* 48px to 70px */
@@ -118,11 +119,13 @@
   --color-primary-hover: var(--ui-primary-hover);
   --color-primary-foreground: var(--ui-primary-foreground);
   --color-primary-muted: var(--ui-primary-muted);
+  --color-primary-border: var(--ui-primary-border);
 
   /* Secondary action */
   --color-secondary: var(--ui-secondary);
   --color-secondary-hover: var(--ui-secondary-hover);
   --color-secondary-foreground: var(--ui-secondary-foreground);
+  --color-secondary-border: var(--ui-secondary-border);
 
   /* Input */
   --color-input: var(--ui-input);
@@ -188,11 +191,13 @@
   --ui-primary-hover: var(--color-cyan-600);
   --ui-primary-foreground: var(--color-white);
   --ui-primary-muted: var(--color-cyan-50);
+  --ui-primary-border: var(--color-cyan-200);
 
   /* Secondary action */
   --ui-secondary: var(--color-neutral-100);
   --ui-secondary-hover: var(--color-neutral-200);
   --ui-secondary-foreground: var(--color-neutral-950);
+  --ui-secondary-border: var(--color-neutral-200);
 
   /* Input */
   --ui-input: var(--color-white);
@@ -250,7 +255,7 @@ body {
     }
     50% {
       transform: scaleY(0.8) scaleX(1.1);
-      filter: saturate(2) brightness(1.2);
+      filter: saturate(1.25) brightness(1.2);
     }
   }
 
