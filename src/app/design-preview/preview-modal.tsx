@@ -21,13 +21,9 @@ export function PreviewModal() {
 
         <div className="bg-overlay absolute inset-0" aria-hidden />
 
-        <div className="absolute inset-0 flex items-center justify-center p-6">
+        <div className="absolute inset-0 flex items-center justify-center">
           <div className="border-border bg-surface relative w-full max-w-md rounded-2xl border p-6 shadow-2xl">
-            <button
-              type="button"
-              aria-label="Close"
-              className="text-foreground-subtle hover:text-foreground absolute top-4 right-4 rounded-md p-1 transition"
-            >
+            <button type="button" aria-label="Close" className="text-foreground-subtle hover:text-foreground absolute top-4 right-4 rounded-md p-1 transition">
               <X size={18} />
             </button>
             <div className="bg-danger-background text-danger flex size-10 items-center justify-center rounded-full">
@@ -42,10 +38,7 @@ export function PreviewModal() {
               >
                 Cancel
               </button>
-              <button
-                type="button"
-                className="bg-danger hover:bg-danger-hover text-body-sm rounded-md px-4 py-2 font-medium text-white transition"
-              >
+              <button type="button" className="bg-danger hover:bg-danger-hover text-body-sm rounded-md px-4 py-2 font-medium text-white transition">
                 Delete project
               </button>
             </div>

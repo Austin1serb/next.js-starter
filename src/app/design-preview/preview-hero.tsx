@@ -14,7 +14,7 @@ export function PreviewHero() {
         </div>
 
         <h1 className="font-display text-hero text-foreground mt-6">
-          Build production sites <span className="text-foreground-muted">without rebuilding the foundation.</span>
+          Build production sites <span className="text-primary">without rebuilding the foundation.</span>
         </h1>
 
         <p className="text-lead text-foreground-muted mt-6">

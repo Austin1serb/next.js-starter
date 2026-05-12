@@ -8,7 +8,7 @@ export function PreviewForm() {
       <div className="mx-auto max-w-xl">
         <TokenLabel>Input · input-border · input-placeholder · input-disabled · ring · link · danger</TokenLabel>
         <h2 className="font-display text-title text-foreground mt-4">Sign in to your account</h2>
-        <p className="text-body text-foreground-muted mt-3">All form controls share one set of tokens — focus rings included.</p>
+        <p className="text-body text-foreground-muted mt-3">All form controls share one set of tokens - focus rings included.</p>
 
         <form className="mt-10 space-y-5" onSubmit={(e) => e.preventDefault()}>
           <div className="flex flex-col gap-2">

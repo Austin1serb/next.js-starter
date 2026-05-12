@@ -5,10 +5,12 @@ export function PreviewTestimonial() {
     <Section background="background-inverse">
       <div className="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-center">
         <div>
-          <p className="text-caption text-foreground-inverse/60 font-mono tracking-wider uppercase">background-inverse · foreground-inverse · surface (on dark)</p>
+          <p className="text-caption text-foreground-inverse/60 font-mono tracking-wider uppercase">
+            background-inverse · foreground-inverse · surface (on dark)
+          </p>
 
           <blockquote className="font-display text-title text-foreground-inverse mt-6">
-            “We replaced six different starter templates with this one. Six months in and we still haven&apos;t needed to add a token — we just keep composing
+            “We replaced six different starter templates with this one. Six months in and we still haven&apos;t needed to add a token - we just keep composing
             them.”
           </blockquote>
 
