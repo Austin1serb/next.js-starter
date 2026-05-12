@@ -5,6 +5,12 @@
 } */
 
 @theme inline {
+  /* Colors 
+  background = the page or section behind everything
+  surface    = containers placed on top of the background, like cards, modals, etc.
+  foreground = text/icons/content placed on top of backgrounds or surfaces, like text, icons, etc.
+  */
+
   /*   Layout / shape / effects convention
 
   Use Tailwind's built-in scales for generic UI mechanics instead of adding
