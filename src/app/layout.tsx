@@ -23,6 +23,7 @@ const bodyFont = Inter_Tight({
 // })
 
 export const metadata: Metadata = {
+  // TODO: Update DOMAIN_URL upon deployment or opengraph image+sitemap+canonical will break
   metadataBase: new URL(DOMAIN_URL),
   title: SITE_CONFIG.title,
   description: SITE_CONFIG.description,
