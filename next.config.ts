@@ -1,4 +1,5 @@
 import type { NextConfig } from "next"
+import createMDX from "@next/mdx"
 
 const nextConfig: NextConfig = {
   images: {
@@ -10,20 +11,11 @@ const nextConfig: NextConfig = {
     //   },
     // ],
   },
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 }
-
-export default nextConfig
 
 // MDX
 
-// const withMDX = createMDX({
-//   extension: /\.mdx?$/,
-//   options: {
-//     // Turbopack requires MDX options to be serializable; pass the plugin by
-//     // module path instead of the function reference.
-//     // eslint-disable-next-line @typescript-eslint/no-var-requires
-//     remarkPlugins: [require.resolve("remark-gfm")],
-//   },
-// })
+const withMDX = createMDX({})
 
-// export default withMDX(nextConfig)
+export default withMDX(nextConfig)

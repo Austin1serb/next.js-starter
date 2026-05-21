@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import { SITE_SLUGS } from "@/config/site-config"
+import { SITE_NAP, SITE_SLUGS } from "@/config/site-config"
 
 export const metadata: Metadata = {
-  title: "Services",
-  description: "Services",
+  title: `${SITE_NAP.name} | Services`,
+  description: `Services for ${SITE_NAP.name}`,
   alternates: {
     canonical: SITE_SLUGS.allServices,
   },

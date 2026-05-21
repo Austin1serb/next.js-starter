@@ -1,29 +1,23 @@
-import { SITE_NAP, DOMAIN_URL, SITE_SLUGS } from "@/config/site-config"
-import { Terms } from "./terms"
+import { SITE_NAP, SITE_SLUGS } from "@/config/site-config"
 import type { Metadata } from "next"
+import TermsOfService from "./terms.mdx"
+import { LegalPageShell } from "../privacy-policy/page"
 
 export const metadata: Metadata = {
-  title: `Terms of Service | ${SITE_NAP.name}`,
-  description: `Read our Terms of Service to learn about the rules and regulations for accessing and using the ${SITE_NAP.name} website.`,
-  keywords: ["terms of service", "terms and conditions"],
+  title: `${SITE_NAP.name} | Terms of Service`,
+  description: `Terms of Service for ${SITE_NAP.name}`,
   alternates: {
     canonical: SITE_SLUGS.terms,
   },
+
   robots: { index: false, follow: true },
 }
-const Page: React.FC = () => {
+
+const page: React.FC = () => {
   return (
-    <Terms
-      accentColor="--color-primary"
-      fullCompanyName={SITE_NAP.name}
-      fullWebAddress={DOMAIN_URL}
-      contact={{
-        name: SITE_NAP.contact,
-        title: SITE_NAP.contactTitle,
-        phone: SITE_NAP.phone,
-        email: SITE_NAP.email,
-      }}
-    />
+    <LegalPageShell>
+      <TermsOfService />
+    </LegalPageShell>
   )
 }
-export default Page
+export default page
