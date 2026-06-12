@@ -12,13 +12,7 @@ export function PreviewModal() {
         </p>
       </div>
 
-      <div className="border-border bg-background-muted relative mt-10 overflow-hidden rounded-2xl border p-8">
-        <div className="grid gap-4 md:grid-cols-3" aria-hidden>
-          <div className="bg-surface border-border h-32 rounded-xl border" />
-          <div className="bg-surface-muted border-border h-32 rounded-xl border" />
-          <div className="bg-surface border-border h-32 rounded-xl border" />
-        </div>
-
+      <div className="border-border bg-background-muted relative mt-10 min-h-[300px] overflow-hidden rounded-2xl border p-8">
         <div className="bg-overlay absolute inset-0" aria-hidden />
 
         <div className="absolute inset-0 flex items-center justify-center">

@@ -5,7 +5,7 @@ export function PreviewHero() {
   return (
     <Section background="background">
       <div className="mx-auto max-w-3xl text-center">
-        <span className="bg-primary-muted text-primary text-caption border-primary-border inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-medium">
+        <span className="text-accent text-caption inline-flex items-center gap-1.5 font-medium">
           <Sparkles size={12} /> New · v1.0 is here
         </span>
 

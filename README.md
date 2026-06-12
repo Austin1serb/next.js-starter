@@ -10,6 +10,7 @@ Starter for marketing-focused business sites built with Next.js App Router.
 - Tailwind CSS v4
 - Motion
 - React Zero UI
+- Icons: @react-zero-ui/icon-sprite, which has full lucide and tabler icon sets
 - Playwright for testing
 
 ## Environment

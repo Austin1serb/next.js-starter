@@ -65,11 +65,7 @@ export function PreviewPricing() {
             key={tier.name}
             className={`bg-surface relative flex flex-col rounded-xl p-6 shadow-sm ${tier.featured ? "border-border-strong border-2" : "border-border border"}`}
           >
-            {tier.featured && (
-              <span className="bg-primary-muted text-primary text-caption border-primary-border absolute -top-3 left-6 rounded-full border px-3 py-1 font-medium">
-                Most popular
-              </span>
-            )}
+            {tier.featured && <span className="bg-accent/5 text-accent text-caption absolute top-0 right-0 px-3 py-1 font-medium">Most popular</span>}
 
             <h3 className="font-display text-subtitle text-foreground">{tier.name}</h3>
             <p className="text-body-sm text-foreground-muted mt-1">{tier.description}</p>
