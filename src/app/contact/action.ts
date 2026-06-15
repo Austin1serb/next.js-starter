@@ -1,11 +1,14 @@
 "use server"
 
 import { contactFormSchema, type ContactFormData } from "./utils/validation"
-
 import { detectSpamKeywords, SPAM_KEYWORDS } from "./utils/spam-detection"
 import { sendSerbyteLead } from "./utils/serbyte-leads"
 import { sendEmail, transporter } from "./email-transporter"
 import { SITE_NAP, SITE_SLUGS } from "@/config/site-config"
+import { readAttributionState } from "@/attribution/cookies"
+import { cookies } from "next/headers"
+import { toSerbyteAttribution } from "@/attribution/core"
+
 
 class TurnstileVerificationError extends Error {
   constructor(
@@ -123,7 +126,9 @@ export async function submitContactForm(prevState: ContactFormResult | null, pay
   }
 
   try {
-    // Send email to owner
+    const attribution = readAttributionState(await cookies())
+
+     // Send email to owner
     const emailSent = await sendEmail({
       name: result.data.name.trim(),
       email: result.data.email.trim(),
@@ -153,6 +158,7 @@ export async function submitContactForm(prevState: ContactFormResult | null, pay
         details: {
           address: result.data.address,
           referrer: result.data.howDidYouHearAboutUs?.toLowerCase(),
+          attribution: toSerbyteAttribution(attribution),
           ...(result.data.howDidYouHearAboutUsOther && { referrerOther: result.data.howDidYouHearAboutUsOther?.toLowerCase() }),
         },
       },
