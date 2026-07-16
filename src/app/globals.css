@@ -117,9 +117,6 @@
   --color-surface-muted: var(--ui-surface-muted);
   --color-surface-inverse: var(--ui-surface-inverse);
 
-  /* Overlay */
-  --color-overlay: var(--ui-overlay);
-
   /* Borders */
   --color-border: var(--ui-border);
   --color-border-strong: var(--ui-border-strong);
@@ -143,19 +140,9 @@
   --color-accent-foreground: var(--ui-accent-foreground);
   --color-accent-border: var(--ui-accent-border);
 
-  /* Input */
-  --color-input: var(--ui-input);
-  --color-input-border: var(--ui-input-border);
-  --color-input-placeholder: var(--ui-input-placeholder);
-  --color-input-disabled: var(--ui-input-disabled);
-
   /* Link */
   --color-link: var(--ui-link);
   --color-link-hover: var(--ui-link-hover);
-
-  /* Focus */
-  --color-ring: var(--ui-ring);
-  --color-ring-offset: var(--ui-ring-offset);
 
   /* Success status */
   --color-success: var(--ui-success);
@@ -199,9 +186,6 @@
   --ui-surface-muted: var(--color-neutral-100);
   --ui-surface-inverse: var(--color-neutral-950);
 
-  /* Overlay */
-  --ui-overlay: rgb(0 0 0 / 0.35);
-
   /* Borders */
   --ui-border: var(--color-neutral-200);
   --ui-border-strong: var(--color-neutral-300);
@@ -228,20 +212,9 @@
   --ui-accent-foreground: #fee4f3;
   --ui-accent-border: #f254bb;
 
-  /* Input */
-
-  --ui-input: var(--color-white);
-  --ui-input-border: var(--color-neutral-300);
-  --ui-input-placeholder: var(--color-neutral-400);
-  --ui-input-disabled: var(--color-neutral-100);
-
   /* Link */
   --ui-link: var(--color-cyan-700);
   --ui-link-hover: var(--color-cyan-800);
-
-  /* Focus */
-  --ui-ring: var(--ui-primary);
-  --ui-ring-offset: var(--ui-background);
 
   /* Status */
   --ui-success: var(--color-emerald-600);

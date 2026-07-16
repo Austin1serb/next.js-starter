@@ -22,16 +22,10 @@ export function PreviewHero() {
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <button
-            type="button"
-            className="bg-primary text-primary-foreground hover:bg-primary-hover focus-visible:ring-ring focus-visible:ring-offset-ring-offset text-body-sm inline-flex items-center gap-2 rounded-md px-5 py-3 font-medium transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-          >
+          <button type="button" className="bg-primary text-primary-foreground hover:bg-primary-hover">
             Start building <ArrowRight size={16} />
           </button>
-          <button
-            type="button"
-            className="bg-secondary text-secondary-foreground hover:bg-secondary-hover focus-visible:ring-ring focus-visible:ring-offset-ring-offset text-body-sm inline-flex items-center gap-2 rounded-md px-5 py-3 font-medium transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-          >
+          <button type="button" className="bg-secondary text-secondary-foreground hover:bg-secondary-hover">
             <BookOpen size={16} /> Read the docs
           </button>
         </div>

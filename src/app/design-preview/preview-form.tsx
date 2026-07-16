@@ -16,12 +16,12 @@ export function PreviewForm() {
               Email
             </label>
             <div className="relative">
-              <Mail size={16} className="text-input-placeholder pointer-events-none absolute top-1/2 left-3 -translate-y-1/2" aria-hidden />
+              <Mail size={16} className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-neutral-400" aria-hidden />
               <input
                 id="preview-email"
                 type="email"
                 placeholder="you@company.com"
-                className="bg-input border-input-border placeholder:text-input-placeholder text-foreground focus-visible:ring-ring focus-visible:ring-offset-ring-offset text-body-sm w-full rounded-md border py-2.5 pr-3 pl-9 transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="text-foreground focus-visible:ring-primary focus-visible:ring-offset-background text-body-sm w-full rounded-md border border-neutral-300 bg-white py-2.5 pr-3 pl-9 transition placeholder:text-neutral-400 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
               />
             </div>
             <p className="text-body-sm text-foreground-subtle">We&apos;ll never share your email.</p>
@@ -37,13 +37,13 @@ export function PreviewForm() {
               </a>
             </div>
             <div className="relative">
-              <Lock size={16} className="text-input-placeholder pointer-events-none absolute top-1/2 left-3 -translate-y-1/2" aria-hidden />
+              <Lock size={16} className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-neutral-400" aria-hidden />
               <input
                 id="preview-password"
                 type="password"
                 defaultValue="hunter2"
                 aria-invalid="true"
-                className="bg-input border-danger text-foreground focus-visible:ring-danger focus-visible:ring-offset-ring-offset text-body-sm w-full rounded-md border py-2.5 pr-3 pl-9 transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="border-danger text-foreground focus-visible:ring-danger focus-visible:ring-offset-background text-body-sm w-full rounded-md border bg-white py-2.5 pr-3 pl-9 transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
               />
             </div>
             <p className="text-body-sm text-danger flex items-center gap-1.5">
@@ -62,22 +62,16 @@ export function PreviewForm() {
                 type="tel"
                 disabled
                 placeholder="+1 (555) 000-0000"
-                className="bg-input-disabled border-input-border text-foreground-disabled placeholder:text-input-placeholder text-body-sm w-full cursor-not-allowed rounded-md border py-2.5 pr-3 pl-9"
+                className="text-foreground-disabled text-body-sm w-full cursor-not-allowed rounded-md border border-neutral-300 bg-neutral-100 py-2.5 pr-3 pl-9 placeholder:text-neutral-400"
               />
             </div>
           </div>
 
           <div className="flex items-center gap-3 pt-2">
-            <button
-              type="submit"
-              className="bg-primary text-primary-foreground hover:bg-primary-hover focus-visible:ring-ring focus-visible:ring-offset-ring-offset text-body-sm flex-1 rounded-md px-4 py-2.5 font-medium transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-            >
+            <button type="submit" className="bg-primary text-primary-foreground hover:bg-primary-hover">
               Sign in
             </button>
-            <button
-              type="button"
-              className="bg-secondary text-secondary-foreground hover:bg-secondary-hover focus-visible:ring-ring focus-visible:ring-offset-ring-offset text-body-sm rounded-md px-4 py-2.5 font-medium transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-            >
+            <button type="button" className="bg-secondary text-secondary-foreground hover:bg-secondary-hover">
               Cancel
             </button>
           </div>

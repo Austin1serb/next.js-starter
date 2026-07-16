@@ -26,10 +26,7 @@ export function PreviewNav() {
           <a href="#" className="text-link hover:text-link-hover text-body-sm hidden underline-offset-4 hover:underline sm:inline">
             Sign in
           </a>
-          <button
-            type="button"
-            className="bg-primary text-primary-foreground hover:bg-primary-hover focus-visible:ring-ring focus-visible:ring-offset-ring-offset text-body-sm rounded-md px-4 py-2 font-medium transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-          >
+          <button type="button" className="bg-primary text-primary-foreground hover:bg-primary-hover">
             Get started
           </button>
         </div>

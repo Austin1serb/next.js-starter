@@ -93,7 +93,7 @@ export function PreviewPricing() {
 
             <button
               type="button"
-              className={`focus-visible:ring-ring focus-visible:ring-offset-ring-offset text-body-sm mt-8 w-full rounded-md px-4 py-2.5 font-medium transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none ${
+              className={`text-body-sm mt-8 w-full rounded-md px-4 py-2.5 font-medium transition ${
                 tier.featured ? "bg-primary text-primary-foreground hover:bg-primary-hover" : "bg-secondary text-secondary-foreground hover:bg-secondary-hover"
               }`}
             >
