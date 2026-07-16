@@ -4,7 +4,7 @@ import { execSync } from "child_process"
 import { existsSync } from "fs"
 import { join } from "path"
 
-const APP_DIR = ["src/app", "app"].find((dir) => existsSync(join(process.cwd(), dir))) ?? "src/app"
+const APP_DIR = ["src/app", "app"].find((dir) => existsSync(join(/*turbopackIgnore: true*/ process.cwd(), dir))) ?? "src/app"
 
 /**
  * Convert a route to its corresponding file path in the Next.js app directory
@@ -14,15 +14,15 @@ const APP_DIR = ["src/app", "app"].find((dir) => existsSync(join(process.cwd(), 
  *   "/blog/post" -> "app/blog/post/page.tsx"
  */
 function routeToFilePath(route: string): string {
-  if (route === "/") return join(APP_DIR, "page.tsx")
+  if (route === "/") return join(/*turbopackIgnore: true*/ /*turbopackIgnore: true*/ APP_DIR, "page.tsx")
 
   // Remove leading slash and convert to app directory structure
   const cleanRoute = route.replace(/^\//, "")
   const possiblePaths = [
-    join(APP_DIR, cleanRoute, "page.tsx"),
-    join(APP_DIR, cleanRoute, "page.ts"),
-    join(APP_DIR, `${cleanRoute}.tsx`),
-    join(APP_DIR, `${cleanRoute}.ts`),
+    join(/*turbopackIgnore: true*/ APP_DIR, cleanRoute, "page.tsx"),
+    join(/*turbopackIgnore: true*/ APP_DIR, cleanRoute, "page.ts"),
+    join(/*turbopackIgnore: true*/ APP_DIR, `${cleanRoute}.tsx`),
+    join(/*turbopackIgnore: true*/ APP_DIR, `${cleanRoute}.ts`),
   ]
 
   // Check which file actually exists
@@ -33,7 +33,7 @@ function routeToFilePath(route: string): string {
   }
 
   // Default to the most common structure
-  return join(APP_DIR, cleanRoute, "page.tsx")
+  return join(/*turbopackIgnore: true*/ APP_DIR, cleanRoute, "page.tsx")
 }
 
 /**

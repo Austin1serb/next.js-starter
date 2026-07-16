@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ChevronRight, House } from "@react-zero-ui/icon-sprite"
+import { ChevronRight } from "@react-zero-ui/icon-sprite"
 import type { BreadcrumbList, WithContext } from "schema-dts"
 import { DOMAIN_URL, SITE_SLUGS } from "@/config/site-config"
 import { cn } from "@/lib/utils"
@@ -46,7 +46,7 @@ export function Breadcrumb({ items, children, className }: BreadcrumbProps) {
     <div className={cn("w-full py-2", className)}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c") }} />
 
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6 px-section-x ">
+      <div className="px-section-x mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6">
         <nav aria-label="Breadcrumbs">
           <ol className="text-caption flex flex-wrap items-center gap-1">
             <li className="flex items-center">

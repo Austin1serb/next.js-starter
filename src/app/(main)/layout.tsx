@@ -1,5 +1,5 @@
-import { Footer } from "../components/ui/footer"
-import { TopBar } from "../components/ui/top-bar"
+import { Footer } from "../components/global/footer"
+import { TopBar } from "../components/global/top-bar"
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (

@@ -10,7 +10,7 @@ type Props = {
   className?: string
 }
 
-export function InfoTooltip({ label, children, className }: Props) {
+export function Tooltip({ label, children, className }: Props) {
   const [open, setOpen] = useState(false)
   const rootRef = useRef<HTMLSpanElement>(null)
 
@@ -32,13 +32,13 @@ export function InfoTooltip({ label, children, className }: Props) {
         aria-label={label}
         aria-expanded={open}
         onClick={() => setOpen((previous) => !previous)}
-        className="rounded-full p-0.5 text-text-soft transition-colors hover:bg-surface-muted hover:text-text focus-visible:ring-2 focus-visible:ring-accent/30 focus-visible:outline-none"
+        className="text-text-soft hover:bg-surface-muted hover:text-text focus-visible:ring-accent/30 rounded-full p-0.5 transition-colors focus-visible:ring-2 focus-visible:outline-none"
       >
         <IconInfoCircle className="h-3.5 w-3.5" />
       </button>
 
       {open && (
-        <span className="absolute left-0 top-7 z-20 w-64 rounded-lg border border-border bg-background p-3 text-xs leading-5 text-text-muted shadow-lg">
+        <span className="border-border bg-background text-text-muted absolute top-7 left-0 z-20 w-64 rounded-lg border p-3 text-xs leading-5 shadow-lg">
           {children}
         </span>
       )}
