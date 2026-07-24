@@ -18,7 +18,7 @@ export const SITE_NAP = {
   googleBusinessType: "ProfessionalService" as const,
   contact: "John Doe",
   contactTitle: "CEO",
-  email: "example@gmail.com",
+  email: "",
   phone: "+1123456789",
   formattedPhone: "+1 (123) 456-789",
   address: "123 Street",
