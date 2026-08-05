@@ -7,6 +7,7 @@ import { MotionWrapper } from "@/lib/motion-wrapper"
 import { LazyUi } from "./components/lazy-ui"
 import { ZeroUiRuntime } from "@/lib/init-zero-runtime"
 import { siteGraph } from "@/config/schemas"
+import { PreloadResources } from "./preload-resources"
 
 const displayFont = Inter_Tight({
   variable: "--font-primary",
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <MotionWrapper>
         <body {...bodyAttributes} className={`${displayFont.variable} ${bodyFont.variable} bg-background text-foreground font-body antialiased`}>
           <script id="structured-data-graph" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteGraph) }} />
+          <PreloadResources />
           <LazyUi />
           {children}
           <ZeroUiRuntime />
