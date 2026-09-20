@@ -59,6 +59,10 @@ Configured sites require a valid token before processing the form. The widget cl
 
 The commented pair in `.env.example` is Cloudflare's public test configuration. Test keys use Siteverify but return synthetic action/hostname values, so those metadata checks apply only to real keys. Use your own widget keys for a live site. See [Cloudflare's testing guide](https://developers.cloudflare.com/turnstile/troubleshooting/testing/) and the [Turnstile Spin skill](https://github.com/cloudflare/skills/blob/main/skills/turnstile-spin/SKILL.md).
 
+## Request Attribution
+
+`src/proxy.ts` records first and last attribution touches and starts a 30-minute attribution session. Next.js requires it alongside `src/app`. It handles page GET requests and skips API routes, Next.js internals, file assets, and prefetch requests so background requests do not count as visits.
+
 ## Project Layout
 
 src/app/        routes, layouts
