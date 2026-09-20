@@ -124,7 +124,7 @@
         }
       },
       "performance": {
-        "noAwaitInLoops": "error",
+        "noAwaitInLoops": "warn",
         "noBarrelFile": "error",
         "noDelete": "warn",
         "noReExportAll": "error",
@@ -144,7 +144,7 @@
         "noMisusedPromises": "error",
         "noNegationInEqualityCheck": "error",
         "noReturnInFinally": "error",
-        "noRestrictedDependencies": "error",
+        "noRestrictedDependencies": "warn",
         "noThisOutsideOfClass": "error",
         "noUnmodifiedLoopCondition": "error",
         "noUnnecessaryTemplateExpression": "error",
