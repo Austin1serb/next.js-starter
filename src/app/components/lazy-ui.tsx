@@ -1,6 +1,6 @@
 "use client"
-import dynamic from "next/dynamic"
 import * as m from "motion/react-m"
+import dynamic from "next/dynamic"
 
 export const Motion = m.div
 

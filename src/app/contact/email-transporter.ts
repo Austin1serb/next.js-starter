@@ -1,6 +1,6 @@
-import { readFileSync } from "fs"
-import { join } from "path"
-import nodemailer from "nodemailer"
+import { readFileSync } from "node:fs"
+import { join } from "node:path"
+import * as nodemailer from "nodemailer"
 import { SITE_NAP } from "@/config/site-config"
 
 // Cache templates at module load time
@@ -11,7 +11,7 @@ const textTemplate = readFileSync(join(templateDir, "email.txt"), "utf-8")
 // Cache transporter at module load time
 export const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || "smtp.gmail.com",
-  port: parseInt(process.env.SMTP_PORT || "587"),
+  port: Number.parseInt(process.env.SMTP_PORT || "587", 10),
   secure: process.env.SMTP_SECURE === "true",
   auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASSWORD },
 })
@@ -35,12 +35,17 @@ export async function sendEmail(data: EmailData): Promise<boolean> {
     const timestamp = new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })
     const vars = {
       ...data,
-      howDidYouHearAboutUsOther: data.howDidYouHearAboutUsOther ? ` - ${data.howDidYouHearAboutUsOther}` : "",
+      howDidYouHearAboutUsOther: data.howDidYouHearAboutUsOther
+        ? ` - ${data.howDidYouHearAboutUsOther}`
+        : "",
       timestamp,
       siteName: SITE_NAP.name,
     }
 
-    const html = fillTemplate(htmlTemplate, { ...vars, message: data.message.replace(/\n/g, "<br>") })
+    const html = fillTemplate(htmlTemplate, {
+      ...vars,
+      message: data.message.replace(/\n/gu, "<br>"),
+    })
     const text = fillTemplate(textTemplate, vars)
 
     await transporter.sendMail({

@@ -1,5 +1,5 @@
-import Link from "next/link"
 import { ChevronRight } from "@react-zero-ui/icon-sprite"
+import Link from "next/link"
 import type { BreadcrumbList, WithContext } from "schema-dts"
 import { DOMAIN_URL, SITE_SLUGS } from "@/config/site-config"
 import { cn } from "@/lib/utils"
@@ -44,16 +44,22 @@ export function Breadcrumb({ items, children, className }: BreadcrumbProps) {
 
   return (
     <div className={cn("w-full py-2", className)}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c") }} />
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD requires raw JSON; HTML delimiters are escaped.
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd).replace(/</gu, "\\u003c"),
+        }}
+      />
 
-      <div className="px-section-x mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6 px-section-x">
         <nav aria-label="Breadcrumbs">
-          <ol className="text-caption flex flex-wrap items-center gap-1">
+          <ol className="flex flex-wrap items-center gap-1 text-caption">
             <li className="flex items-center">
               <Link
                 href={SITE_SLUGS.home}
                 title="Home"
-                className="text-foreground-muted hover:text-primary flex items-center transition-colors"
+                className="flex items-center text-foreground-muted transition-colors hover:text-primary"
                 aria-label="Home"
               >
                 Home
@@ -64,15 +70,28 @@ export function Breadcrumb({ items, children, className }: BreadcrumbProps) {
               const isLast = index === items.length - 1
 
               return (
-                <li key={`${item.href ?? item.label}-${index}`} className="flex items-center gap-1">
-                  <ChevronRight size={16} className="text-foreground-subtle" aria-hidden="true" strokeWidth={1} />
+                <li
+                  // biome-ignore lint/suspicious/noArrayIndexKey: Breadcrumb positions identify hierarchy and distinguish repeated labels.
+                  key={`${item.href ?? item.label}-${index}`}
+                  className="flex items-center gap-1"
+                >
+                  <ChevronRight
+                    size={16}
+                    className="text-foreground-subtle"
+                    aria-hidden="true"
+                    strokeWidth={1}
+                  />
 
                   {isLast || !item.href ? (
-                    <span aria-current="page" className="text-foreground font-medium">
+                    <span aria-current="page" className="font-medium text-foreground">
                       {item.label}
                     </span>
                   ) : (
-                    <Link href={item.href} className="text-foreground-muted hover:text-primary transition-colors" aria-label={item.label}>
+                    <Link
+                      href={item.href}
+                      className="text-foreground-muted transition-colors hover:text-primary"
+                      aria-label={item.label}
+                    >
                       {item.label}
                     </Link>
                   )}

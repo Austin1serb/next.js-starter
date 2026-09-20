@@ -1,5 +1,5 @@
-import { SITE_SLUGS, DOMAIN_URL } from "@/config/site-config"
 import type { MetadataRoute } from "next"
+import { DOMAIN_URL, SITE_SLUGS } from "@/config/site-config"
 
 const IGNORE_ROUTES = ["/terms-of-service", "/privacy-policy"]
 

@@ -8,7 +8,7 @@ import { z } from "zod"
  */
 function normalizePhoneNumber(value: string): string {
   // Strip all non-digits
-  const digitsOnly = value.replace(/\D/g, "")
+  const digitsOnly = value.replace(/\D/gu, "")
 
   // If 11 digits starting with 1, strip the country code
   let phoneDigits = digitsOnly
@@ -42,7 +42,7 @@ export const VALIDATION = {
       invalid: "Please enter a valid email address",
     },
     rules: {
-      regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/u,
     },
   },
   phone: {
@@ -52,7 +52,7 @@ export const VALIDATION = {
     },
     rules: {
       minDigits: 10,
-      regex: /^[\d\s\-()+]+$/,
+      regex: /^[\d\s\-()+]+$/u,
     },
   },
   message: {
@@ -69,52 +69,68 @@ export const VALIDATION = {
 
 // Lightweight client-side validators (no Zod dependency)
 export const clientValidators = {
-  name: (value: string): string | undefined => {
-    if (value.length < VALIDATION.name.rules.min) return VALIDATION.name.messages.min
-    if (value.length > VALIDATION.name.rules.max) return VALIDATION.name.messages.max
-    return undefined
+  name: (value: string) => {
+    if (value.length < VALIDATION.name.rules.min) {
+      return VALIDATION.name.messages.min
+    }
+    if (value.length > VALIDATION.name.rules.max) {
+      return VALIDATION.name.messages.max
+    }
   },
-  email: (value: string): string | undefined => {
-    if (!VALIDATION.email.rules.regex.test(value)) return VALIDATION.email.messages.invalid
-    return undefined
+  email: (value: string) => {
+    if (!VALIDATION.email.rules.regex.test(value)) {
+      return VALIDATION.email.messages.invalid
+    }
   },
-  phone: (value: string): string | undefined => {
-    if (!VALIDATION.phone.rules.regex.test(value)) return VALIDATION.phone.messages.invalid
-    const digitsOnly = value.replace(/\D/g, "")
+  phone: (value: string) => {
+    if (!VALIDATION.phone.rules.regex.test(value)) {
+      return VALIDATION.phone.messages.invalid
+    }
+    const digitsOnly = value.replace(/\D/gu, "")
     if (digitsOnly.startsWith("1")) {
-      if (digitsOnly.length !== 11) return VALIDATION.phone.messages.minDigits
+      if (digitsOnly.length !== 11) {
+        return VALIDATION.phone.messages.minDigits
+      }
     } else if (digitsOnly.length !== 10) {
       return VALIDATION.phone.messages.minDigits
     }
-    return undefined
   },
-  message: (value: string): string | undefined => {
-    if (value.length < VALIDATION.message.rules.min) return VALIDATION.message.messages.min
-    if (value.length > VALIDATION.message.rules.max) return VALIDATION.message.messages.max
-    return undefined
+  message: (value: string) => {
+    if (value.length < VALIDATION.message.rules.min) {
+      return VALIDATION.message.messages.min
+    }
+    if (value.length > VALIDATION.message.rules.max) {
+      return VALIDATION.message.messages.max
+    }
   },
 } as const
 
 // Server-side Zod schema (only used in server actions)
 export const contactFormSchema = z.object({
-  name: z.string().min(VALIDATION.name.rules.min, VALIDATION.name.messages.min).max(VALIDATION.name.rules.max, VALIDATION.name.messages.max),
+  name: z
+    .string()
+    .min(VALIDATION.name.rules.min, VALIDATION.name.messages.min)
+    .max(VALIDATION.name.rules.max, VALIDATION.name.messages.max),
   email: z.string().email(VALIDATION.email.messages.invalid),
   phone: z
     .string()
     .regex(VALIDATION.phone.rules.regex, VALIDATION.phone.messages.invalid)
     .refine((val) => {
-      const digitsOnly = val.replace(/\D/g, "")
+      const digitsOnly = val.replace(/\D/gu, "")
       if (digitsOnly.startsWith("1")) {
         return digitsOnly.length === 11
       }
       return digitsOnly.length === 10
     }, VALIDATION.phone.messages.minDigits)
     .transform((val) => normalizePhoneNumber(val))
-    .refine((val) => val.replace(/\D/g, "").length === 10, VALIDATION.phone.messages.minDigits),
+    .refine((val) => val.replace(/\D/gu, "").length === 10, VALIDATION.phone.messages.minDigits),
   address: z.string().optional(),
   howDidYouHearAboutUs: z.string().optional().default("Google"),
   howDidYouHearAboutUsOther: z.string().optional(),
-  message: z.string().min(VALIDATION.message.rules.min, VALIDATION.message.messages.min).max(VALIDATION.message.rules.max, VALIDATION.message.messages.max),
+  message: z
+    .string()
+    .min(VALIDATION.message.rules.min, VALIDATION.message.messages.min)
+    .max(VALIDATION.message.rules.max, VALIDATION.message.messages.max),
 })
 
 export type ContactFormData = z.infer<typeof contactFormSchema>

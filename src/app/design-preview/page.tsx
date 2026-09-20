@@ -1,14 +1,14 @@
 import { redirect } from "next/navigation"
-import { PreviewNav } from "./preview-nav"
-import { PreviewHero } from "./preview-hero"
-import { PreviewTypography } from "./preview-typography"
 import { PreviewFeatureGrid } from "./preview-feature-grid"
-import { PreviewPricing } from "./preview-pricing"
+import { PreviewFooter } from "./preview-footer"
 import { PreviewForm } from "./preview-form"
+import { PreviewHero } from "./preview-hero"
+import { PreviewModal } from "./preview-modal"
+import { PreviewNav } from "./preview-nav"
+import { PreviewPricing } from "./preview-pricing"
 import { PreviewStatus } from "./preview-status"
 import { PreviewTestimonial } from "./preview-testimonial"
-import { PreviewModal } from "./preview-modal"
-import { PreviewFooter } from "./preview-footer"
+import { PreviewTypography } from "./preview-typography"
 
 export default function DesignPreviewPage() {
   if (process.env.NODE_ENV === "production") {
@@ -16,7 +16,7 @@ export default function DesignPreviewPage() {
   }
 
   return (
-    <main className="bg-background text-foreground font-body min-h-screen">
+    <main className="min-h-screen bg-background font-body text-foreground">
       <PreviewNav />
       <PreviewHero />
       <PreviewTypography />

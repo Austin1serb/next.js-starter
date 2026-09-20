@@ -1,19 +1,19 @@
-import { NextResponse, type NextRequest } from "next/server"
-import { buildTouchFromRequest } from "@/attribution/core"
+import { type NextRequest, NextResponse } from "next/server"
 import { ATTRIBUTION_TOUCH_HISTORY_LIMIT } from "@/attribution/constants"
 import {
   ATTRIBUTION_SESSION_COOKIE_NAME,
-  FIRST_TOUCH_COOKIE_NAME,
-  LAST_TOUCH_COOKIE_NAME,
-  TOUCHES_COOKIE_NAME,
-  TOUCH_COUNT_COOKIE_NAME,
   attributionCookieOptions,
   attributionSessionCookieOptions,
   createSessionCookieValue,
+  FIRST_TOUCH_COOKIE_NAME,
+  LAST_TOUCH_COOKIE_NAME,
   readAttributionState,
   serializeTouch,
   serializeTouches,
+  TOUCH_COUNT_COOKIE_NAME,
+  TOUCHES_COOKIE_NAME,
 } from "@/attribution/cookies"
+import { buildTouchFromRequest } from "@/attribution/core"
 
 export function proxy(request: NextRequest) {
   if (request.method !== "GET" && request.method !== "HEAD") {
@@ -26,22 +26,38 @@ export function proxy(request: NextRequest) {
   const nextTouch = buildTouchFromRequest(request.nextUrl, request.headers.get("referer"))
 
   if (!currentState.firstTouch) {
-    response.cookies.set(FIRST_TOUCH_COOKIE_NAME, serializeTouch(nextTouch), attributionCookieOptions)
+    response.cookies.set(
+      FIRST_TOUCH_COOKIE_NAME,
+      serializeTouch(nextTouch),
+      attributionCookieOptions
+    )
   }
 
   if (!hasSession) {
     const touches = [...currentState.touches, nextTouch].slice(-ATTRIBUTION_TOUCH_HISTORY_LIMIT)
     const touchCount = currentState.touchCount + 1
 
-    response.cookies.set(LAST_TOUCH_COOKIE_NAME, serializeTouch(nextTouch), attributionCookieOptions)
+    response.cookies.set(
+      LAST_TOUCH_COOKIE_NAME,
+      serializeTouch(nextTouch),
+      attributionCookieOptions
+    )
     response.cookies.set(TOUCHES_COOKIE_NAME, serializeTouches(touches), attributionCookieOptions)
     response.cookies.set(TOUCH_COUNT_COOKIE_NAME, String(touchCount), attributionCookieOptions)
   } else if (!currentState.lastTouch) {
-    response.cookies.set(LAST_TOUCH_COOKIE_NAME, serializeTouch(nextTouch), attributionCookieOptions)
+    response.cookies.set(
+      LAST_TOUCH_COOKIE_NAME,
+      serializeTouch(nextTouch),
+      attributionCookieOptions
+    )
   }
 
   if (!hasSession) {
-    response.cookies.set(ATTRIBUTION_SESSION_COOKIE_NAME, createSessionCookieValue(), attributionSessionCookieOptions)
+    response.cookies.set(
+      ATTRIBUTION_SESSION_COOKIE_NAME,
+      createSessionCookieValue(),
+      attributionSessionCookieOptions
+    )
   }
 
   return response

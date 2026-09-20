@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test"
+import { expect, test } from "@playwright/test"
 import { ROUTES_TO_CHECK } from "./test-utils"
 
 test.describe("Page load tests", () => {

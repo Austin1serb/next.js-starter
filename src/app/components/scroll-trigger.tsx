@@ -1,14 +1,15 @@
 // ScrollTrigger.tsx
 "use client"
 
-import { useEffect } from "react"
-import { useScroll } from "motion/react"
 import { useUI } from "@react-zero-ui/core"
+import { useScroll } from "motion/react"
+import { useEffect } from "react"
 
 export const ScrollTrigger = () => {
   const { scrollY } = useScroll()
   const [, setHasScrolled] = useUI<"true" | "false">("scrolled750", "false")
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Preserve the existing subscription lifecycle tied to scrollY.
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (latest) => {
       if (window.innerWidth > 768) {
@@ -18,7 +19,6 @@ export const ScrollTrigger = () => {
       }
     })
     return unsubscribe
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollY])
 
   return null

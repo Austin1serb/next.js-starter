@@ -1,5 +1,8 @@
 // change this to the domain of your site when you deploy
-export const DOMAIN_URL = process.env.NODE_ENV === "production" ? "https://nextjs-starter.vercel.app" : "http://localhost:3000"
+export const DOMAIN_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://nextjs-starter.vercel.app"
+    : "http://localhost:3000"
 
 export const SITE_CONFIG = {
   // This information is also used in the metadata for the home page and schema
@@ -30,8 +33,8 @@ export const SITE_NAP = {
   geo: { latitude: 40.7128, longitude: -74.006 },
   areaServed: ["City", "Nearby City"],
   foundingYear: 1984,
-  get yearsInBusiness() {
-    return new Date().getFullYear() - this.foundingYear
+  get yearsInBusiness(): number {
+    return new Date().getFullYear() - SITE_NAP.foundingYear
   },
   employeeCount: 15,
   areasServed: ["City", "Nearby City"],
@@ -51,9 +54,9 @@ export const SITE_NAP = {
     bbb: "",
     gbp: "https://g.co/yourbusiness",
   } as const,
-  logo: DOMAIN_URL + "/logo.png",
-  favicon: DOMAIN_URL + "/favicon.ico",
-  images: [DOMAIN_URL + "/opengraph-image.png"],
+  logo: `${DOMAIN_URL}/logo.png`,
+  favicon: `${DOMAIN_URL}/favicon.ico`,
+  images: [`${DOMAIN_URL}/opengraph-image.png`],
 } as const
 
 export const SITE_SLUGS = {
@@ -73,7 +76,11 @@ export const SITE_SLUGS = {
 } as const
 
 const flattenSlugs = (obj: Record<string, string | Record<string, string>>): string[] => {
-  return Object.values(obj).flatMap((value) => (typeof value === "string" ? [value] : flattenSlugs(value)))
+  return Object.values(obj).flatMap((value) =>
+    typeof value === "string" ? [value] : flattenSlugs(value)
+  )
 }
 
-export const ALL_PAGES: string[] = Object.values(SITE_SLUGS).flatMap((value) => (typeof value === "string" ? [value] : flattenSlugs(value)))
+export const ALL_PAGES: string[] = Object.values(SITE_SLUGS).flatMap((value) =>
+  typeof value === "string" ? [value] : flattenSlugs(value)
+)

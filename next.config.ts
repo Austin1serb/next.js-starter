@@ -1,5 +1,5 @@
-import type { NextConfig } from "next"
 import createMDX from "@next/mdx"
+import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
 
 // MDX
 
-const withMDX = createMDX({})
+const withMDX = createMDX({
+  // add any options here
+})
 
 export default withMDX(nextConfig)

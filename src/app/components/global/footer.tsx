@@ -1,5 +1,10 @@
+import {
+  IconBrandFacebook,
+  IconBrandGoogle,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+} from "@react-zero-ui/icon-sprite"
 import Link from "next/link"
-import { IconBrandFacebook, IconBrandInstagram, IconBrandLinkedin, IconBrandGoogle } from "@react-zero-ui/icon-sprite"
 import { SITE_CONFIG, SITE_NAP, SITE_SLUGS } from "@/config/site-config"
 
 const year = new Date().getFullYear()
@@ -38,13 +43,17 @@ const navigateLinks: { label: string; href: string; external?: boolean }[] = [
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-surface-inverse text-foreground-inverse mt-10">
+    <footer className="mt-10 bg-surface-inverse text-foreground-inverse">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-[1.5fr_repeat(3,1fr)]">
           {/* Brand */}
           <div className="h-card">
-            <span className="p-name font-display text-subtitle text-foreground-inverse block">{SITE_CONFIG.title}</span>
-            <p className="text-body-sm text-foreground-inverse/60 mt-3 max-w-xs">{SITE_CONFIG.description}</p>
+            <span className="block p-name font-display text-foreground-inverse text-subtitle">
+              {SITE_CONFIG.title}
+            </span>
+            <p className="mt-3 max-w-xs text-body-sm text-foreground-inverse/60">
+              {SITE_CONFIG.description}
+            </p>
 
             {socials.length > 0 && (
               <div className="mt-6 flex items-center gap-2">
@@ -58,7 +67,7 @@ export const Footer: React.FC = () => {
                       title={social.label}
                       target="_blank"
                       rel="nofollow noopener noreferrer"
-                      className="text-foreground-inverse/60 hover:bg-foreground-inverse/10 hover:text-foreground-inverse flex size-9 items-center justify-center rounded-full transition"
+                      className="flex size-9 items-center justify-center rounded-full text-foreground-inverse/60 transition hover:bg-foreground-inverse/10 hover:text-foreground-inverse"
                     >
                       <Icon size={16} strokeWidth={1} />
                     </Link>
@@ -70,14 +79,18 @@ export const Footer: React.FC = () => {
 
           {/* Navigate */}
           <div>
-            <p className="text-caption text-foreground-inverse/60 font-mono tracking-wider uppercase">Navigate</p>
+            <p className="font-mono text-caption text-foreground-inverse/60 uppercase tracking-wider">
+              Navigate
+            </p>
             <ul className="mt-4 space-y-2">
               {navigateLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    {...(link.external ? { target: "_blank", rel: "nofollow noopener noreferrer" } : {})}
-                    className="text-body-sm text-foreground-inverse/70 hover:text-foreground-inverse transition"
+                    {...(link.external
+                      ? { target: "_blank", rel: "nofollow noopener noreferrer" }
+                      : {})}
+                    className="text-body-sm text-foreground-inverse/70 transition hover:text-foreground-inverse"
                   >
                     {link.label}
                   </Link>
@@ -88,12 +101,14 @@ export const Footer: React.FC = () => {
 
           {/* Contact (h-card microformats preserved) */}
           <div className="h-card">
-            <p className="text-caption text-foreground-inverse/60 font-mono tracking-wider uppercase">Contact</p>
+            <p className="font-mono text-caption text-foreground-inverse/60 uppercase tracking-wider">
+              Contact
+            </p>
             <ul className="mt-4 space-y-2">
               <li>
                 <Link
                   href={`tel:${SITE_NAP.phone}`}
-                  className="p-tel text-body-sm text-foreground-inverse/70 hover:text-foreground-inverse transition"
+                  className="p-tel text-body-sm text-foreground-inverse/70 transition hover:text-foreground-inverse"
                   aria-label={`Call ${SITE_CONFIG.title} in ${SITE_NAP.city} at ${SITE_NAP.formattedPhone}`}
                 >
                   {SITE_NAP.formattedPhone}
@@ -102,7 +117,7 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   href={`mailto:${SITE_NAP.email}`}
-                  className="u-email text-body-sm text-foreground-inverse/70 hover:text-foreground-inverse transition"
+                  className="u-email text-body-sm text-foreground-inverse/70 transition hover:text-foreground-inverse"
                   aria-label={`Email ${SITE_CONFIG.title} at ${SITE_NAP.email}`}
                 >
                   {SITE_NAP.email}
@@ -114,11 +129,12 @@ export const Footer: React.FC = () => {
                   target="_blank"
                   rel="nofollow noopener noreferrer"
                   aria-label="View our location on Google Maps"
-                  className="p-adr text-body-sm text-foreground-inverse/70 hover:text-foreground-inverse block leading-relaxed transition"
+                  className="block p-adr text-body-sm text-foreground-inverse/70 leading-relaxed transition hover:text-foreground-inverse"
                 >
                   <span className="p-street-address">{SITE_NAP.address}</span>
                   <br />
-                  <span className="p-locality">{SITE_NAP.city}</span>, <span className="p-region">{SITE_NAP.stateCode}</span>{" "}
+                  <span className="p-locality">{SITE_NAP.city}</span>,{" "}
+                  <span className="p-region">{SITE_NAP.stateCode}</span>{" "}
                   <span className="p-postal-code">{SITE_NAP.zipCode}</span>
                 </Link>
               </li>
@@ -127,12 +143,17 @@ export const Footer: React.FC = () => {
 
           {/* Hours */}
           <div>
-            <p className="text-caption text-foreground-inverse/60 font-mono tracking-wider uppercase">Hours</p>
+            <p className="font-mono text-caption text-foreground-inverse/60 uppercase tracking-wider">
+              Hours
+            </p>
             <ul className="mt-4 space-y-2">
               {SITE_NAP.openingHours.map(({ days, hours }) => (
-                <li key={days} className="text-body-sm text-foreground-inverse/70 flex justify-between gap-3">
+                <li
+                  key={days}
+                  className="flex justify-between gap-3 text-body-sm text-foreground-inverse/70"
+                >
                   <span className="text-nowrap">{days}</span>
-                  <span className="text-foreground-inverse/90 text-nowrap">{hours}</span>
+                  <span className="text-nowrap text-foreground-inverse/90">{hours}</span>
                 </li>
               ))}
             </ul>
@@ -140,7 +161,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-border-strong/20 mt-12 flex flex-col gap-4 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-border-strong/20 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-caption text-foreground-inverse/50">
             © {year} {SITE_CONFIG.title} · Website by{" "}
             <Link
@@ -148,7 +169,7 @@ export const Footer: React.FC = () => {
               title="Seattle Web Design & SEO | Serbyte Development"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground-inverse/70 hover:text-foreground-inverse underline-offset-4 hover:underline"
+              className="text-foreground-inverse/70 underline-offset-4 hover:text-foreground-inverse hover:underline"
             >
               Serbyte Development
             </Link>
@@ -158,7 +179,7 @@ export const Footer: React.FC = () => {
             <Link
               href={SITE_SLUGS.privacy}
               title={`Privacy Policy | ${SITE_CONFIG.title}`}
-              className="text-caption text-foreground-inverse/60 hover:text-foreground-inverse transition"
+              className="text-caption text-foreground-inverse/60 transition hover:text-foreground-inverse"
             >
               Privacy Policy
             </Link>
@@ -168,7 +189,7 @@ export const Footer: React.FC = () => {
             <Link
               href={SITE_SLUGS.terms}
               title={`Terms of Service | ${SITE_CONFIG.title}`}
-              className="text-caption text-foreground-inverse/60 hover:text-foreground-inverse transition"
+              className="text-caption text-foreground-inverse/60 transition hover:text-foreground-inverse"
             >
               Terms of Service
             </Link>

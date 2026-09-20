@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 export interface ThrottleOptions {
   /**
@@ -23,7 +23,11 @@ export interface ThrottleOptions {
  * @returns An object containing the throttled value and a cancel function
  */
 
-export const useThrottle = <T>(value: T, ms: number = 200, options: ThrottleOptions = {}): { value: T; cancel: () => void } => {
+export const useThrottle = <T>(
+  value: T,
+  ms: number = 200,
+  options: ThrottleOptions = {}
+): { value: T; cancel: () => void } => {
   // Set defaults
   const { leading = true, trailing = true } = options
 
@@ -49,12 +53,12 @@ export const useThrottle = <T>(value: T, ms: number = 200, options: ThrottleOpti
   }, [])
 
   // Set initial value immediately if leading is true
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Initial leading behavior runs once; the next effect handles value changes.
   useEffect(() => {
     if (optionsRef.current.leading && state !== value) {
       setState(value)
     }
     // This effect intentionally runs only once
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

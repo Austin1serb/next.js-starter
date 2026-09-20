@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test"
+import { expect, type Page, test } from "@playwright/test"
 import { ROUTES_TO_CHECK } from "./test-utils"
 
 interface ImageIssue {
@@ -44,12 +44,12 @@ async function getImageSnapshots(page: Page): Promise<ImageSnapshot[]> {
           const done = () => resolve()
           image.addEventListener("load", done, { once: true })
           image.addEventListener("error", done, { once: true })
-          window.setTimeout(done, 1000)
+          globalThis.setTimeout(done, 1000)
         })
       }
 
       const rect = image.getBoundingClientRect()
-      const style = window.getComputedStyle(image)
+      const style = globalThis.getComputedStyle(image)
       const parent = image.closest("a, button, [aria-label], [aria-labelledby]")
 
       return {
@@ -59,7 +59,11 @@ async function getImageSnapshots(page: Page): Promise<ImageSnapshot[]> {
         complete: image.complete,
         naturalWidth: image.naturalWidth,
         naturalHeight: image.naturalHeight,
-        visible: style.display !== "none" && style.visibility !== "hidden" && rect.width > 0 && rect.height > 0,
+        visible:
+          style.display !== "none" &&
+          style.visibility !== "hidden" &&
+          rect.width > 0 &&
+          rect.height > 0,
         renderedWidth: rect.width,
         renderedHeight: rect.height,
         ariaHidden: image.getAttribute("aria-hidden") === "true",
@@ -81,19 +85,31 @@ async function getImageSnapshots(page: Page): Promise<ImageSnapshot[]> {
 }
 
 function isDecorative(snapshot: ImageSnapshot): boolean {
-  if (snapshot.ariaHidden || snapshot.withinAriaHidden) return true
-  if (snapshot.role === "presentation" || snapshot.role === "none") return true
-  if (snapshot.alt === "") return true
+  if (snapshot.ariaHidden || snapshot.withinAriaHidden) {
+    return true
+  }
+  if (snapshot.role === "presentation" || snapshot.role === "none") {
+    return true
+  }
+  if (snapshot.alt === "") {
+    return true
+  }
 
   const tinyIcon = snapshot.renderedWidth <= 32 && snapshot.renderedHeight <= 32
-  if (tinyIcon && snapshot.hasLabeledParent) return true
+  if (tinyIcon && snapshot.hasLabeledParent) {
+    return true
+  }
 
   return false
 }
 
 function isMeaningfulImage(snapshot: ImageSnapshot): boolean {
-  if (!snapshot.visible) return false
-  if (isDecorative(snapshot)) return false
+  if (!snapshot.visible) {
+    return false
+  }
+  if (isDecorative(snapshot)) {
+    return false
+  }
   return snapshot.renderedWidth >= 32 || snapshot.renderedHeight >= 32
 }
 
@@ -126,12 +142,20 @@ for (const pageUrl of ROUTES_TO_CHECK) {
     const altFailures: ImageIssue[] = []
 
     for (const snapshot of snapshots) {
-      if (!snapshot.visible) continue
+      if (!snapshot.visible) {
+        continue
+      }
 
       const rawSrc = snapshot.currentSrc || snapshot.src || "(missing src)"
       const src = describeImageSource(rawSrc)
 
-      if (!isDecorative(snapshot) && (!snapshot.complete || snapshot.naturalWidth <= 0 || snapshot.naturalHeight <= 0 || !snapshot.currentSrc)) {
+      if (
+        !isDecorative(snapshot) &&
+        (!snapshot.complete ||
+          snapshot.naturalWidth <= 0 ||
+          snapshot.naturalHeight <= 0 ||
+          !snapshot.currentSrc)
+      ) {
         loadFailures.push({
           pageUrl,
           src,
@@ -150,12 +174,16 @@ for (const pageUrl of ROUTES_TO_CHECK) {
 
     expect(
       loadFailures,
-      loadFailures.map((failure) => `${failure.pageUrl} -> ${failure.src}: ${failure.reason}`).join("\n")
+      loadFailures
+        .map((failure) => `${failure.pageUrl} -> ${failure.src}: ${failure.reason}`)
+        .join("\n")
     ).toEqual([])
 
     expect(
       altFailures,
-      altFailures.map((failure) => `${failure.pageUrl} -> ${failure.src}: ${failure.reason}`).join("\n")
+      altFailures
+        .map((failure) => `${failure.pageUrl} -> ${failure.src}: ${failure.reason}`)
+        .join("\n")
     ).toEqual([])
   })
 }

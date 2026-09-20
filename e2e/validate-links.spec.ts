@@ -1,5 +1,11 @@
-import { test, expect, type APIResponse, type Page } from "@playwright/test"
-import { ROUTES_TO_CHECK, SITE_ORIGIN, isAllowedExternalStatus, isExternalUrl, mapWithConcurrency } from "./test-utils"
+import { type APIResponse, expect, type Page, test } from "@playwright/test"
+import {
+  isAllowedExternalStatus,
+  isExternalUrl,
+  mapWithConcurrency,
+  ROUTES_TO_CHECK,
+  SITE_ORIGIN,
+} from "./test-utils"
 
 const LINK_TIMEOUT_MS = 10_000
 const LINK_CONCURRENCY = 8
@@ -12,11 +18,20 @@ interface LinkCheckResult {
 }
 
 async function getAllLinksFromPage(page: Page): Promise<string[]> {
-  const hrefs = await page.locator("a[href]").evaluateAll((links) =>
-    links
-      .map((link) => link.getAttribute("href"))
-      .filter((href): href is string => Boolean(href && !href.startsWith("mailto:") && !href.startsWith("tel:") && !href.startsWith("javascript:")))
-  )
+  const hrefs = await page
+    .locator("a[href]")
+    .evaluateAll((links) =>
+      links
+        .map((link) => link.getAttribute("href"))
+        .filter((href): href is string =>
+          Boolean(
+            href &&
+              !href.startsWith("mailto:") &&
+              !href.startsWith("tel:") &&
+              !href.startsWith("javascript:")
+          )
+        )
+    )
 
   return Array.from(new Set(hrefs.map((href) => new URL(href, page.url()).href)))
 }

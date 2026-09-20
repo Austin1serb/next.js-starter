@@ -1,12 +1,13 @@
+// biome-ignore lint/correctness/noUndeclaredDependencies: tsconfig maps this alias to generated .zero-ui/attributes.js.
 import { bodyAttributes } from "@zero-ui/attributes"
 import type { Metadata } from "next"
 import { Inter_Tight } from "next/font/google"
 import "./globals.css"
+import { siteGraph } from "@/config/schemas"
 import { DOMAIN_URL, SITE_CONFIG } from "@/config/site-config"
+import { ZeroUiRuntime } from "@/lib/init-zero-runtime"
 import { MotionWrapper } from "@/lib/motion-wrapper"
 import { LazyUi } from "./components/lazy-ui"
-import { ZeroUiRuntime } from "@/lib/init-zero-runtime"
-import { siteGraph } from "@/config/schemas"
 import { PreloadResources } from "./preload-resources"
 
 const displayFont = Inter_Tight({
@@ -33,8 +34,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <MotionWrapper>
-        <body {...bodyAttributes} className={`${displayFont.variable} ${bodyFont.variable} bg-background text-foreground font-body antialiased`}>
-          <script id="structured-data-graph" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteGraph) }} />
+        <body
+          {...bodyAttributes}
+          className={`${displayFont.variable} ${bodyFont.variable} bg-background font-body text-foreground antialiased`}
+        >
+          <script
+            id="structured-data-graph"
+            type="application/ld+json"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD requires raw JSON; HTML delimiters are escaped.
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(siteGraph).replace(/</gu, "\\u003c"),
+            }}
+          />
           <PreloadResources />
           <LazyUi />
           {children}

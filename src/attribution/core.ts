@@ -2,13 +2,17 @@ import { DOMAIN_URL } from "@/config/site-config"
 import { PAID_UTM_MEDIA } from "./constants"
 import type { AttributionState, SerbyteAttribution, SerbyteTouch, Touch } from "./types"
 
+const HOSTNAME_PREFIX = /^(www|m)\./u
+
 function normalizeValue(value: string | null): string | null {
   const trimmed = value?.trim()
   return trimmed ? trimmed.toLowerCase() : null
 }
 
 function safeUrl(value: string | null): URL | null {
-  if (!value) return null
+  if (!value) {
+    return null
+  }
   try {
     return new URL(value)
   } catch {
@@ -18,12 +22,21 @@ function safeUrl(value: string | null): URL | null {
 
 function getCrossSiteReferrer(referrer: string | null, siteUrl: URL): string | null {
   const parsedReferrer = safeUrl(referrer)
-  if (!parsedReferrer) return null
-  if (parsedReferrer.origin === siteUrl.origin) return null
+  if (!parsedReferrer) {
+    return null
+  }
+  if (parsedReferrer.origin === siteUrl.origin) {
+    return null
+  }
   const referrerHostname = getBaseHostname(parsedReferrer.hostname.toLowerCase())
   const requestHostname = getBaseHostname(siteUrl.hostname.toLowerCase())
   const canonicalHostname = getBaseHostname(safeUrl(DOMAIN_URL)?.hostname.toLowerCase() ?? null)
-  if (referrerHostname && (referrerHostname === requestHostname || referrerHostname === canonicalHostname)) return null
+  if (
+    referrerHostname &&
+    (referrerHostname === requestHostname || referrerHostname === canonicalHostname)
+  ) {
+    return null
+  }
 
   return parsedReferrer.toString()
 }
@@ -34,8 +47,10 @@ function getReferrerSource(referrer: string | null): string | null {
 }
 
 function getBaseHostname(hostname: string | null): string | null {
-  if (!hostname) return null
-  return hostname.replace(/^(www|m)\./, "")
+  if (!hostname) {
+    return null
+  }
+  return hostname.replace(HOSTNAME_PREFIX, "")
 }
 
 function buildTouch(input: Omit<Touch, "timestamp">): Touch {
@@ -132,7 +147,9 @@ export function buildTouchFromRequest(siteUrl: URL, referrerHeader: string | nul
 }
 
 function toSerbyteTouch(touch: Touch | null): SerbyteTouch | null {
-  if (!touch) return null
+  if (!touch) {
+    return null
+  }
 
   return {
     source: touch.source,
@@ -147,7 +164,9 @@ function toSerbyteTouch(touch: Touch | null): SerbyteTouch | null {
 }
 
 export function toSerbyteAttribution(state: AttributionState): SerbyteAttribution {
-  const touches = state.touches.map(toSerbyteTouch).filter((touch): touch is SerbyteTouch => Boolean(touch))
+  const touches = state.touches
+    .map(toSerbyteTouch)
+    .filter((touch): touch is SerbyteTouch => Boolean(touch))
 
   return {
     first_touch: toSerbyteTouch(state.firstTouch),

@@ -1,9 +1,14 @@
 import { useEffect } from "react"
 
+const WHITESPACE = /\s+/u
+const RATIO_LABEL = /ratio:\s*[\d.]+$/u
+
 // === Debug overlay for IntersectionObserver ===
 export function useIOOverlay(rootMargin: string, sensorEl: HTMLElement | null) {
   useEffect(() => {
-    if (!sensorEl) return
+    if (!sensorEl) {
+      return
+    }
 
     // ---- build overlay DOM ----
     const overlay = document.createElement("div")
@@ -57,19 +62,19 @@ export function useIOOverlay(rootMargin: string, sensorEl: HTMLElement | null) {
     document.body.appendChild(overlay)
 
     // ---- helpers ----
-    const parseMargin = (v: string, axis: "x" | "y") => {
-      v = (v || "").trim()
+    const parseMargin = (value: string, axis: "x" | "y") => {
+      const v = (value || "").trim()
       if (v.endsWith("%")) {
-        const p = parseFloat(v)
+        const p = Number.parseFloat(v)
         const base = axis === "y" ? window.innerHeight : window.innerWidth
         return (p / 100) * base
       }
       // treat bare "0" as px
-      return parseFloat(v) || 0
+      return Number.parseFloat(v) || 0
     }
 
     const getRootRect = () => {
-      const parts = (rootMargin || "0px 0px 0px 0px").trim().split(/\s+/)
+      const parts = (rootMargin || "0px 0px 0px 0px").trim().split(WHITESPACE)
       const [t, r, b, l] = [
         parseMargin(parts[0] ?? "0px", "y"),
         parseMargin(parts[1] ?? "0px", "x"),
@@ -136,7 +141,9 @@ export function useIOOverlay(rootMargin: string, sensorEl: HTMLElement | null) {
     }
 
     const queue = () => {
-      if (!raf) raf = requestAnimationFrame(update)
+      if (!raf) {
+        raf = requestAnimationFrame(update)
+      }
     }
 
     // Observe size/position changes
@@ -158,7 +165,7 @@ export function useIOOverlay(rootMargin: string, sensorEl: HTMLElement | null) {
         // overwrite only the ratio readout; boxes already show geometry
         const txt = label.textContent || ""
         const r = entry?.intersectionRatio ?? 0
-        label.textContent = txt.replace(/ratio:\s*[\d.]+$/, `ratio: ${r.toFixed(2)}`)
+        label.textContent = txt.replace(RATIO_LABEL, `ratio: ${r.toFixed(2)}`)
       },
       { root: null, rootMargin, threshold: Array.from({ length: 11 }, (_, i) => i / 10) }
     )
@@ -166,7 +173,9 @@ export function useIOOverlay(rootMargin: string, sensorEl: HTMLElement | null) {
 
     // cleanup
     return () => {
-      if (raf) cancelAnimationFrame(raf)
+      if (raf) {
+        cancelAnimationFrame(raf)
+      }
       ro.disconnect()
       io.disconnect()
       window.removeEventListener("scroll", onScroll)

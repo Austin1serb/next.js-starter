@@ -54,24 +54,35 @@ export function PreviewPricing() {
   return (
     <Section background="background-muted">
       <div className="mx-auto max-w-2xl text-center">
-        <TokenLabel>Border · border-strong · primary · primary-muted · success · foreground-disabled</TokenLabel>
-        <h2 className="font-display text-title text-foreground mt-4">Simple pricing, real composition.</h2>
-        <p className="text-body text-foreground-muted mt-4">The featured tier swaps to a stronger border and the primary action. Same tokens, different mix.</p>
+        <TokenLabel>
+          Border · border-strong · primary · primary-muted · success · foreground-disabled
+        </TokenLabel>
+        <h2 className="mt-4 font-display text-foreground text-title">
+          Simple pricing, real composition.
+        </h2>
+        <p className="mt-4 text-body text-foreground-muted">
+          The featured tier swaps to a stronger border and the primary action. Same tokens,
+          different mix.
+        </p>
       </div>
 
       <div className="mt-12 grid gap-6 md:grid-cols-3">
         {tiers.map((tier) => (
           <div
             key={tier.name}
-            className={`bg-surface relative flex flex-col rounded-xl p-6 shadow-sm ${tier.featured ? "border-border-strong border-2" : "border-border border"}`}
+            className={`relative flex flex-col rounded-xl bg-surface p-6 shadow-sm ${tier.featured ? "border-2 border-border-strong" : "border border-border"}`}
           >
-            {tier.featured && <span className="bg-accent/5 text-accent text-caption absolute top-0 right-0 px-3 py-1 font-medium">Most popular</span>}
+            {tier.featured && (
+              <span className="absolute top-0 right-0 bg-accent/5 px-3 py-1 font-medium text-accent text-caption">
+                Most popular
+              </span>
+            )}
 
-            <h3 className="font-display text-subtitle text-foreground">{tier.name}</h3>
-            <p className="text-body-sm text-foreground-muted mt-1">{tier.description}</p>
+            <h3 className="font-display text-foreground text-subtitle">{tier.name}</h3>
+            <p className="mt-1 text-body-sm text-foreground-muted">{tier.description}</p>
 
             <div className="mt-6 flex items-baseline gap-1">
-              <span className="font-display text-title text-foreground">{tier.price}</span>
+              <span className="font-display text-foreground text-title">{tier.price}</span>
               <span className="text-body-sm text-foreground-subtle">/ month</span>
             </div>
 
@@ -79,12 +90,16 @@ export function PreviewPricing() {
               {tier.features.map((feature) => (
                 <li
                   key={feature.label}
-                  className={`text-body-sm flex items-start gap-2 ${feature.included ? "text-foreground-muted" : "text-foreground-disabled"}`}
+                  className={`flex items-start gap-2 text-body-sm ${feature.included ? "text-foreground-muted" : "text-foreground-disabled"}`}
                 >
                   {feature.included ? (
-                    <Check size={16} className="text-success mt-0.5 shrink-0" aria-hidden />
+                    <Check size={16} className="mt-0.5 shrink-0 text-success" aria-hidden />
                   ) : (
-                    <Minus size={16} className="text-foreground-disabled mt-0.5 shrink-0" aria-hidden />
+                    <Minus
+                      size={16}
+                      className="mt-0.5 shrink-0 text-foreground-disabled"
+                      aria-hidden
+                    />
                   )}
                   <span>{feature.label}</span>
                 </li>
@@ -93,8 +108,10 @@ export function PreviewPricing() {
 
             <button
               type="button"
-              className={`text-body-sm mt-8 w-full rounded-md px-4 py-2.5 font-medium transition ${
-                tier.featured ? "bg-primary text-primary-foreground hover:bg-primary-hover" : "bg-secondary text-secondary-foreground hover:bg-secondary-hover"
+              className={`mt-8 w-full rounded-md px-4 py-2.5 font-medium text-body-sm transition ${
+                tier.featured
+                  ? "bg-primary text-primary-foreground hover:bg-primary-hover"
+                  : "bg-secondary text-secondary-foreground hover:bg-secondary-hover"
               }`}
             >
               {tier.cta}

@@ -7,7 +7,13 @@ interface JsLinkProps extends React.ComponentProps<"button"> {
   href?: string
 }
 
-export const JsLink: React.FC<JsLinkProps> = ({ href, children, type = "button", onClick, ...props }) => {
+export const JsLink: React.FC<JsLinkProps> = ({
+  href,
+  children,
+  type = "button",
+  onClick,
+  ...props
+}) => {
   return (
     <button
       type={type}

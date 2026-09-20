@@ -1,4 +1,4 @@
-import { CircleCheck, TriangleAlert, CircleAlert, X } from "@react-zero-ui/icon-sprite"
+import { CircleAlert, CircleCheck, TriangleAlert, X } from "@react-zero-ui/icon-sprite"
 import { Section, TokenLabel } from "./_shared"
 
 type Alert = {
@@ -14,9 +14,21 @@ const alertIcon = {
 } as const
 
 const alerts: Alert[] = [
-  { tone: "success", title: "Deployment succeeded", body: "Your changes are live at preview-42.acme.dev." },
-  { tone: "warning", title: "Approaching plan limit", body: "You have used 82% of your monthly bandwidth." },
-  { tone: "danger", title: "Build failed", body: "TypeScript reported 3 errors in src/lib/auth.ts." },
+  {
+    tone: "success",
+    title: "Deployment succeeded",
+    body: "Your changes are live at preview-42.acme.dev.",
+  },
+  {
+    tone: "warning",
+    title: "Approaching plan limit",
+    body: "You have used 82% of your monthly bandwidth.",
+  },
+  {
+    tone: "danger",
+    title: "Build failed",
+    body: "TypeScript reported 3 errors in src/lib/auth.ts.",
+  },
 ]
 
 const alertClass: Record<Alert["tone"], string> = {
@@ -36,9 +48,12 @@ export function PreviewStatus() {
     <Section background="background-muted">
       <div className="max-w-2xl">
         <TokenLabel>Success · Warning · Danger · danger-hover</TokenLabel>
-        <h2 className="font-display text-title text-foreground mt-4">Status colors come in soft and solid.</h2>
-        <p className="text-body text-foreground-muted mt-4">
-          Soft variants are for inline alerts. Solid variants are for badges, dots, and destructive actions.
+        <h2 className="mt-4 font-display text-foreground text-title">
+          Status colors come in soft and solid.
+        </h2>
+        <p className="mt-4 text-body text-foreground-muted">
+          Soft variants are for inline alerts. Solid variants are for badges, dots, and destructive
+          actions.
         </p>
       </div>
 
@@ -46,13 +61,24 @@ export function PreviewStatus() {
         {alerts.map((alert) => {
           const Icon = alertIcon[alert.tone]
           return (
-            <div key={alert.tone} className={`flex gap-3 rounded-xl border p-4 ${alertClass[alert.tone]}`}>
-              <Icon size={20} className={`mt-0.5 shrink-0 ${accentClass[alert.tone]}`} aria-hidden />
+            <div
+              key={alert.tone}
+              className={`flex gap-3 rounded-xl border p-4 ${alertClass[alert.tone]}`}
+            >
+              <Icon
+                size={20}
+                className={`mt-0.5 shrink-0 ${accentClass[alert.tone]}`}
+                aria-hidden
+              />
               <div className="flex-1">
-                <p className="text-body-sm font-semibold">{alert.title}</p>
-                <p className="text-body-sm mt-0.5 opacity-90">{alert.body}</p>
+                <p className="font-semibold text-body-sm">{alert.title}</p>
+                <p className="mt-0.5 text-body-sm opacity-90">{alert.body}</p>
               </div>
-              <button type="button" aria-label="Dismiss" className="rounded-md p-1 opacity-60 transition hover:opacity-100">
+              <button
+                type="button"
+                aria-label="Dismiss"
+                className="rounded-md p-1 opacity-60 transition hover:opacity-100"
+              >
                 <X size={16} />
               </button>
             </div>
@@ -60,20 +86,22 @@ export function PreviewStatus() {
         })}
       </div>
 
-      <div className="bg-surface border-border mt-8 flex flex-wrap items-center gap-3 rounded-xl border p-6 shadow-sm">
-        <span className="text-body-sm text-foreground-muted mr-2">Solid badges & destructive action:</span>
-        <span className="bg-success text-caption inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-semibold text-white">
+      <div className="mt-8 flex flex-wrap items-center gap-3 rounded-xl border border-border bg-surface p-6 shadow-sm">
+        <span className="mr-2 text-body-sm text-foreground-muted">
+          Solid badges & destructive action:
+        </span>
+        <span className="inline-flex items-center gap-1 rounded-full bg-success px-2.5 py-1 font-semibold text-caption text-white">
           <CircleCheck size={12} /> Success
         </span>
-        <span className="bg-warning text-caption inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-semibold text-white">
+        <span className="inline-flex items-center gap-1 rounded-full bg-warning px-2.5 py-1 font-semibold text-caption text-white">
           <TriangleAlert size={12} /> Warning
         </span>
-        <span className="bg-danger text-caption inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-semibold text-white">
+        <span className="inline-flex items-center gap-1 rounded-full bg-danger px-2.5 py-1 font-semibold text-caption text-white">
           <CircleAlert size={12} /> Danger
         </span>
         <button
           type="button"
-          className="bg-danger hover:bg-danger-hover focus-visible:ring-danger focus-visible:ring-offset-ring-offset text-body-sm ml-auto rounded-md px-4 py-2 font-medium text-white transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+          className="ml-auto rounded-md bg-danger px-4 py-2 font-medium text-body-sm text-white transition hover:bg-danger-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset"
         >
           Delete account
         </button>

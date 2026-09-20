@@ -5,7 +5,9 @@
  * @returns The count of unique keywords found in the message (0 if none found)
  */
 export function detectSpamKeywords(message: string, keywords: readonly string[]): number {
-  if (!message || !keywords.length) return 0
+  if (!message || !keywords.length) {
+    return 0
+  }
 
   const normalizedMessage = message.toLowerCase()
   const seen = new Set<string>()

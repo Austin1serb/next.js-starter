@@ -1,77 +1,110 @@
 "use client"
-import { Mail, Lock, Phone, CircleAlert } from "@react-zero-ui/icon-sprite"
+import { CircleAlert, Lock, Mail, Phone } from "@react-zero-ui/icon-sprite"
 import { Section, TokenLabel } from "./_shared"
 
 export function PreviewForm() {
   return (
     <Section background="background">
       <div className="mx-auto max-w-xl">
-        <TokenLabel>Input · input-border · input-placeholder · input-disabled · ring · link · danger</TokenLabel>
-        <h2 className="font-display text-title text-foreground mt-4">Sign in to your account</h2>
-        <p className="text-body text-foreground-muted mt-3">All form controls share one set of tokens - focus rings included.</p>
+        <TokenLabel>
+          Input · input-border · input-placeholder · input-disabled · ring · link · danger
+        </TokenLabel>
+        <h2 className="mt-4 font-display text-foreground text-title">Sign in to your account</h2>
+        <p className="mt-3 text-body text-foreground-muted">
+          All form controls share one set of tokens - focus rings included.
+        </p>
 
         <form className="mt-10 space-y-5" onSubmit={(e) => e.preventDefault()}>
           <div className="flex flex-col gap-2">
-            <label htmlFor="preview-email" className="text-body-sm text-foreground font-medium">
+            <label htmlFor="preview-email" className="font-medium text-body-sm text-foreground">
               Email
             </label>
             <div className="relative">
-              <Mail size={16} className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-neutral-400" aria-hidden />
+              <Mail
+                size={16}
+                className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-neutral-400"
+                aria-hidden
+              />
               <input
                 id="preview-email"
                 type="email"
                 placeholder="you@company.com"
-                className="text-foreground focus-visible:ring-primary focus-visible:ring-offset-background text-body-sm w-full rounded-md border border-neutral-300 bg-white py-2.5 pr-3 pl-9 transition placeholder:text-neutral-400 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="w-full rounded-md border border-neutral-300 bg-white py-2.5 pr-3 pl-9 text-body-sm text-foreground transition placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               />
             </div>
-            <p className="text-body-sm text-foreground-subtle">We&apos;ll never share your email.</p>
+            <p className="text-body-sm text-foreground-subtle">
+              We&apos;ll never share your email.
+            </p>
           </div>
 
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between">
-              <label htmlFor="preview-password" className="text-body-sm text-foreground font-medium">
+              <label
+                htmlFor="preview-password"
+                className="font-medium text-body-sm text-foreground"
+              >
                 Password
               </label>
-              <a href="#" className="text-link hover:text-link-hover text-body-sm underline-offset-4 hover:underline">
+              <a
+                href="#"
+                className="text-body-sm text-link underline-offset-4 hover:text-link-hover hover:underline"
+              >
                 Forgot password?
               </a>
             </div>
             <div className="relative">
-              <Lock size={16} className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-neutral-400" aria-hidden />
+              <Lock
+                size={16}
+                className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-neutral-400"
+                aria-hidden
+              />
               <input
                 id="preview-password"
                 type="password"
                 defaultValue="hunter2"
                 aria-invalid="true"
-                className="border-danger text-foreground focus-visible:ring-danger focus-visible:ring-offset-background text-body-sm w-full rounded-md border bg-white py-2.5 pr-3 pl-9 transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="w-full rounded-md border border-danger bg-white py-2.5 pr-3 pl-9 text-body-sm text-foreground transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               />
             </div>
-            <p className="text-body-sm text-danger flex items-center gap-1.5">
+            <p className="flex items-center gap-1.5 text-body-sm text-danger">
               <CircleAlert size={14} aria-hidden /> That password doesn&apos;t look right.
             </p>
           </div>
 
           <div className="flex flex-col gap-2">
-            <label htmlFor="preview-phone" className="text-body-sm text-foreground-disabled font-medium">
+            <label
+              htmlFor="preview-phone"
+              className="font-medium text-body-sm text-foreground-disabled"
+            >
               Phone (coming soon)
             </label>
             <div className="relative">
-              <Phone size={16} className="text-foreground-disabled pointer-events-none absolute top-1/2 left-3 -translate-y-1/2" aria-hidden />
+              <Phone
+                size={16}
+                className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-foreground-disabled"
+                aria-hidden
+              />
               <input
                 id="preview-phone"
                 type="tel"
                 disabled
                 placeholder="+1 (555) 000-0000"
-                className="text-foreground-disabled text-body-sm w-full cursor-not-allowed rounded-md border border-neutral-300 bg-neutral-100 py-2.5 pr-3 pl-9 placeholder:text-neutral-400"
+                className="w-full cursor-not-allowed rounded-md border border-neutral-300 bg-neutral-100 py-2.5 pr-3 pl-9 text-body-sm text-foreground-disabled placeholder:text-neutral-400"
               />
             </div>
           </div>
 
           <div className="flex items-center gap-3 pt-2">
-            <button type="submit" className="bg-primary text-primary-foreground hover:bg-primary-hover">
+            <button
+              type="submit"
+              className="bg-primary text-primary-foreground hover:bg-primary-hover"
+            >
               Sign in
             </button>
-            <button type="button" className="bg-secondary text-secondary-foreground hover:bg-secondary-hover">
+            <button
+              type="button"
+              className="bg-secondary text-secondary-foreground hover:bg-secondary-hover"
+            >
               Cancel
             </button>
           </div>

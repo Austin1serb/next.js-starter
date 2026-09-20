@@ -12,9 +12,10 @@ export const metadata: Metadata = {
 const Page: React.FC = () => {
   return (
     <main className="mx-auto min-h-screen w-full max-w-5xl px-6 pt-28 pb-16">
-      <h1 className="text-foreground text-4xl font-bold">About</h1>
-      <p className="text-foreground/80 mt-4 max-w-2xl text-lg">
-        Replace this section with the company story, why the team is qualified, and the proof points that build trust for a new client site.
+      <h1 className="font-bold text-4xl text-foreground">About</h1>
+      <p className="mt-4 max-w-2xl text-foreground/80 text-lg">
+        Replace this section with the company story, why the team is qualified, and the proof points
+        that build trust for a new client site.
       </p>
     </main>
   )

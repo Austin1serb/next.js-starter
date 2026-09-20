@@ -19,9 +19,11 @@ export function useMediaQuery(query: string) {
 // Convenience shims mirroring your API
 export function useIsMobile(bp = 768, fn?: () => void) {
   const isMobile = useMediaQuery(`(max-width: ${bp - 0.1}px)`)
-  if (isMobile && fn) fn()
+  if (isMobile && fn) {
+    fn()
+  }
   return isMobile
 }
 export function useTouch() {
-  return useMediaQuery(`(any-hover: none) and (any-pointer: coarse)`)
+  return useMediaQuery("(any-hover: none) and (any-pointer: coarse)")
 }

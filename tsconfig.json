@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "skipLibCheck": true,
@@ -24,13 +20,9 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@zero-ui/attributes": [
-        "./.zero-ui/attributes.js"
-      ]
-    },
+      "@/*": ["./src/*"],
+      "@zero-ui/attributes": ["./.zero-ui/attributes.js"]
+    }
   },
   "include": [
     "**/*.mts",
@@ -42,7 +34,5 @@
     ".zero-ui/**/*.d.ts",
     "next-env.d.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

@@ -1,21 +1,21 @@
 "use server"
 
-import { contactFormSchema, type ContactFormData } from "./utils/validation"
-import { detectSpamKeywords, SPAM_KEYWORDS } from "./utils/spam-detection"
-import { sendSerbyteLead } from "./utils/serbyte-leads"
-import { sendEmail, transporter } from "./email-transporter"
-import { SITE_NAP, SITE_SLUGS } from "@/config/site-config"
-import { readAttributionState } from "@/attribution/cookies"
 import { cookies } from "next/headers"
+import type { ZodError } from "zod"
+import { readAttributionState } from "@/attribution/cookies"
 import { toSerbyteAttribution } from "@/attribution/core"
-
+import { SITE_NAP, SITE_SLUGS } from "@/config/site-config"
+import { sendEmail, transporter } from "./email-transporter"
+import { sendSerbyteLead } from "./utils/serbyte-leads"
+import { detectSpamKeywords, SPAM_KEYWORDS } from "./utils/spam-detection"
+import { type ContactFormData, contactFormSchema } from "./utils/validation"
 
 class TurnstileVerificationError extends Error {
-  constructor(
-    message: string,
-    public details?: Record<string, unknown>
-  ) {
-    super(message)
+  public details?: Record<string, unknown>
+
+  constructor(message: string, options?: ErrorOptions & { details?: Record<string, unknown> }) {
+    super(message, options)
+    this.details = options?.details
     this.name = "TurnstileVerificationError"
   }
 }
@@ -38,14 +38,19 @@ async function verifyTurnstileToken(token: string) {
     }).then((r) => r.json())
 
     if (!response.success) {
-      throw new TurnstileVerificationError("Turnstile verification failed", { response })
+      throw new TurnstileVerificationError("Turnstile verification failed", {
+        details: { response },
+      })
     }
   } catch (error) {
     if (error instanceof TurnstileVerificationError) {
       throw error
     }
 
-    throw new TurnstileVerificationError("Turnstile verification threw", { error })
+    throw new TurnstileVerificationError("Turnstile verification threw", {
+      details: { error },
+      cause: error,
+    })
   }
 }
 
@@ -64,9 +69,38 @@ interface ContactFormResult {
   }
 }
 
-export async function submitContactForm(prevState: ContactFormResult | null, payload: FormData | Record<string, unknown>): Promise<ContactFormResult> {
+function validationFailure(
+  data: Record<string, unknown>,
+  error: ZodError<ContactFormData>
+): ContactFormResult {
+  const errors: Record<string, string> = Object.fromEntries(
+    error.issues.flatMap((issue) => {
+      const field = issue.path[0]
+      return typeof field === "string" ? [[field, issue.message]] : []
+    })
+  )
+  return {
+    success: false,
+    errors,
+    data: {
+      name: String(data.name ?? ""),
+      email: String(data.email ?? ""),
+      phone: String(data.phone ?? ""),
+      address: String(data.address ?? ""),
+      howDidYouHearAboutUs: String(data.howDidYouHearAboutUs ?? ""),
+      howDidYouHearAboutUsOther: String(data.howDidYouHearAboutUsOther ?? ""),
+      message: String(data.message ?? ""),
+    },
+  }
+}
+
+export async function submitContactForm(
+  _prevState: ContactFormResult | null,
+  payload: FormData | Record<string, unknown>
+): Promise<ContactFormResult> {
   // Handle both FormData and plain object (useActionState compatibility)
-  const data = payload instanceof FormData ? Object.fromEntries(payload.entries()) : payload
+  const data: Record<string, unknown> =
+    payload instanceof FormData ? Object.fromEntries(payload.entries()) : payload
 
   // Honeypot check - if filled, it's a bot (silently reject)
   if (data.website) {
@@ -74,8 +108,8 @@ export async function submitContactForm(prevState: ContactFormResult | null, pay
   }
 
   // Verify Cloudflare Turnstile token
-  const token = data["cf-turnstile-response"] as string | null
-  if (!token) {
+  const token = data["cf-turnstile-response"]
+  if (typeof token !== "string" || !token) {
     return { success: false, message: "Captcha missing - Please reload the page and try again." }
   }
 
@@ -90,26 +124,7 @@ export async function submitContactForm(prevState: ContactFormResult | null, pay
   const result = contactFormSchema.safeParse(data)
 
   if (!result.success) {
-    const errors: ContactFormResult["errors"] = {}
-    result.error.issues.forEach((err) => {
-      if (err.path[0]) {
-        errors[err.path[0] as keyof typeof errors] = err.message
-      }
-    })
-    // Return the submitted data so form can be repopulated
-    return {
-      success: false,
-      errors,
-      data: {
-        name: String(data.name ?? ""),
-        email: String(data.email ?? ""),
-        phone: String(data.phone ?? ""),
-        address: String(data.address ?? ""),
-        howDidYouHearAboutUs: String(data.howDidYouHearAboutUs ?? ""),
-        howDidYouHearAboutUsOther: String(data.howDidYouHearAboutUsOther ?? ""),
-        message: String(data.message ?? ""),
-      },
-    }
+    return validationFailure(data, result.error)
   }
 
   // Check for spam keywords in the message (silent detection)
@@ -128,7 +143,7 @@ export async function submitContactForm(prevState: ContactFormResult | null, pay
   try {
     const attribution = readAttributionState(await cookies())
 
-     // Send email to owner
+    // Send email to owner
     const emailSent = await sendEmail({
       name: result.data.name.trim(),
       email: result.data.email.trim(),
@@ -146,7 +161,7 @@ export async function submitContactForm(prevState: ContactFormResult | null, pay
       }
     }
     void sendSerbyteLead({
-      apiKey: process.env.SERBYTE_API_KEY!, // keep this server-side
+      apiKey: process.env.SERBYTE_API_KEY, // keep this server-side
       clientId: SITE_NAP.nameSlug,
       formSlug: "contact",
       path: SITE_SLUGS.contact,
@@ -159,7 +174,9 @@ export async function submitContactForm(prevState: ContactFormResult | null, pay
           address: result.data.address,
           referrer: result.data.howDidYouHearAboutUs?.toLowerCase(),
           attribution: toSerbyteAttribution(attribution),
-          ...(result.data.howDidYouHearAboutUsOther && { referrerOther: result.data.howDidYouHearAboutUsOther?.toLowerCase() }),
+          ...(result.data.howDidYouHearAboutUsOther && {
+            referrerOther: result.data.howDidYouHearAboutUsOther?.toLowerCase(),
+          }),
         },
       },
 

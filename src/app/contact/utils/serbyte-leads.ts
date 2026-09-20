@@ -1,7 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { z } from "zod"
 
 // Default API endpoint - override per project if needed
-const DEFAULT_LEADS_ENDPOINT = process.env.SERBYTE_LEADS_ENDPOINT ?? "https://www.serbyte.net/api/client/leads"
+const DEFAULT_LEADS_ENDPOINT =
+  process.env.SERBYTE_LEADS_ENDPOINT ?? "https://www.serbyte.net/api/client/leads"
+
+const leadResponseSchema = z.object({
+  success: z.boolean().optional(),
+  error: z.string().optional(),
+  details: z.unknown().optional(),
+})
 
 // Referral options you can reuse in any project
 export const referralOptions = [
@@ -26,7 +33,14 @@ export type SerbyteLeadPayload = {
 }
 
 // Enrichment DSL (mirror of what API expects)
-export type SerbyteEnrichmentPrimitiveType = "string" | "number" | "boolean" | "date" | "email" | "phone" | "url"
+export type SerbyteEnrichmentPrimitiveType =
+  | "string"
+  | "number"
+  | "boolean"
+  | "date"
+  | "email"
+  | "phone"
+  | "url"
 
 export type SerbyteEnrichmentFieldConfig = {
   type: SerbyteEnrichmentPrimitiveType
@@ -35,7 +49,10 @@ export type SerbyteEnrichmentFieldConfig = {
 }
 
 export type SerbyteEnrichmentOutputSchema = {
-  [key: string]: SerbyteEnrichmentPrimitiveType | SerbyteEnrichmentFieldConfig | SerbyteEnrichmentOutputSchema
+  [key: string]:
+    | SerbyteEnrichmentPrimitiveType
+    | SerbyteEnrichmentFieldConfig
+    | SerbyteEnrichmentOutputSchema
 }
 
 export type SerbyteEnrichmentConfig = {
@@ -58,27 +75,37 @@ export type SendSerbyteLeadOptions = {
   possibleServices?: string[]
 }
 
-export type SendSerbyteLeadResult = { success: true; status: number } | { success: false; status: number; error?: string; details?: unknown }
+export type SendSerbyteLeadResult =
+  | { success: true; status: number }
+  | { success: false; status: number; error?: string; details?: unknown }
 
 /**
  * Send a lead into the central Serbyte leads API.
  * Call this ONLY from server-side code (server actions, API routes, backend).
  */
-export async function sendSerbyteLead(options: SendSerbyteLeadOptions): Promise<SendSerbyteLeadResult> {
-  const { apiKey = process.env.SERBYTE_API_KEY!, clientId, formSlug, path, payload, enrich, endpoint = DEFAULT_LEADS_ENDPOINT, throwOnError } = options
-  if (!apiKey) {
-    throw new Error("SERBYTE_API_KEY is required")
-  }
-
-  const body: any = {
+export async function sendSerbyteLead(
+  options: SendSerbyteLeadOptions
+): Promise<SendSerbyteLeadResult> {
+  const {
+    apiKey = process.env.SERBYTE_API_KEY,
     clientId,
     formSlug,
     path,
     payload,
+    enrich,
+    endpoint = DEFAULT_LEADS_ENDPOINT,
+    throwOnError,
+  } = options
+  if (!apiKey) {
+    throw new Error("SERBYTE_API_KEY is required")
   }
 
-  if (enrich) {
-    body.enrich = enrich
+  const body = {
+    clientId,
+    formSlug,
+    path,
+    payload,
+    ...(enrich ? { enrich } : {}),
   }
 
   const res = await fetch(endpoint, {
@@ -91,12 +118,8 @@ export async function sendSerbyteLead(options: SendSerbyteLeadOptions): Promise<
     cache: "no-store",
   })
 
-  let json: any = null
-  try {
-    json = await res.json()
-  } catch {
-    // ignore JSON parse errors - status still tells us enough
-  }
+  const parsed = leadResponseSchema.safeParse(await res.json().catch(() => null))
+  const json = parsed.success ? parsed.data : null
 
   if (!res.ok || !json?.success) {
     const result: SendSerbyteLeadResult = {
@@ -107,7 +130,7 @@ export async function sendSerbyteLead(options: SendSerbyteLeadOptions): Promise<
     }
 
     if (throwOnError) {
-      throw new Error(result.error || "Failed to send lead")
+      throw new Error(result.error?.length ? result.error : "Failed to send lead")
     }
 
     return result

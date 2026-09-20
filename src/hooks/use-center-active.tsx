@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useRef, useCallback } from "react"
 import { useScopedUI } from "@react-zero-ui/core"
+import { useCallback, useEffect, useRef } from "react"
 
 type Options = {
   bandPx?: number
@@ -11,12 +11,14 @@ type Options = {
 function useCenterActiveProd({ bandPx = 2, offsetPx = 0 }: Options = {}) {
   const [, setActive] = useScopedUI<"true" | "false">("active", "false")
   const node = useRef<HTMLElement | null>(null)
-  const isActive = useRef(false)
+  const isActive = useRef<boolean>(false)
   const observer = useRef<IntersectionObserver | null>(null)
 
   const flip = useCallback(
     (next: boolean) => {
-      if (isActive.current === next) return
+      if (isActive.current === next) {
+        return
+      }
       isActive.current = next
       setActive(next ? "true" : "false")
     },
@@ -24,7 +26,9 @@ function useCenterActiveProd({ bandPx = 2, offsetPx = 0 }: Options = {}) {
   )
 
   useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return
+    if (typeof IntersectionObserver === "undefined") {
+      return
+    }
 
     const connect = () => {
       observer.current?.disconnect()
@@ -38,13 +42,17 @@ function useCenterActiveProd({ bandPx = 2, offsetPx = 0 }: Options = {}) {
       observer.current = new IntersectionObserver(
         (entries) => {
           const entry = entries[0]
-          if (!entry) return
+          if (!entry) {
+            return
+          }
           flip(entry.isIntersecting)
         },
         { root: null, rootMargin: `-${top}px 0px -${bottom}px 0px`, threshold: 0 }
       )
 
-      if (node.current) observer.current.observe(node.current)
+      if (node.current) {
+        observer.current.observe(node.current)
+      }
     }
 
     connect()
@@ -62,7 +70,9 @@ function useCenterActiveProd({ bandPx = 2, offsetPx = 0 }: Options = {}) {
   return useCallback(
     (el: HTMLElement | null) => {
       const prev = node.current
-      if (prev && prev !== el) observer.current?.unobserve(prev)
+      if (prev && prev !== el) {
+        observer.current?.unobserve(prev)
+      }
 
       node.current = el
       setActive.ref?.(el)
@@ -80,6 +90,7 @@ function useCenterActiveProd({ bandPx = 2, offsetPx = 0 }: Options = {}) {
 // While `false`, the debug module is fully tree-shaken out of the bundle.
 const DEBUG = false as const
 
+// biome-ignore lint/suspicious/noUnnecessaryConditions: Deliberate compile-time switch for the optional debug overlay.
 export const useCenterActive = DEBUG ? useCenterActiveDebug : useCenterActiveProd
 
 // ================================
@@ -87,19 +98,23 @@ export const useCenterActive = DEBUG ? useCenterActiveDebug : useCenterActivePro
 function useCenterActiveDebug({ bandPx = 2, offsetPx = 0 }: Options = {}) {
   const [, setActive] = useScopedUI<"true" | "false">("active", "false")
   const node = useRef<HTMLElement | null>(null)
-  const isActive = useRef(false)
+  const isActive = useRef<boolean>(false)
   const observer = useRef<IntersectionObserver | null>(null)
   const debugBandEl = useRef<HTMLDivElement | null>(null)
   const debugStyleEl = useRef<HTMLStyleElement | null>(null)
 
   const setDebugNodeState = useCallback((el: HTMLElement | null, active: boolean) => {
-    if (!el) return
+    if (!el) {
+      return
+    }
     el.setAttribute("data-center-debug", "true")
     el.setAttribute("data-center-debug-active", active ? "true" : "false")
   }, [])
 
   const clearDebugNodeState = useCallback((el: HTMLElement | null) => {
-    if (!el) return
+    if (!el) {
+      return
+    }
     el.removeAttribute("data-center-debug")
     el.removeAttribute("data-center-debug-active")
   }, [])
@@ -159,7 +174,9 @@ function useCenterActiveDebug({ bandPx = 2, offsetPx = 0 }: Options = {}) {
 
   const flip = useCallback(
     (next: boolean) => {
-      if (isActive.current === next) return
+      if (isActive.current === next) {
+        return
+      }
       isActive.current = next
       setActive(next ? "true" : "false")
       setDebugNodeState(node.current, next)
@@ -168,7 +185,9 @@ function useCenterActiveDebug({ bandPx = 2, offsetPx = 0 }: Options = {}) {
   )
 
   useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return
+    if (typeof IntersectionObserver === "undefined") {
+      return
+    }
 
     const connect = () => {
       observer.current?.disconnect()
@@ -184,7 +203,9 @@ function useCenterActiveDebug({ bandPx = 2, offsetPx = 0 }: Options = {}) {
       observer.current = new IntersectionObserver(
         (entries) => {
           const entry = entries[0]
-          if (!entry) return
+          if (!entry) {
+            return
+          }
           flip(entry.isIntersecting)
         },
         { root: null, rootMargin: `-${top}px 0px -${bottom}px 0px`, threshold: 0 }

@@ -1,7 +1,7 @@
-import { SITE_NAP, SITE_SLUGS } from "@/config/site-config"
 import type { Metadata } from "next"
-import TermsOfService from "./terms.mdx"
+import { SITE_NAP, SITE_SLUGS } from "@/config/site-config"
 import { LegalPageShell } from "../privacy-policy/page"
+import TermsOfService from "./terms.mdx"
 
 export const metadata: Metadata = {
   title: `${SITE_NAP.name} | Terms of Service`,
