@@ -17,7 +17,7 @@ const Home: React.FC = () => {
         Next.js Starter by <br />
         <a
           href="https://www.serbyte.net/"
-          className="text-primary transition-colors hover:text-primary-hover"
+          className="text-primary transition-colors hover:text-primary/90"
         >
           Serbyte Development
         </a>
@@ -25,10 +25,7 @@ const Home: React.FC = () => {
       <p className="mt-6 max-w-2xl text-base text-foreground/80 sm:text-lg">
         Starter homepage for a service business website.
       </p>
-      <Link
-        href="/design-preview"
-        className="text-primary transition-colors hover:text-primary-hover"
-      >
+      <Link href="/design-preview" className="text-primary transition-colors hover:text-primary/90">
         View Design Preview
       </Link>
     </main>

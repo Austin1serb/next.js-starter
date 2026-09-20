@@ -18,27 +18,24 @@ export function PreviewHero() {
           <span className="text-primary">without rebuilding the foundation.</span>
         </h1>
 
-        <p className="mt-6 text-foreground-muted text-lead">
+        <p className="mt-6 text-lead text-muted-foreground">
           A Next.js starter with semantic design tokens, sensible defaults, and the boring stuff
           already done. Ship the work that actually matters.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <button
-            type="button"
-            className="bg-primary text-primary-foreground hover:bg-primary-hover"
-          >
+          <button type="button" className="bg-primary text-primary-foreground hover:bg-primary/90">
             Start building <ArrowRight size={16} />
           </button>
           <button
             type="button"
-            className="bg-secondary text-secondary-foreground hover:bg-secondary-hover"
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
           >
             <BookOpen size={16} /> Read the docs
           </button>
         </div>
 
-        <p className="mt-12 text-body-sm text-foreground-subtle">
+        <p className="mt-12 text-body-sm text-muted-foreground">
           Trusted by teams at Acme · Globex · Hooli · Initech · Massive Dynamic
         </p>
       </div>

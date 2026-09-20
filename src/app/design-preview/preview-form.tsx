@@ -6,11 +6,9 @@ export function PreviewForm() {
   return (
     <Section background="background">
       <div className="mx-auto max-w-xl">
-        <TokenLabel>
-          Input · input-border · input-placeholder · input-disabled · ring · link · danger
-        </TokenLabel>
+        <TokenLabel>Surface · foreground · muted · border · ring · danger</TokenLabel>
         <h2 className="mt-4 font-display text-foreground text-title">Sign in to your account</h2>
-        <p className="mt-3 text-body text-foreground-muted">
+        <p className="mt-3 text-body text-muted-foreground">
           All form controls share one set of tokens - focus rings included.
         </p>
 
@@ -19,22 +17,21 @@ export function PreviewForm() {
             <label htmlFor="preview-email" className="font-medium text-body-sm text-foreground">
               Email
             </label>
+
             <div className="relative">
               <Mail
                 size={16}
-                className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-neutral-400"
+                className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground"
                 aria-hidden
               />
               <input
                 id="preview-email"
                 type="email"
                 placeholder="you@company.com"
-                className="w-full rounded-md border border-neutral-300 bg-white py-2.5 pr-3 pl-9 text-body-sm text-foreground transition placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="w-full rounded-md border border-border bg-surface py-2.5 pr-3 pl-9 text-body-sm text-foreground transition placeholder:text-muted-foreground"
               />
             </div>
-            <p className="text-body-sm text-foreground-subtle">
-              We&apos;ll never share your email.
-            </p>
+            <p className="text-body-sm text-muted-foreground">We&apos;ll never share your email.</p>
           </div>
 
           <div className="flex flex-col gap-2">
@@ -47,7 +44,7 @@ export function PreviewForm() {
               </label>
               <a
                 href="#"
-                className="text-body-sm text-link underline-offset-4 hover:text-link-hover hover:underline"
+                className="text-body-sm text-primary underline-offset-4 hover:text-primary/90 hover:underline"
               >
                 Forgot password?
               </a>
@@ -55,7 +52,7 @@ export function PreviewForm() {
             <div className="relative">
               <Lock
                 size={16}
-                className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-neutral-400"
+                className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground"
                 aria-hidden
               />
               <input
@@ -63,25 +60,26 @@ export function PreviewForm() {
                 type="password"
                 defaultValue="hunter2"
                 aria-invalid="true"
-                className="w-full rounded-md border border-danger bg-white py-2.5 pr-3 pl-9 text-body-sm text-foreground transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="w-full rounded-md border border-danger bg-surface py-2.5 pr-3 pl-9 text-body-sm text-foreground transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               />
             </div>
             <p className="flex items-center gap-1.5 text-body-sm text-danger">
-              <CircleAlert size={14} aria-hidden /> That password doesn&apos;t look right.
+              <CircleAlert size={14} aria-hidden />
+              <span>That password doesn&apos;t look right.</span>
             </p>
           </div>
 
           <div className="flex flex-col gap-2">
             <label
               htmlFor="preview-phone"
-              className="font-medium text-body-sm text-foreground-disabled"
+              className="font-medium text-body-sm text-muted-foreground"
             >
               Phone (coming soon)
             </label>
             <div className="relative">
               <Phone
                 size={16}
-                className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-foreground-disabled"
+                className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground"
                 aria-hidden
               />
               <input
@@ -89,7 +87,7 @@ export function PreviewForm() {
                 type="tel"
                 disabled
                 placeholder="+1 (555) 000-0000"
-                className="w-full cursor-not-allowed rounded-md border border-neutral-300 bg-neutral-100 py-2.5 pr-3 pl-9 text-body-sm text-foreground-disabled placeholder:text-neutral-400"
+                className="w-full cursor-not-allowed rounded-md border border-border bg-muted py-2.5 pr-3 pl-9 text-body-sm text-muted-foreground opacity-50 placeholder:text-muted-foreground"
               />
             </div>
           </div>
@@ -97,13 +95,13 @@ export function PreviewForm() {
           <div className="flex items-center gap-3 pt-2">
             <button
               type="submit"
-              className="bg-primary text-primary-foreground hover:bg-primary-hover"
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
             >
               Sign in
             </button>
             <button
               type="button"
-              className="bg-secondary text-secondary-foreground hover:bg-secondary-hover"
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
             >
               Cancel
             </button>

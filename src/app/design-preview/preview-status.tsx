@@ -32,9 +32,9 @@ const alerts: Alert[] = [
 ]
 
 const alertClass: Record<Alert["tone"], string> = {
-  success: "bg-success-background border-success-border text-success-foreground",
-  warning: "bg-warning-background border-warning-border text-warning-foreground",
-  danger: "bg-danger-background border-danger-border text-danger-foreground",
+  success: "bg-success/10 border-success/20 text-success",
+  warning: "bg-warning/10 border-warning/20 text-warning",
+  danger: "bg-danger/10 border-danger/20 text-danger",
 }
 
 const accentClass: Record<Alert["tone"], string> = {
@@ -45,15 +45,15 @@ const accentClass: Record<Alert["tone"], string> = {
 
 export function PreviewStatus() {
   return (
-    <Section background="background-muted">
+    <Section background="muted">
       <div className="max-w-2xl">
-        <TokenLabel>Success · Warning · Danger · danger-hover</TokenLabel>
+        <TokenLabel>Success · warning · danger · matching foregrounds</TokenLabel>
         <h2 className="mt-4 font-display text-foreground text-title">
           Status colors come in soft and solid.
         </h2>
-        <p className="mt-4 text-body text-foreground-muted">
-          Soft variants are for inline alerts. Solid variants are for badges, dots, and destructive
-          actions.
+        <p className="mt-4 text-body text-muted-foreground">
+          Use /10 backgrounds and /20 borders for soft alerts. Pair solid status fills with their
+          matching foreground token.
         </p>
       </div>
 
@@ -87,21 +87,21 @@ export function PreviewStatus() {
       </div>
 
       <div className="mt-8 flex flex-wrap items-center gap-3 rounded-xl border border-border bg-surface p-6 shadow-sm">
-        <span className="mr-2 text-body-sm text-foreground-muted">
+        <span className="mr-2 text-body-sm text-muted-foreground">
           Solid badges & destructive action:
         </span>
-        <span className="inline-flex items-center gap-1 rounded-full bg-success px-2.5 py-1 font-semibold text-caption text-white">
+        <span className="inline-flex items-center gap-1 rounded-full bg-success px-2.5 py-1 font-semibold text-caption text-success-foreground">
           <CircleCheck size={12} /> Success
         </span>
-        <span className="inline-flex items-center gap-1 rounded-full bg-warning px-2.5 py-1 font-semibold text-caption text-white">
+        <span className="inline-flex items-center gap-1 rounded-full bg-warning px-2.5 py-1 font-semibold text-caption text-warning-foreground">
           <TriangleAlert size={12} /> Warning
         </span>
-        <span className="inline-flex items-center gap-1 rounded-full bg-danger px-2.5 py-1 font-semibold text-caption text-white">
+        <span className="inline-flex items-center gap-1 rounded-full bg-danger px-2.5 py-1 font-semibold text-caption text-danger-foreground">
           <CircleAlert size={12} /> Danger
         </span>
         <button
           type="button"
-          className="ml-auto rounded-md bg-danger px-4 py-2 font-medium text-body-sm text-white transition hover:bg-danger-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset"
+          className="ml-auto rounded-md bg-danger px-4 py-2 font-medium text-body-sm text-danger-foreground transition hover:bg-danger/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           Delete account
         </button>

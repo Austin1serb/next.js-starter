@@ -52,14 +52,14 @@ export function Breadcrumb({ items, children, className }: BreadcrumbProps) {
         }}
       />
 
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6 px-section-x">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
         <nav aria-label="Breadcrumbs">
           <ol className="flex flex-wrap items-center gap-1 text-caption">
             <li className="flex items-center">
               <Link
                 href={SITE_SLUGS.home}
                 title="Home"
-                className="flex items-center text-foreground-muted transition-colors hover:text-primary"
+                className="flex items-center text-muted-foreground transition-colors hover:text-primary"
                 aria-label="Home"
               >
                 Home
@@ -77,7 +77,7 @@ export function Breadcrumb({ items, children, className }: BreadcrumbProps) {
                 >
                   <ChevronRight
                     size={16}
-                    className="text-foreground-subtle"
+                    className="text-muted-foreground"
                     aria-hidden="true"
                     strokeWidth={1}
                   />
@@ -89,7 +89,7 @@ export function Breadcrumb({ items, children, className }: BreadcrumbProps) {
                   ) : (
                     <Link
                       href={item.href}
-                      className="text-foreground-muted transition-colors hover:text-primary"
+                      className="text-muted-foreground transition-colors hover:text-primary"
                       aria-label={item.label}
                     >
                       {item.label}

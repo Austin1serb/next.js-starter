@@ -4,7 +4,7 @@ import { Section, TokenLabel } from "./_shared"
 const features: {
   title: string
   body: string
-  surface: "surface" | "surface-muted"
+  surface: "surface" | "muted"
   icon: typeof Palette
 }[] = [
   {
@@ -16,12 +16,12 @@ const features: {
   {
     title: "Fluid type scale",
     body: "Every size clamps between mobile and desktop. No breakpoint gymnastics required.",
-    surface: "surface-muted",
+    surface: "muted",
     icon: TextCursorInput,
   },
   {
     title: "Sensible defaults",
-    body: "Conventions for radius, spacing, and shadows live as comments next to the tokens.",
+    body: "Use Tailwind’s spacing, radius, and shadow scales. Add project tokens only when needed.",
     surface: "surface",
     icon: Layers,
   },
@@ -31,11 +31,11 @@ export function PreviewFeatureGrid() {
   return (
     <Section background="background">
       <div className="max-w-2xl">
-        <TokenLabel>Surface · surface-muted · border · primary-muted · link</TokenLabel>
+        <TokenLabel>Surface · muted · border · primary/10 · primary/20</TokenLabel>
         <h2 className="mt-4 font-display text-foreground text-title">
           Cards sit on background. Surfaces sit on cards.
         </h2>
-        <p className="mt-4 text-body text-foreground-muted">
+        <p className="mt-4 text-body text-muted-foreground">
           The difference between background and surface is what makes a layout feel layered without
           resorting to drop shadows everywhere.
         </p>
@@ -47,16 +47,16 @@ export function PreviewFeatureGrid() {
           return (
             <article
               key={feature.title}
-              className={`rounded-xl border border-border p-6 shadow-sm ${feature.surface === "surface" ? "bg-surface" : "bg-surface-muted"}`}
+              className={`rounded-xl border border-border p-6 shadow-sm ${feature.surface === "surface" ? "bg-surface" : "bg-muted"}`}
             >
-              <div className="flex size-10 items-center justify-center rounded-md border border-primary-border bg-primary-muted text-primary">
+              <div className="flex size-10 items-center justify-center rounded-md border border-primary/20 bg-primary/10 text-primary">
                 <Icon size={20} />
               </div>
               <h3 className="mt-5 font-display text-foreground text-subtitle">{feature.title}</h3>
-              <p className="mt-2 text-body text-foreground-muted">{feature.body}</p>
+              <p className="mt-2 text-body text-muted-foreground">{feature.body}</p>
               <a
                 href="#"
-                className="mt-4 inline-flex items-center gap-1.5 text-body-sm text-link underline-offset-4 hover:text-link-hover hover:underline"
+                className="mt-4 inline-flex items-center gap-1.5 text-body-sm text-primary underline-offset-4 hover:text-primary/90 hover:underline"
               >
                 Explore {feature.title} <ArrowRight size={14} />
               </a>

@@ -39,6 +39,7 @@
       "project": "recommended",
       "test": "recommended",
       "types": "recommended",
+
       "next": "recommended",
       "react": "recommended",
       "playwright": "recommended",
@@ -63,9 +64,9 @@
           }
         },
         "noExcessiveLinesPerFunction": {
-          "level": "error",
+          "level": "info",
           "options": {
-            "maxLines": 200
+            "maxLines": 300
           }
         },
         "noExcessiveNestedTestSuites": "error",

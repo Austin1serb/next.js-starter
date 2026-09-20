@@ -20,7 +20,7 @@ export function TopBar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-body-sm text-foreground-muted transition hover:text-foreground hover:underline"
+                className="text-body-sm text-muted-foreground transition hover:text-foreground hover:underline"
               >
                 {item.name}
               </Link>
@@ -32,14 +32,11 @@ export function TopBar() {
           <a
             // biome-ignore lint/a11y/useValidAnchor: Starter sign-in destination must be set for each website.
             href="#"
-            className="hidden text-body-sm text-link underline-offset-4 hover:text-link-hover hover:underline sm:inline"
+            className="hidden text-body-sm text-primary underline-offset-4 hover:text-primary/90 hover:underline sm:inline"
           >
             Sign in
           </a>
-          <button
-            type="button"
-            className="bg-primary text-primary-foreground hover:bg-primary-hover"
-          >
+          <button type="button" className="bg-primary text-primary-foreground hover:bg-primary/90">
             Get started
           </button>
         </div>

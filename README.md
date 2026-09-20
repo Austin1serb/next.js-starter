@@ -32,6 +32,14 @@ Placeholder links in the design preview skip destination validation. Templated e
 
 Biome currently leaves Markdown, MDX, and YAML unformatted. Its utility class sorter does not fully reproduce the Tailwind Prettier plugin; see [Biome's class sorting limitations](https://biomejs.dev/linter/rules/use-sorted-classes/javascript/).
 
+## Design Tokens
+
+Edit the small palette and fluid type scale in `src/app/globals.css`. Colors use roles: `background` for the page, `surface` for cards and panels, `muted` for subdued areas, and `inverse` for dark sections. Pair a surface with its `-foreground` color, such as `bg-surface text-surface-foreground`.
+
+`primary` and `secondary` are the main and supporting brand colors; `accent` adds emphasis. `success`, `warning`, and `danger` communicate status. Use `border` for dividers and `ring` for keyboard focus. Derive soft fills and states with utilities like `bg-primary/10`, `border-primary/20`, and `hover:bg-primary/90`. Tailwind supplies spacing, radius, and shadows.
+
+These are project conventions based on [semantic color pairs](https://ui.shadcn.com/docs/theming) and [Tailwind theme variables](https://tailwindcss.com/docs/theme), not a universal token dictionary.
+
 ## Environment
 
 The starter expects these variables:

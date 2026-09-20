@@ -38,7 +38,7 @@ const scale: { className: string; label: string; range: string; sample: string }
     sample: "The quick brown fox jumps over the lazy dog.",
   },
   {
-    className: "text-caption ",
+    className: "text-caption",
     label: "text-caption",
     range: "11 → 13",
     sample: "The quick brown fox",
@@ -47,14 +47,14 @@ const scale: { className: string; label: string; range: string; sample: string }
 
 export function PreviewTypography() {
   return (
-    <Section background="background-muted">
+    <Section background="muted">
       <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <TokenLabel>Type scale · font-display · font-body</TokenLabel>
           <h2 className="mt-4 font-display text-foreground text-title">
             A clamp-based scale that breathes with the viewport.
           </h2>
-          <p className="mt-4 max-w-prose text-body text-foreground-muted">
+          <p className="mt-4 max-w-prose text-body text-muted-foreground">
             Every size scales fluidly between mobile and desktop using{" "}
             <code className="rounded-sm bg-surface px-1.5 py-0.5 text-body-sm">clamp()</code>.
             Display sizes use{" "}
@@ -71,8 +71,8 @@ export function PreviewTypography() {
                 className="flex flex-col gap-2 border-border border-b pb-6 last:border-b-0"
               >
                 <div className="flex items-baseline justify-between gap-4">
-                  <span className="font-mono text-caption text-foreground-subtle">{row.label}</span>
-                  <span className="font-mono text-caption text-foreground-subtle">
+                  <span className="font-mono text-caption text-muted-foreground">{row.label}</span>
+                  <span className="font-mono text-caption text-muted-foreground">
                     {row.range}px
                   </span>
                 </div>
@@ -85,20 +85,20 @@ export function PreviewTypography() {
         </div>
 
         <aside className="h-fit rounded-xl border border-border bg-surface p-8 shadow-sm">
-          <p className="font-mono text-caption text-foreground-subtle uppercase tracking-wider">
+          <p className="font-mono text-caption text-muted-foreground uppercase tracking-wider">
             Sample article
           </p>
           <h3 className="mt-3 font-display text-foreground text-subtitle">
             How we think about typography
           </h3>
 
-          <p className="mt-4 text-body text-foreground-muted">
+          <p className="mt-4 text-body text-muted-foreground">
             Good type is invisible. The reader should glide through a paragraph without noticing the
-            seams between sizes, weights, and spacing. We picked a modest scale on purpose - five
-            real sizes, two display sizes, one caption - and let{" "}
+            seams between sizes, weights, and spacing. Seven roles cover hero headings, titles,
+            subtitles, leads, body copy, small copy, and captions. Let{" "}
             <a
               href="#"
-              className="text-link underline-offset-4 hover:text-link-hover hover:underline"
+              className="text-primary underline-offset-4 hover:text-primary/90 hover:underline"
             >
               token composition
             </a>{" "}
@@ -109,14 +109,12 @@ export function PreviewTypography() {
             “Restraint at the token layer buys freedom at the page layer.”
           </blockquote>
 
-          <p className="mt-6 text-body text-foreground-muted">
+          <p className="mt-6 text-body text-muted-foreground">
             Caption text - the smallest size in the scale - is reserved for metadata, eyebrow
             labels, and form helpers. Don’t reach for it just because something “feels small.”
           </p>
 
-          <p className="mt-6 text-body-sm text-foreground-subtle">
-            - Updated May 2026 · 4 min read
-          </p>
+          <p className="mt-6 text-body-sm text-muted-foreground">- Updated May 2026 · 4 min read</p>
         </aside>
       </div>
     </Section>

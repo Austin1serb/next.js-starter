@@ -9,25 +9,25 @@ export function PreviewNav() {
           <nav className="hidden items-center gap-6 md:flex">
             <a
               href="#"
-              className="text-body-sm text-foreground-muted transition hover:text-foreground"
+              className="text-body-sm text-muted-foreground transition hover:text-foreground"
             >
               Product
             </a>
             <a
               href="#"
-              className="text-body-sm text-foreground-muted transition hover:text-foreground"
+              className="text-body-sm text-muted-foreground transition hover:text-foreground"
             >
               Pricing
             </a>
             <a
               href="#"
-              className="text-body-sm text-foreground-muted transition hover:text-foreground"
+              className="text-body-sm text-muted-foreground transition hover:text-foreground"
             >
               Docs
             </a>
             <a
               href="#"
-              className="text-body-sm text-foreground-muted transition hover:text-foreground"
+              className="text-body-sm text-muted-foreground transition hover:text-foreground"
             >
               Changelog
             </a>
@@ -37,14 +37,11 @@ export function PreviewNav() {
         <div className="flex items-center gap-4">
           <a
             href="#"
-            className="hidden text-body-sm text-link underline-offset-4 hover:text-link-hover hover:underline sm:inline"
+            className="hidden text-body-sm text-primary underline-offset-4 hover:text-primary/90 hover:underline sm:inline"
           >
             Sign in
           </a>
-          <button
-            type="button"
-            className="bg-primary text-primary-foreground hover:bg-primary-hover"
-          >
+          <button type="button" className="bg-primary text-primary-foreground hover:bg-primary/90">
             Get started
           </button>
         </div>

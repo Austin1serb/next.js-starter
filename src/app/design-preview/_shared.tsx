@@ -1,16 +1,12 @@
 import type { ReactNode } from "react"
 
-type SectionBackground =
-  | "background"
-  | "background-muted"
-  | "background-inverse"
-  | "surface-inverse"
+type SectionBackground = "background" | "surface" | "muted" | "inverse"
 
 const backgroundClass: Record<SectionBackground, string> = {
   background: "bg-background",
-  "background-muted": "bg-background-muted",
-  "background-inverse": "bg-background-inverse",
-  "surface-inverse": "bg-surface-inverse",
+  surface: "bg-surface text-surface-foreground",
+  muted: "bg-muted",
+  inverse: "bg-inverse text-inverse-foreground",
 }
 
 type SectionProps = {
@@ -35,7 +31,7 @@ type TokenLabelProps = {
 
 export function TokenLabel({ children }: TokenLabelProps) {
   return (
-    <p className="font-mono text-caption text-foreground-subtle uppercase tracking-wider">
+    <p className="font-mono text-caption text-muted-foreground uppercase tracking-wider">
       {children}
     </p>
   )
