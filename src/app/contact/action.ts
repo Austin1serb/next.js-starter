@@ -8,53 +8,10 @@ import { SITE_NAP, SITE_SLUGS } from "@/config/site-config"
 import { sendEmail, transporter } from "./email-transporter"
 import { sendSerbyteLead } from "./utils/serbyte-leads"
 import { detectSpamKeywords, SPAM_KEYWORDS } from "./utils/spam-detection"
+import { verifyTurnstileToken } from "./utils/turnstile"
 import { type ContactFormData, contactFormSchema } from "./utils/validation"
 
-class TurnstileVerificationError extends Error {
-  public details?: Record<string, unknown>
-
-  constructor(message: string, options?: ErrorOptions & { details?: Record<string, unknown> }) {
-    super(message, options)
-    this.details = options?.details
-    this.name = "TurnstileVerificationError"
-  }
-}
-
-async function verifyTurnstileToken(token: string) {
-  if (!process.env.TURNSTILE_SECRET) {
-    return console.warn("TURNSTILE_SECRET is not set, skipping turnstile verification")
-  }
-  if (!token) {
-    return console.warn("Token is not set, skipping turnstile verification")
-  }
-  try {
-    const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-      method: "POST",
-      headers: { "content-type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({
-        secret: process.env.TURNSTILE_SECRET,
-        response: token,
-      }),
-    }).then((r) => r.json())
-
-    if (!response.success) {
-      throw new TurnstileVerificationError("Turnstile verification failed", {
-        details: { response },
-      })
-    }
-  } catch (error) {
-    if (error instanceof TurnstileVerificationError) {
-      throw error
-    }
-
-    throw new TurnstileVerificationError("Turnstile verification threw", {
-      details: { error },
-      cause: error,
-    })
-  }
-}
-
-interface ContactFormResult {
+export interface ContactFormResult {
   success: boolean
   errors?: Partial<Record<keyof ContactFormData, string>>
   message?: string
@@ -107,17 +64,8 @@ export async function submitContactForm(
     return { success: true }
   }
 
-  // Verify Cloudflare Turnstile token
-  const token = data["cf-turnstile-response"]
-  if (typeof token !== "string" || !token) {
-    return { success: false, message: "Captcha missing - Please reload the page and try again." }
-  }
-
-  try {
-    await verifyTurnstileToken(token)
-  } catch (error) {
-    console.error("[Turnstile]", error)
-    return { success: false, message: "Captcha verification failed. Please try again." }
+  if (!(await verifyTurnstileToken(data["cf-turnstile-response"]))) {
+    return { success: false, message: "Verification failed. Please try again." }
   }
 
   // Validation with Zod

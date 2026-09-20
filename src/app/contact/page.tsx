@@ -1,5 +1,10 @@
 import type { Metadata } from "next"
 import { SITE_SLUGS } from "@/config/site-config"
+import { ContactForm } from "./contact-form"
+import { getTurnstileSiteKey } from "./utils/turnstile"
+
+// Keep the widget's enabled state in sync with the server's runtime secret configuration.
+export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -13,9 +18,9 @@ const ContactPage: React.FC = () => {
     <main className="mx-auto min-h-screen w-full max-w-5xl px-6 pt-28 pb-16">
       <h1 className="font-bold text-4xl text-foreground">Contact</h1>
       <p className="mt-4 max-w-2xl text-foreground/80 text-lg">
-        Use this page for the contact form, direct phone and email details, and a simple next step
-        for leads who are ready to reach out.
+        Tell us how we can help. We&apos;ll get back to you soon.
       </p>
+      <ContactForm turnstileSiteKey={getTurnstileSiteKey()} />
     </main>
   )
 }

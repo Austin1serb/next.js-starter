@@ -28,6 +28,8 @@ Install the `biomejs.biome` VS Code extension for the workspace's format and fix
 
 `biome.json` keeps the shared Serbyte rules with React/Next.js domains, Tailwind CSS directives, generated-file exclusions, and Playwright overrides. Next.js source retains global `process.env` access for framework replacement; contact handlers may log warnings and errors.
 
+Biome's file-size limit is 2 MiB so it can resolve Playwright's type declarations, which exceed the default 1 MiB limit. `noUnresolvedImports` remains enabled.
+
 Placeholder links in the design preview skip destination validation. Templated email HTML is excluded because its encoded inline CSS cannot be parsed by Biome. Application accessibility checks remain enabled. Class sorting has a separate fix command; `cn` and `twMerge` are excluded because argument order can affect merged styles.
 
 Biome currently leaves Markdown, MDX, and YAML unformatted. Its utility class sorter does not fully reproduce the Tailwind Prettier plugin; see [Biome's class sorting limitations](https://biomejs.dev/linter/rules/use-sorted-classes/javascript/).
@@ -42,14 +44,20 @@ These are project conventions based on [semantic color pairs](https://ui.shadcn.
 
 ## Environment
 
-The starter expects these variables:
+Email delivery uses:
 
 - `SMTP_USER`
 - `SMTP_PASSWORD`
-- `NEXT_PUBLIC_TURNSTILE_SITEKEY`
-- `TURNSTILE_SECRET`
 
 Use `.env.example` as the starting point.
+
+### Optional Turnstile
+
+The contact form uses `@marsidev/react-turnstile`. Set both `NEXT_PUBLIC_TURNSTILE_SITEKEY` and `TURNSTILE_SECRET` to enable the widget and server verification. If either key is unset or blank, the widget is hidden and the contact action skips CAPTCHA entirely. No code change is needed to opt out.
+
+Configured sites require a valid token before processing the form. The widget clears expired tokens and resets after each submission attempt. Real keys also require the `contact` action and the hostname from `DOMAIN_URL`; set `TURNSTILE_HOSTNAMES` to a comma-separated allowlist when the same form uses multiple hostnames.
+
+The commented pair in `.env.example` is Cloudflare's public test configuration. Test keys use Siteverify but return synthetic action/hostname values, so those metadata checks apply only to real keys. Use your own widget keys for a live site. See [Cloudflare's testing guide](https://developers.cloudflare.com/turnstile/troubleshooting/testing/) and the [Turnstile Spin skill](https://github.com/cloudflare/skills/blob/main/skills/turnstile-spin/SKILL.md).
 
 ## Project Layout
 
