@@ -22,7 +22,7 @@ Small [project wiki](wiki/AGENTS.md) included. Replace its [overview](wiki/pages
 - `npm run lint:fix` applies formatting, import organization, and safe fixes.
 - `npm run format` formats supported files; `npm run format:check` checks formatting.
 - `npm run format:classes` applies utility class sorting fixes only.
-- `npm run type-check` runs TypeScript, which Biome does not replace.
+- `npm run typecheck` runs TypeScript, which Biome does not replace.
 
 Install the `biomejs.biome` VS Code extension for the workspace's format and fix on save settings. Husky checks remain opt-in in `.husky/pre-commit`.
 

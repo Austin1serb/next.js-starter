@@ -69,6 +69,6 @@
     "statusBar.debuggingForeground": "#FFFFFF",
     "statusBar.noFolderForeground": "#FFFFFF"
   },
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
   "postman.settings.dotenv-detection-notification-visibility": false,
 }

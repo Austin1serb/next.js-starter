@@ -17,7 +17,7 @@
     "start": "next start",
     "test": "playwright test",
     "test:install": "playwright install --with-deps",
-    "type-check": "tsc --noEmit"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@marsidev/react-turnstile": "^1.6.1",
@@ -47,6 +47,6 @@
     "babel-plugin-react-compiler": "1.0.0",
     "husky": "^9.1.7",
     "schema-dts": "^2.0.0",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }
