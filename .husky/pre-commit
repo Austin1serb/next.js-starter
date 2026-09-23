@@ -1,3 +1,7 @@
 # Optional checks; uncomment to enable.
-# npm run lint || exit 1
-# npm run typecheck || exit 1
+
+npm run lint || exit 1
+
+npm run typecheck || exit 1
+
+npm run format || exit 1

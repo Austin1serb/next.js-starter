@@ -1,5 +1,4 @@
 import { type NextRequest, NextResponse, type ProxyConfig } from "next/server.js"
-import { ATTRIBUTION_TOUCH_HISTORY_LIMIT } from "@/attribution/constants"
 import {
   ATTRIBUTION_SESSION_COOKIE_NAME,
   attributionCookieOptions,
@@ -35,7 +34,7 @@ export function proxy(request: NextRequest) {
   }
 
   if (!hasSession) {
-    const touches = [...currentState.touches, nextTouch].slice(-ATTRIBUTION_TOUCH_HISTORY_LIMIT)
+    const touches = [...currentState.touches, nextTouch]
     const touchCount = currentState.touchCount + 1
 
     response.cookies.set(

@@ -1,6 +1,7 @@
 "use server"
 
 import { cookies } from "next/headers"
+import { after } from "next/server"
 import type { ZodError } from "zod"
 import { readAttributionState } from "@/attribution/cookies"
 import { toSerbyteAttribution } from "@/attribution/core"
@@ -78,11 +79,17 @@ export async function submitContactForm(
   // Check for spam keywords in the message (silent detection)
   const spamScore = detectSpamKeywords(result.data.message, SPAM_KEYWORDS)
   if (spamScore >= 2) {
-    transporter.sendMail({
-      from: process.env.SMTP_USER,
-      to: process.env.SMTP_USER,
-      subject: `${SITE_NAP.name} - Spam Detected`,
-      text: `Spam detected: ${spamScore} from ${result.data.name} <${result.data.email}> with message: ${result.data.message}`,
+    after(async () => {
+      try {
+        await transporter.sendMail({
+          from: process.env.SMTP_USER,
+          to: process.env.SMTP_USER,
+          subject: `${SITE_NAP.name} - Spam Detected`,
+          text: `Spam detected: ${spamScore} from ${result.data.name} <${result.data.email}> with message: ${result.data.message}`,
+        })
+      } catch (error) {
+        console.error("Failed to send spam notification:", error)
+      }
     })
     // Return success to prevent spammer from knowing they were blocked
     return { success: true }
@@ -108,53 +115,33 @@ export async function submitContactForm(
         message: "Failed to send email. Please try again or call us directly.",
       }
     }
-    void sendSerbyteLead({
-      apiKey: process.env.SERBYTE_API_KEY, // keep this server-side
-      clientId: SITE_NAP.nameSlug,
-      formSlug: "contact",
-      path: SITE_SLUGS.contact,
-      payload: {
-        name: result.data.name.trim(),
-        email: result.data.email.trim(),
-        phone: result.data.phone.trim(),
-        message: result.data.message.trim(),
-        details: {
-          address: result.data.address,
-          referrer: result.data.howDidYouHearAboutUs?.toLowerCase(),
-          attribution: toSerbyteAttribution(attribution),
-          ...(result.data.howDidYouHearAboutUsOther && {
-            referrerOther: result.data.howDidYouHearAboutUsOther?.toLowerCase(),
-          }),
+    // after() lets Next.js keep background delivery alive after the form response.
+    after(async () => {
+      const delivery = await sendSerbyteLead({
+        apiKey: process.env.SERBYTE_API_KEY, // keep this server-side
+        clientId: SITE_NAP.nameSlug,
+        formSlug: "contact",
+        path: SITE_SLUGS.contact,
+        payload: {
+          name: result.data.name.trim(),
+          email: result.data.email.trim(),
+          phone: result.data.phone.trim(),
+          message: result.data.message.trim(),
+          details: {
+            address: result.data.address,
+            referrer: result.data.howDidYouHearAboutUs?.toLowerCase(),
+            attribution: toSerbyteAttribution(attribution),
+            ...(result.data.howDidYouHearAboutUsOther && {
+              referrerOther: result.data.howDidYouHearAboutUsOther?.toLowerCase(),
+            }),
+          },
         },
-      },
 
-      // optional enrichment (example)
-      // enrich: {
-      //   data: {
-      //     address: result.data.address,
-      //     message: result.data.message,
-      //   },
-      //   outputSchema: {
-      //     details: {
-      //       address: {
-      //         street: "string",
-      //         city: "string",
-      //         state: "string",
-      //         zipCode: "string",
-      //       },
-      //       service: "string",
-      //     },
-      //   },
-      //   instructions: `
-      //   # Split address into components where possible, and enrich, all the addresses are in WA state.\n
-      //   # Based on the message, determine the service requested and return the service in the output schema,
-      //   concrete patio, concrete sidewalk, concrete driveway, etc.".\n
-      //   ## The service should be 2-3 words max.
-      //   ## If the service is not clear, return ""
-      //   `,
-      // },
-      // do NOT block the user on central API failure
-      throwOnError: false,
+        throwOnError: false,
+      })
+      if (!delivery.success) {
+        console.warn("Central lead delivery failed:", delivery.error)
+      }
     })
 
     return { success: true }

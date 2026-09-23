@@ -80,8 +80,8 @@ export type SendSerbyteLeadResult =
   | { success: false; status: number; error?: string; details?: unknown }
 
 /**
- * Send a lead into the central Serbyte leads API.
- * Call this ONLY from server-side code (server actions, API routes, backend).
+ * Send a lead server-side with a 10-second deadline. Failures are returned by default;
+ * throwOnError opts into rejection. Status 0 means no HTTP response was received.
  */
 export async function sendSerbyteLead(
   options: SendSerbyteLeadOptions
@@ -94,103 +94,50 @@ export async function sendSerbyteLead(
     payload,
     enrich,
     endpoint = DEFAULT_LEADS_ENDPOINT,
-    throwOnError,
+    throwOnError = false,
   } = options
-  if (!apiKey) {
-    throw new Error("SERBYTE_API_KEY is required")
-  }
+  let status = 0
+  let failure: SendSerbyteLeadResult
 
-  const body = {
-    clientId,
-    formSlug,
-    path,
-    payload,
-    ...(enrich ? { enrich } : {}),
-  }
+  try {
+    if (!apiKey?.trim()) {
+      throw new Error("SERBYTE_API_KEY is required")
+    }
 
-  const res = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-serbyte-key": apiKey,
-    },
-    body: JSON.stringify(body),
-    cache: "no-store",
-  })
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-serbyte-key": apiKey,
+      },
+      body: JSON.stringify({ clientId, formSlug, path, payload, ...(enrich ? { enrich } : {}) }),
+      cache: "no-store",
+      signal: AbortSignal.timeout(10_000),
+    })
+    status = response.status
+    const parsed = leadResponseSchema.safeParse(await response.json())
+    const result = parsed.success ? parsed.data : null
 
-  const parsed = leadResponseSchema.safeParse(await res.json().catch(() => null))
-  const json = parsed.success ? parsed.data : null
+    if (response.ok && result?.success) {
+      return { success: true, status }
+    }
 
-  if (!res.ok || !json?.success) {
-    const result: SendSerbyteLeadResult = {
+    failure = {
       success: false,
-      status: res.status,
-      error: json?.error ?? `Request failed with status ${res.status}`,
-      details: json?.details,
+      status,
+      error: result?.error || `Lead delivery failed with status ${status}`,
+      details: result?.details,
     }
-
-    if (throwOnError) {
-      throw new Error(result.error?.length ? result.error : "Failed to send lead")
+  } catch (error) {
+    failure = {
+      success: false,
+      status,
+      error: error instanceof Error ? error.message : "Lead delivery failed",
     }
-
-    return result
   }
 
-  return { success: true, status: res.status }
+  if (throwOnError) {
+    throw new Error(failure.error || "Lead delivery failed")
+  }
+  return failure
 }
-
-// EXAMPLE USAGE
-// if (!emailSent) {
-//   return {
-//     success: false,
-//     message: "Failed to send email. Please try again or call us directly.",
-//   }
-// }
-
-// >>> ADD THIS BLOCK <<<
-
-// void sendSerbyteLead({
-//   apiKey: process.env.SERBYTE_API_KEY!,      // keep this server-side
-//   clientId: "rc-concrete",
-//   formSlug: "contact",
-//   path: "/contact",
-//   payload: {
-//     name: result.data.name.trim(),
-//     email: result.data.email.trim(),
-//     phone: result.data.phone.trim(),
-//     message: result.data.message.trim(),
-//     details: {
-//       address: result.data.address?.trim() || "",
-//       source: result.data.howDidYouHearAboutUs?.trim() || "",
-//       sourceOther: result.data.howDidYouHearAboutUsOther?.trim() || "",
-
-//     },
-//   },
-
-//   // optional enrichment (example)
-
-//   enrich: {
-//     data: {
-//       address: result.data.address,
-//       message: result.data.message,
-//     },
-//     outputSchema: {
-//       address: {
-//         street: "string",
-//         city: "string",
-//         state: "string",
-//         zipCode: "string",
-//       },
-//       service: "string",
-//     },
-//     instructions: Split address into components where possible, all the address are in WA state,
-// based on the message, determine the service requested and return the service in the output schema
-// possible services are:
-// ${possibleServices?.join(", ")}
-// ",
-//   },
-//   // do NOT block the user on central API failure
-//   throwOnError: false,
-// })
-
-// return { success: true }

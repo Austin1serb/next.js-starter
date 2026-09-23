@@ -7,10 +7,16 @@ export const DOMAIN_URL =
 export const SITE_CONFIG = {
   // This information is also used in the metadata for the home page and schema
   title: "My Next.js Starter",
-  description: "A fully optimized Next.js 15 starter template.",
+  description: "A Next.js 16 starter for business websites.",
   placeId: "ChIJN1t_t2Z44AR4PVM_67p7...",
   cid: "1234567890",
   mapId: "1234567890",
+} as const
+
+// Public asset paths; replace these with each site's logo and social sharing image.
+export const SITE_IMAGES = {
+  logo: "/serbyte-logo.jpg",
+  social: "/serbyte-logo.jpg",
 } as const
 
 export const SITE_NAP = {
@@ -54,9 +60,9 @@ export const SITE_NAP = {
     bbb: "",
     gbp: "https://g.co/yourbusiness",
   } as const,
-  logo: `${DOMAIN_URL}/logo.png`,
+  logo: new URL(SITE_IMAGES.logo, DOMAIN_URL).toString(),
   favicon: `${DOMAIN_URL}/favicon.ico`,
-  images: [`${DOMAIN_URL}/opengraph-image.png`],
+  images: [new URL(SITE_IMAGES.social, DOMAIN_URL).toString()],
 } as const
 
 export const SITE_SLUGS = {
@@ -64,11 +70,12 @@ export const SITE_SLUGS = {
   about: "/about",
   contact: "/contact",
   allServices: "/services",
-  services: {
-    service1: "/services/service1",
-    service2: "/services/service2",
-    service3: "/services/service3",
-  },
+  // Add service routes here only after creating their pages.
+  // services: {
+  //   service1: "/services/service1",
+  //   service2: "/services/service2",
+  //   service3: "/services/service3",
+  // },
   // gallery: "/gallery",
   terms: "/terms-of-service",
   privacy: "/privacy-policy",
@@ -81,6 +88,4 @@ const flattenSlugs = (obj: Record<string, string | Record<string, string>>): str
   )
 }
 
-export const ALL_PAGES: string[] = Object.values(SITE_SLUGS).flatMap((value) =>
-  typeof value === "string" ? [value] : flattenSlugs(value)
-)
+export const ALL_PAGES: string[] = flattenSlugs(SITE_SLUGS)

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { homeContent } from "@/app/cms/home"
 import { DOMAIN_URL, SITE_CONFIG } from "@/config/site-config"
 
 export const metadata: Metadata = {
@@ -14,19 +15,22 @@ const Home: React.FC = () => {
   return (
     <main className="flex flex-col items-center justify-center px-6 pt-24 pb-16 text-center">
       <h1 className="text-foreground text-hero">
-        Next.js Starter by <br />
+        {homeContent.heading.text} <br />
         <a
-          href="https://www.serbyte.net/"
+          href={homeContent.heading.link.href}
           className="text-primary transition-colors hover:text-primary/90"
         >
-          Serbyte Development
+          {homeContent.heading.link.label}
         </a>
       </h1>
       <p className="mt-6 max-w-2xl text-base text-foreground/80 sm:text-lg">
-        Starter homepage for a service business website.
+        {homeContent.description}
       </p>
-      <Link href="/design-preview" className="text-primary transition-colors hover:text-primary/90">
-        View Design Preview
+      <Link
+        href={homeContent.cta.href}
+        className="text-primary transition-colors hover:text-primary/90"
+      >
+        {homeContent.cta.label}
       </Link>
     </main>
   )

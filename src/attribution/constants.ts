@@ -6,7 +6,7 @@ export const ATTRIBUTION_SESSION_COOKIE_NAME = "bt_attr_session"
 
 export const ATTRIBUTION_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 180 // 180 days
 export const ATTRIBUTION_SESSION_MAX_AGE_SECONDS = 60 * 30 // 30 minutes
-export const ATTRIBUTION_TOUCH_HISTORY_LIMIT = 24 // Count max 24 per COOKIE_MAX_AGE_SECONDS - 6months
+export const ATTRIBUTION_TOUCH_HISTORY_LIMIT = 24 // The cookie byte budget may retain fewer.
 
 export const PAID_UTM_MEDIA = new Set([
   "cpc",

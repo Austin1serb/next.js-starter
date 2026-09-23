@@ -1,5 +1,10 @@
+import { AsyncLocalStorage } from "node:async_hooks"
 import process from "node:process"
 import { defineConfig, devices } from "@playwright/test"
+
+// Match Next.js server startup before tests import its server modules. Otherwise
+// Next caches a fallback storage implementation that can fail when workers are reused.
+globalThis.AsyncLocalStorage ??= AsyncLocalStorage
 
 /**
  * Next.js has built-in support for loading environment variables from

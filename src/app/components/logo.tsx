@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { SITE_NAP } from "@/config/site-config"
+import { SITE_IMAGES, SITE_NAP } from "@/config/site-config"
 
 export const Logo: React.FC<{ className?: string }> = ({ className }) => {
   return (
@@ -13,7 +13,7 @@ export const Logo: React.FC<{ className?: string }> = ({ className }) => {
       }
     >
       <Image
-        src="/serbyte-logo.jpg"
+        src={SITE_IMAGES.logo}
         alt={SITE_NAP.name}
         width={300}
         height={300}

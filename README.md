@@ -11,7 +11,6 @@ Small [project wiki](wiki/AGENTS.md) included. Replace its [overview](wiki/pages
 - TypeScript
 - Tailwind CSS v4
 - Motion
-- React Zero UI
 - Icons: @react-zero-ui/icon-sprite, which has full lucide and tabler icon sets
 - Playwright for testing
 - Biome for linting, formatting, import organization, and utility class sorting
@@ -51,6 +50,8 @@ Email delivery uses:
 
 Use `.env.example` as the starting point.
 
+Set `SITE_NAP.email` in `src/config/site-config.ts` to the recipient for production enquiries. Central lead forwarding uses `SERBYTE_API_KEY` and optionally `SERBYTE_LEADS_ENDPOINT`. It runs after the form response, has a 10-second deadline, and logs failures without changing a successful email submission into an error.
+
 ### Optional Turnstile
 
 The contact form uses `@marsidev/react-turnstile`. Set both `NEXT_PUBLIC_TURNSTILE_SITEKEY` and `TURNSTILE_SECRET` to enable the widget and server verification. If either key is unset or blank, the widget is hidden and the contact action skips CAPTCHA entirely. No code change is needed to opt out.
@@ -62,6 +63,14 @@ The commented pair in `.env.example` is Cloudflare's public test configuration. 
 ## Request Attribution
 
 `src/proxy.ts` records first and last attribution touches and starts a 30-minute attribution session. Next.js requires it alongside `src/app`. It handles page GET requests and skips API routes, Next.js internals, file assets, and prefetch requests so background requests do not count as visits.
+
+Cookie serialization bounds individual touches and the recent history by their encoded size. Oversized text is shortened and older history entries are dropped; the total visit count is retained.
+
+## Starting a New Site
+
+Update `DOMAIN_URL`, business details, and `SITE_IMAGES` in `src/config/site-config.ts`. The starter uses the existing logo as its default sharing image. Add routes to `SITE_SLUGS` only after creating their pages; the sitemap and route tests both use that list. Replace the wiki overview and sample page content for the new project.
+
+Edit `src/app/cms/home.ts` to change the homepage heading, description, and link labels/destinations. Its layout stays in `src/app/(main)/page.tsx`; shared branding and metadata defaults stay in `src/config/site-config.ts`. Only the homepage has a content file for now. Design previews keep their sample content alongside their components.
 
 ## Project Layout
 

@@ -26,8 +26,30 @@ interface EmailData {
   message: string
 }
 
-function fillTemplate(template: string, vars: Record<string, string>) {
-  return Object.entries(vars).reduce((t, [key, val]) => t.replaceAll(`{{${key}}}`, val), template)
+const TEMPLATE_VARIABLE = /\{\{(\w+)\}\}/gu
+
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;")
+}
+
+// Substitute once so submitted placeholders and replacement strings remain literal.
+function fillTemplate(template: string, vars: Record<string, string>, format: "html" | "text") {
+  return template.replace(TEMPLATE_VARIABLE, (placeholder: string, key: string) => {
+    if (!Object.hasOwn(vars, key)) {
+      return placeholder
+    }
+    const value = vars[key]
+    if (format === "text") {
+      return value
+    }
+    const escaped = escapeHtml(value)
+    return key === "message" ? escaped.replace(/\r?\n/gu, "<br>") : escaped
+  })
 }
 
 export async function sendEmail(data: EmailData): Promise<boolean> {
@@ -42,11 +64,8 @@ export async function sendEmail(data: EmailData): Promise<boolean> {
       siteName: SITE_NAP.name,
     }
 
-    const html = fillTemplate(htmlTemplate, {
-      ...vars,
-      message: data.message.replace(/\n/gu, "<br>"),
-    })
-    const text = fillTemplate(textTemplate, vars)
+    const html = fillTemplate(htmlTemplate, vars, "html")
+    const text = fillTemplate(textTemplate, vars, "text")
 
     await transporter.sendMail({
       from: process.env.SMTP_USER,

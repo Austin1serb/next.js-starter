@@ -1,13 +1,9 @@
-// biome-ignore lint/correctness/noUndeclaredDependencies: tsconfig maps this alias to generated .zero-ui/attributes.js.
-import { bodyAttributes } from "@zero-ui/attributes"
 import type { Metadata } from "next"
 import { Inter_Tight } from "next/font/google"
 import "./globals.css"
 import { siteGraph } from "@/config/schemas"
-import { DOMAIN_URL, SITE_CONFIG } from "@/config/site-config"
-import { ZeroUiRuntime } from "@/lib/init-zero-runtime"
+import { DOMAIN_URL, SITE_CONFIG, SITE_NAP } from "@/config/site-config"
 import { MotionWrapper } from "@/lib/motion-wrapper"
-import { LazyUi } from "./components/lazy-ui"
 import { PreloadResources } from "./preload-resources"
 
 const displayFont = Inter_Tight({
@@ -29,13 +25,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(DOMAIN_URL),
   title: SITE_CONFIG.title,
   description: SITE_CONFIG.description,
+  openGraph: {
+    images: [...SITE_NAP.images],
+  },
 }
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <MotionWrapper>
         <body
-          {...bodyAttributes}
           className={`${displayFont.variable} ${bodyFont.variable} bg-background font-body text-foreground antialiased`}
         >
           <script
@@ -47,9 +45,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             }}
           />
           <PreloadResources />
-          <LazyUi />
           {children}
-          <ZeroUiRuntime />
         </body>
       </MotionWrapper>
     </html>
