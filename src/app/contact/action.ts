@@ -1,13 +1,9 @@
 "use server"
 
-import { cookies } from "next/headers"
 import { after } from "next/server"
 import type { ZodError } from "zod"
-import { readAttributionState } from "@/attribution/cookies"
-import { toSerbyteAttribution } from "@/attribution/core"
-import { SITE_NAP, SITE_SLUGS } from "@/config/site-config"
+import { SITE_NAP } from "@/config/site-config"
 import { sendEmail, transporter } from "./email-transporter"
-import { sendSerbyteLead } from "./utils/serbyte-leads"
 import { detectSpamKeywords, SPAM_KEYWORDS } from "./utils/spam-detection"
 import { verifyTurnstileToken } from "./utils/turnstile"
 import { type ContactFormData, contactFormSchema } from "./utils/validation"
@@ -96,8 +92,6 @@ export async function submitContactForm(
   }
 
   try {
-    const attribution = readAttributionState(await cookies())
-
     // Send email to owner
     const emailSent = await sendEmail({
       name: result.data.name.trim(),
@@ -115,35 +109,6 @@ export async function submitContactForm(
         message: "Failed to send email. Please try again or call us directly.",
       }
     }
-    // after() lets Next.js keep background delivery alive after the form response.
-    after(async () => {
-      const delivery = await sendSerbyteLead({
-        apiKey: process.env.SERBYTE_API_KEY, // keep this server-side
-        clientId: SITE_NAP.nameSlug,
-        formSlug: "contact",
-        path: SITE_SLUGS.contact,
-        payload: {
-          name: result.data.name.trim(),
-          email: result.data.email.trim(),
-          phone: result.data.phone.trim(),
-          message: result.data.message.trim(),
-          details: {
-            address: result.data.address,
-            referrer: result.data.howDidYouHearAboutUs?.toLowerCase(),
-            attribution: toSerbyteAttribution(attribution),
-            ...(result.data.howDidYouHearAboutUsOther && {
-              referrerOther: result.data.howDidYouHearAboutUsOther?.toLowerCase(),
-            }),
-          },
-        },
-
-        throwOnError: false,
-      })
-      if (!delivery.success) {
-        console.warn("Central lead delivery failed:", delivery.error)
-      }
-    })
-
     return { success: true }
   } catch (error) {
     console.error("Error submitting contact form:", error)

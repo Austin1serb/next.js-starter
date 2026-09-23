@@ -50,7 +50,7 @@ Email delivery uses:
 
 Use `.env.example` as the starting point.
 
-Set `SITE_NAP.email` in `src/config/site-config.ts` to the recipient for production enquiries. Central lead forwarding uses `SERBYTE_API_KEY` and optionally `SERBYTE_LEADS_ENDPOINT`. It runs after the form response, has a 10-second deadline, and logs failures without changing a successful email submission into an error.
+Set `SITE_NAP.email` in `src/config/site-config.ts` to the recipient for production enquiries.
 
 ### Optional Turnstile
 

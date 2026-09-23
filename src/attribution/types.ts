@@ -15,21 +15,3 @@ export type AttributionState = {
   touches: Touch[]
   touchCount: number
 }
-
-export type SerbyteTouch = {
-  source: string | null
-  medium: string | null
-  campaign: string | null
-  term: string | null
-  referrer: string | null
-  landing_path: string | null
-  timestamp: string | null
-  from_ads: boolean
-}
-
-export type SerbyteAttribution = {
-  first_touch: SerbyteTouch | null
-  last_touch: SerbyteTouch | null
-  touches: SerbyteTouch[]
-  session_count: number
-}

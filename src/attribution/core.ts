@@ -1,6 +1,6 @@
 import { DOMAIN_URL } from "@/config/site-config"
 import { PAID_UTM_MEDIA } from "./constants"
-import type { AttributionState, SerbyteAttribution, SerbyteTouch, Touch } from "./types"
+import type { AttributionState, Touch } from "./types"
 
 const HOSTNAME_PREFIX = /^(www|m)\./u
 
@@ -144,36 +144,6 @@ export function buildTouchFromRequest(siteUrl: URL, referrerHeader: string | nul
     landingPath: siteUrl.pathname,
     fromAds: false,
   })
-}
-
-function toSerbyteTouch(touch: Touch | null): SerbyteTouch | null {
-  if (!touch) {
-    return null
-  }
-
-  return {
-    source: touch.source,
-    medium: touch.medium,
-    campaign: touch.campaign,
-    term: touch.term,
-    referrer: touch.referrer,
-    landing_path: touch.landingPath,
-    timestamp: touch.timestamp,
-    from_ads: touch.fromAds,
-  }
-}
-
-export function toSerbyteAttribution(state: AttributionState): SerbyteAttribution {
-  const touches = state.touches
-    .map(toSerbyteTouch)
-    .filter((touch): touch is SerbyteTouch => Boolean(touch))
-
-  return {
-    first_touch: toSerbyteTouch(state.firstTouch),
-    last_touch: toSerbyteTouch(state.lastTouch),
-    touches,
-    session_count: state.touchCount,
-  }
 }
 
 export function toVercelTrackingFields(state: AttributionState): Record<string, string | null> {
