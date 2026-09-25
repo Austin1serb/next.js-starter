@@ -1,3 +1,4 @@
+import type { NextRequest, NextResponse } from "next/server"
 import {
   ATTRIBUTION_COOKIE_MAX_AGE_SECONDS,
   ATTRIBUTION_SESSION_COOKIE_NAME,
@@ -8,6 +9,7 @@ import {
   TOUCH_COUNT_COOKIE_NAME,
   TOUCHES_COOKIE_NAME,
 } from "./constants"
+import { buildTouchFromRequest } from "./core"
 import type { AttributionState, Touch } from "./types"
 
 // Encoded value budgets leave room for names/attributes and keep all attribution
@@ -112,12 +114,12 @@ function parseTouchCount(raw: string | undefined): number | null {
 }
 
 /** JSON cookie value bounded to 1,200 percent-encoded bytes; long text is shortened. */
-export function serializeTouch(touch: Touch): string {
+function serializeTouch(touch: Touch): string {
   return JSON.stringify(fitTouch(touch))
 }
 
 /** Keep the newest touches within 2,400 encoded bytes and the history limit. */
-export function serializeTouches(touches: Touch[]): string {
+function serializeTouches(touches: Touch[]): string {
   const recent = touches.slice(-ATTRIBUTION_TOUCH_HISTORY_LIMIT).map(fitTouch)
   let serialized = JSON.stringify(recent)
   while (encodeURIComponent(serialized).length > HISTORY_VALUE_BYTES) {
@@ -145,7 +147,7 @@ export function readAttributionState(cookieStore: {
   }
 }
 
-export const attributionCookieOptions = {
+const attributionCookieOptions = {
   httpOnly: true,
   path: "/",
   sameSite: "lax" as const,
@@ -153,16 +155,53 @@ export const attributionCookieOptions = {
   maxAge: ATTRIBUTION_COOKIE_MAX_AGE_SECONDS,
 }
 
-export const attributionSessionCookieOptions = {
-  httpOnly: true,
-  path: "/",
-  sameSite: "lax" as const,
-  secure: process.env.NODE_ENV === "production",
+const attributionSessionCookieOptions = {
+  ...attributionCookieOptions,
   maxAge: ATTRIBUTION_SESSION_MAX_AGE_SECONDS,
 }
 
-export function createSessionCookieValue(): string {
-  return Date.now().toString()
+/**
+ * Record one page visit in the response cookies. The caller filters out non-page
+ * requests. Preserve the first touch, count once per session, and repair missing
+ * first/last touches without incrementing an existing session. Cookie lifetimes,
+ * serialization, and history limits are owned here.
+ */
+export function recordAttributionVisit(request: NextRequest, response: NextResponse): void {
+  const hasSession = Boolean(request.cookies.get(ATTRIBUTION_SESSION_COOKIE_NAME)?.value)
+  const currentState = readAttributionState(request.cookies)
+  const nextTouch = buildTouchFromRequest(request.nextUrl, request.headers.get("referer"))
+
+  if (!currentState.firstTouch) {
+    response.cookies.set(
+      FIRST_TOUCH_COOKIE_NAME,
+      serializeTouch(nextTouch),
+      attributionCookieOptions
+    )
+  }
+  if (!hasSession || !currentState.lastTouch) {
+    response.cookies.set(
+      LAST_TOUCH_COOKIE_NAME,
+      serializeTouch(nextTouch),
+      attributionCookieOptions
+    )
+  }
+  if (!hasSession) {
+    response.cookies.set(
+      TOUCHES_COOKIE_NAME,
+      serializeTouches([...currentState.touches, nextTouch]),
+      attributionCookieOptions
+    )
+    response.cookies.set(
+      TOUCH_COUNT_COOKIE_NAME,
+      String(currentState.touchCount + 1),
+      attributionCookieOptions
+    )
+    response.cookies.set(
+      ATTRIBUTION_SESSION_COOKIE_NAME,
+      Date.now().toString(),
+      attributionSessionCookieOptions
+    )
+  }
 }
 
 export {

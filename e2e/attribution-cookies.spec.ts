@@ -1,8 +1,49 @@
 import { Buffer } from "node:buffer"
 import { expect, test } from "@playwright/test"
 import { NextRequest } from "next/server.js"
-import { ATTRIBUTION_SESSION_COOKIE_NAME, readAttributionState } from "@/attribution/cookies"
+import {
+  ATTRIBUTION_SESSION_COOKIE_NAME,
+  FIRST_TOUCH_COOKIE_NAME,
+  LAST_TOUCH_COOKIE_NAME,
+  readAttributionState,
+  TOUCH_COUNT_COOKIE_NAME,
+  TOUCHES_COOKIE_NAME,
+} from "@/attribution/cookies"
 import { proxy } from "@/proxy"
+
+test("an active session repairs missing touches without counting another visit", () => {
+  const response = proxy(
+    new NextRequest("https://example.com/?utm_source=repair", {
+      headers: {
+        cookie: `${ATTRIBUTION_SESSION_COOKIE_NAME}=active; ${TOUCH_COUNT_COOKIE_NAME}=4`,
+      },
+    })
+  )
+  expect(readAttributionState(response.cookies).firstTouch?.source).toBe("repair")
+  expect(readAttributionState(response.cookies).lastTouch?.source).toBe("repair")
+  expect(response.cookies.get(TOUCH_COUNT_COOKIE_NAME)).toBeUndefined()
+  expect(response.cookies.get(TOUCHES_COOKIE_NAME)).toBeUndefined()
+  expect(response.cookies.get(ATTRIBUTION_SESSION_COOKIE_NAME)).toBeUndefined()
+})
+
+test("malformed attribution cookies recover as a fresh visit", () => {
+  const cookie = [
+    FIRST_TOUCH_COOKIE_NAME,
+    LAST_TOUCH_COOKIE_NAME,
+    TOUCHES_COOKIE_NAME,
+    TOUCH_COUNT_COOKIE_NAME,
+  ]
+    .map((name) => `${name}=invalid`)
+    .join("; ")
+  const response = proxy(
+    new NextRequest("https://example.com/?utm_source=recovered", { headers: { cookie } })
+  )
+  const state = readAttributionState(response.cookies)
+  expect(state.touchCount).toBe(1)
+  expect(state.firstTouch?.source).toBe("recovered")
+  expect(state.lastTouch).toEqual(state.firstTouch)
+  expect(state.touches).toEqual([state.firstTouch])
+})
 
 test("history stays within cookie limits while first touch and total visits are preserved", () => {
   const cookies = new Map<string, { value: string }>()

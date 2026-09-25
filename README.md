@@ -52,6 +52,8 @@ Use `.env.example` as the starting point.
 
 Set `SITE_NAP.email` in `src/config/site-config.ts` to the recipient for production enquiries.
 
+Contact validation lives in `src/app/contact/utils/validation.ts`; `field-limits.ts` shares length limits with browser controls. The email module owns message formatting, SMTP configuration, and delivery failures. The action coordinates validation, spam handling, and delivery.
+
 ### Optional Turnstile
 
 The contact form uses `@marsidev/react-turnstile`. Set both `NEXT_PUBLIC_TURNSTILE_SITEKEY` and `TURNSTILE_SECRET` to enable the widget and server verification. If either key is unset or blank, the widget is hidden and the contact action skips CAPTCHA entirely. No code change is needed to opt out.
@@ -62,7 +64,7 @@ The commented pair in `.env.example` is Cloudflare's public test configuration. 
 
 ## Request Attribution
 
-`src/proxy.ts` records first and last attribution touches and starts a 30-minute attribution session. Next.js requires it alongside `src/app`. It handles page GET requests and skips API routes, Next.js internals, file assets, and prefetch requests so background requests do not count as visits.
+`src/proxy.ts` selects page GET requests and delegates visit recording to `src/attribution/cookies.ts`, which owns first/last touches, visit counts, and the 30-minute session. Next.js requires the proxy alongside `src/app`. It skips API routes, Next.js internals, file assets, and prefetch requests so background requests do not count as visits.
 
 Cookie serialization bounds individual touches and the recent history by their encoded size. Oversized text is shortened and older history entries are dropped; the total visit count is retained.
 

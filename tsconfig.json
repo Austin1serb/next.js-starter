@@ -21,8 +21,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@zero-ui/attributes": ["./.zero-ui/attributes.js"]
+      "@/*": ["./src/*"]
     }
   },
   "include": [
@@ -32,7 +31,6 @@
     ".next/**/*.d.ts",
     ".next/dev/types/**/*.ts",
     ".next/types/**/*.ts",
-    ".zero-ui/**/*.d.ts",
     "next-env.d.ts"
   ],
   "exclude": ["node_modules"]

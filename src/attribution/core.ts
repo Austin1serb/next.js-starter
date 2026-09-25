@@ -64,34 +64,10 @@ export function buildTouchFromRequest(siteUrl: URL, referrerHeader: string | nul
   const searchParams = siteUrl.searchParams
   const crossSiteReferrer = getCrossSiteReferrer(referrerHeader, siteUrl)
 
-  const gclid = searchParams.get("gclid")?.trim()
-  if (gclid) {
-    return buildTouch({
-      source: normalizeValue(searchParams.get("utm_source")) ?? "google",
-      medium: normalizeValue(searchParams.get("utm_medium")) ?? "cpc",
-      campaign: normalizeValue(searchParams.get("utm_campaign")),
-      term: normalizeValue(searchParams.get("utm_term")),
-      referrer: crossSiteReferrer,
-      landingPath: siteUrl.pathname,
-      fromAds: true,
-    })
-  }
-
-  const gbraid = searchParams.get("gbraid")?.trim()
-  if (gbraid) {
-    return buildTouch({
-      source: normalizeValue(searchParams.get("utm_source")) ?? "google",
-      medium: normalizeValue(searchParams.get("utm_medium")) ?? "cpc",
-      campaign: normalizeValue(searchParams.get("utm_campaign")),
-      term: normalizeValue(searchParams.get("utm_term")),
-      referrer: crossSiteReferrer,
-      landingPath: siteUrl.pathname,
-      fromAds: true,
-    })
-  }
-
-  const wbraid = searchParams.get("wbraid")?.trim()
-  if (wbraid) {
+  const hasGoogleClickId = ["gclid", "gbraid", "wbraid"].some((key) =>
+    searchParams.get(key)?.trim()
+  )
+  if (hasGoogleClickId) {
     return buildTouch({
       source: normalizeValue(searchParams.get("utm_source")) ?? "google",
       medium: normalizeValue(searchParams.get("utm_medium")) ?? "cpc",

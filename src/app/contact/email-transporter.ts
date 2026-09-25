@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs"
 import { join } from "node:path"
 import * as nodemailer from "nodemailer"
 import { SITE_NAP } from "@/config/site-config"
+import type { ContactFormData } from "./utils/validation"
 
 // Cache templates at module load time
 const templateDir = join(process.cwd(), "src/app/contact/utils")
@@ -15,16 +16,6 @@ export const transporter = nodemailer.createTransport({
   secure: process.env.SMTP_SECURE === "true",
   auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASSWORD },
 })
-
-interface EmailData {
-  name: string
-  email: string
-  phone: string
-  address: string
-  howDidYouHearAboutUs: string
-  howDidYouHearAboutUsOther: string
-  message: string
-}
 
 const TEMPLATE_VARIABLE = /\{\{(\w+)\}\}/gu
 
@@ -52,13 +43,20 @@ function fillTemplate(template: string, vars: Record<string, string>, format: "h
   })
 }
 
-export async function sendEmail(data: EmailData): Promise<boolean> {
+/** Send a validated enquiry, applying display defaults and escaping HTML. Logs and
+ * returns false on delivery failure; callers do not need to catch SMTP errors. */
+export async function sendEmail(data: ContactFormData): Promise<boolean> {
   try {
     const timestamp = new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })
     const vars = {
-      ...data,
-      howDidYouHearAboutUsOther: data.howDidYouHearAboutUsOther
-        ? ` - ${data.howDidYouHearAboutUsOther}`
+      name: data.name.trim(),
+      email: data.email.trim(),
+      phone: data.phone.trim(),
+      address: data.address?.trim() || "Not provided",
+      howDidYouHearAboutUs: data.howDidYouHearAboutUs?.trim() || "Google",
+      message: data.message.trim(),
+      howDidYouHearAboutUsOther: data.howDidYouHearAboutUsOther?.trim()
+        ? ` - ${data.howDidYouHearAboutUsOther.trim()}`
         : "",
       timestamp,
       siteName: SITE_NAP.name,
@@ -70,8 +68,8 @@ export async function sendEmail(data: EmailData): Promise<boolean> {
     await transporter.sendMail({
       from: process.env.SMTP_USER,
       to: process.env.NODE_ENV === "production" ? SITE_NAP.email : process.env.SMTP_USER,
-      replyTo: data.email,
-      subject: `${SITE_NAP.name} - Website Inquiry from ${data.name.charAt(0).toUpperCase()}${data.name.slice(1)}`,
+      replyTo: vars.email,
+      subject: `${SITE_NAP.name} - Website Inquiry from ${vars.name.charAt(0).toUpperCase()}${vars.name.slice(1)}`,
       html,
       text,
     })
@@ -79,5 +77,22 @@ export async function sendEmail(data: EmailData): Promise<boolean> {
   } catch (error) {
     console.error("Error sending email:", error)
     return false
+  }
+}
+
+/** Send a plain-text spam report to the SMTP owner; failures are logged, not thrown. */
+export async function sendSpamNotification(
+  data: Pick<ContactFormData, "name" | "email" | "message">,
+  score: number
+): Promise<void> {
+  try {
+    await transporter.sendMail({
+      from: process.env.SMTP_USER,
+      to: process.env.SMTP_USER,
+      subject: `${SITE_NAP.name} - Spam Detected`,
+      text: `Spam detected: ${score} from ${data.name} <${data.email}> with message: ${data.message}`,
+    })
+  } catch (error) {
+    console.error("Failed to send spam notification:", error)
   }
 }

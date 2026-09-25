@@ -2,8 +2,7 @@
 
 import { after } from "next/server"
 import type { ZodError } from "zod"
-import { SITE_NAP } from "@/config/site-config"
-import { sendEmail, transporter } from "./email-transporter"
+import { sendEmail, sendSpamNotification } from "./email-transporter"
 import { detectSpamKeywords, SPAM_KEYWORDS } from "./utils/spam-detection"
 import { verifyTurnstileToken } from "./utils/turnstile"
 import { type ContactFormData, contactFormSchema } from "./utils/validation"
@@ -12,15 +11,7 @@ export interface ContactFormResult {
   success: boolean
   errors?: Partial<Record<keyof ContactFormData, string>>
   message?: string
-  data?: {
-    name?: string
-    email?: string
-    phone?: string
-    address?: string
-    howDidYouHearAboutUs?: string
-    howDidYouHearAboutUsOther?: string
-    message?: string
-  }
+  data?: Partial<Record<keyof ContactFormData, string>>
 }
 
 function validationFailure(
@@ -75,46 +66,17 @@ export async function submitContactForm(
   // Check for spam keywords in the message (silent detection)
   const spamScore = detectSpamKeywords(result.data.message, SPAM_KEYWORDS)
   if (spamScore >= 2) {
-    after(async () => {
-      try {
-        await transporter.sendMail({
-          from: process.env.SMTP_USER,
-          to: process.env.SMTP_USER,
-          subject: `${SITE_NAP.name} - Spam Detected`,
-          text: `Spam detected: ${spamScore} from ${result.data.name} <${result.data.email}> with message: ${result.data.message}`,
-        })
-      } catch (error) {
-        console.error("Failed to send spam notification:", error)
-      }
-    })
+    after(() => sendSpamNotification(result.data, spamScore))
     // Return success to prevent spammer from knowing they were blocked
     return { success: true }
   }
 
-  try {
-    // Send email to owner
-    const emailSent = await sendEmail({
-      name: result.data.name.trim(),
-      email: result.data.email.trim(),
-      phone: result.data.phone.trim(),
-      address: result.data.address?.trim() || "Not provided",
-      howDidYouHearAboutUs: result.data.howDidYouHearAboutUs?.trim() || "Google",
-      howDidYouHearAboutUsOther: result.data.howDidYouHearAboutUsOther?.trim() || "",
-      message: result.data.message.trim(),
-    })
-
-    if (!emailSent) {
-      return {
-        success: false,
-        message: "Failed to send email. Please try again or call us directly.",
-      }
-    }
-    return { success: true }
-  } catch (error) {
-    console.error("Error submitting contact form:", error)
+  const emailSent = await sendEmail(result.data)
+  if (!emailSent) {
     return {
       success: false,
-      message: "An unexpected error occurred. Please try again later.",
+      message: "Failed to send email. Please try again or call us directly.",
     }
   }
+  return { success: true }
 }

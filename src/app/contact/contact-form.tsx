@@ -3,6 +3,7 @@
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile"
 import { useActionState, useRef, useState } from "react"
 import { type ContactFormResult, submitContactForm } from "./action"
+import { CONTACT_FIELD_LIMITS } from "./utils/field-limits"
 
 const emptyFields = { name: "", email: "", phone: "", message: "" }
 const inputFields = [
@@ -80,8 +81,8 @@ export function ContactForm({ turnstileSiteKey }: { turnstileSiteKey?: string })
             name="message"
             rows={5}
             required
-            minLength={10}
-            maxLength={2000}
+            minLength={CONTACT_FIELD_LIMITS.message.min}
+            maxLength={CONTACT_FIELD_LIMITS.message.max}
             value={fields.message}
             onChange={(event) => setFields({ ...fields, message: event.currentTarget.value })}
             aria-invalid={Boolean(state?.errors?.message)}

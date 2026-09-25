@@ -1,8 +1,47 @@
 import { mock } from "node:test"
 import { expect, test } from "@playwright/test"
-import { sendEmail, transporter } from "@/app/contact/email-transporter"
+import { sendEmail, sendSpamNotification, transporter } from "@/app/contact/email-transporter"
 
 test.afterEach(() => mock.restoreAll())
+
+test("email delivery owns trimming and display defaults for optional fields", async () => {
+  const sendMail = mock.method(transporter, "sendMail", () =>
+    Promise.resolve({ messageId: "test" })
+  )
+  expect(
+    await sendEmail({
+      name: " ada ",
+      email: " ada@example.test ",
+      phone: "202-555-0137",
+      message: " Please contact me. ",
+      howDidYouHearAboutUs: " ",
+    })
+  ).toBe(true)
+  const mail = sendMail.mock.calls[0].arguments[0]
+  expect(mail?.replyTo).toBe("ada@example.test")
+  expect(mail?.subject).toContain("Website Inquiry from Ada")
+  expect(String(mail?.text)).toContain("Not provided")
+  expect(String(mail?.text)).toContain("Google")
+})
+
+test("spam notifications remain plain text and handle SMTP failure internally", async () => {
+  const sendMail = mock.method(transporter, "sendMail", () =>
+    Promise.resolve({ messageId: "test" })
+  )
+  const data = { name: "Ada", email: "ada@example.test", message: "<b>Sample message</b>" }
+  await sendSpamNotification(data, 2)
+  const mail = sendMail.mock.calls[0].arguments[0]
+  expect(mail?.html).toBeUndefined()
+  expect(mail?.text).toBe(
+    "Spam detected: 2 from Ada <ada@example.test> with message: <b>Sample message</b>"
+  )
+  sendMail.mock.mockImplementation(() => Promise.reject(new Error("SMTP unavailable")))
+  const log = mock.method(console, "error", () => {
+    // Assert the failure is reported without rejecting the background task.
+  })
+  await expect(sendSpamNotification(data, 2)).resolves.toBeUndefined()
+  expect(log.mock.callCount()).toBe(1)
+})
 
 test("email HTML escapes submitted values while plain text stays literal", async () => {
   const sendMail = mock.method(transporter, "sendMail", () =>
