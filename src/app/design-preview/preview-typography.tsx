@@ -66,10 +66,7 @@ export function PreviewTypography() {
 
           <ul className="mt-10 space-y-8">
             {scale.map((row) => (
-              <li
-                key={row.label}
-                className="border-border flex flex-col gap-2 border-b pb-6"
-              >
+              <li key={row.label} className="border-border flex flex-col gap-2 border-b pb-6">
                 <div className="flex items-baseline justify-between gap-4">
                   <span className="text-caption text-muted-foreground font-mono">{row.label}</span>
                   <span className="text-caption text-muted-foreground font-mono">

@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useRef } from "react"export type MatrixFxProps = {
+import { useEffect, useRef } from "react"
+export type MatrixFxProps = {
   /** Tailwind classes for color (text-*), opacity, and stacking. */
   className?: string
   /** Any CSS color, including variables. Defaults to the inherited text color. */
