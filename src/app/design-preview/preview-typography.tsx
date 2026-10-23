@@ -51,28 +51,28 @@ export function PreviewTypography() {
       <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <TokenLabel>Type scale · font-display · font-body</TokenLabel>
-          <h2 className="mt-4 font-display text-foreground text-title">
+          <h2 className="font-display text-foreground text-title mt-4">
             A clamp-based scale that breathes with the viewport.
           </h2>
-          <p className="mt-4 max-w-prose text-body text-muted-foreground">
+          <p className="text-body text-muted-foreground mt-4 max-w-prose">
             Every size scales fluidly between mobile and desktop using{" "}
-            <code className="rounded-sm bg-surface px-1.5 py-0.5 text-body-sm">clamp()</code>.
+            <code className="bg-surface text-body-sm rounded-sm px-1.5 py-0.5">clamp()</code>.
             Display sizes use{" "}
-            <code className="rounded-sm bg-surface px-1.5 py-0.5 text-body-sm">font-display</code>
+            <code className="bg-surface text-body-sm rounded-sm px-1.5 py-0.5">font-display</code>
             {";"}
             everything else uses{" "}
-            <code className="rounded-sm bg-surface px-1.5 py-0.5 text-body-sm">font-body</code>.
+            <code className="bg-surface text-body-sm rounded-sm px-1.5 py-0.5">font-body</code>.
           </p>
 
           <ul className="mt-10 space-y-8">
             {scale.map((row) => (
               <li
                 key={row.label}
-                className="flex flex-col gap-2 border-border border-b pb-6 last:border-b-0"
+                className="border-border flex flex-col gap-2 border-b pb-6"
               >
                 <div className="flex items-baseline justify-between gap-4">
-                  <span className="font-mono text-caption text-muted-foreground">{row.label}</span>
-                  <span className="font-mono text-caption text-muted-foreground">
+                  <span className="text-caption text-muted-foreground font-mono">{row.label}</span>
+                  <span className="text-caption text-muted-foreground font-mono">
                     {row.range}px
                   </span>
                 </div>
@@ -84,37 +84,37 @@ export function PreviewTypography() {
           </ul>
         </div>
 
-        <aside className="h-fit rounded-xl border border-border bg-surface p-8 shadow-sm">
-          <p className="font-mono text-caption text-muted-foreground uppercase tracking-wider">
+        <aside className="border-border bg-surface h-fit rounded-xl border p-8 shadow-sm">
+          <p className="text-caption text-muted-foreground font-mono tracking-wider uppercase">
             Sample article
           </p>
-          <h3 className="mt-3 font-display text-foreground text-subtitle">
+          <h3 className="font-display text-foreground text-subtitle mt-3">
             How we think about typography
           </h3>
 
-          <p className="mt-4 text-body text-muted-foreground">
+          <p className="text-body text-muted-foreground mt-4">
             Good type is invisible. The reader should glide through a paragraph without noticing the
             seams between sizes, weights, and spacing. Seven roles cover hero headings, titles,
             subtitles, leads, body copy, small copy, and captions. Let{" "}
             <a
               href="#"
-              className="text-primary underline-offset-4 hover:text-primary/90 hover:underline"
+              className="text-primary hover:text-primary/90 underline-offset-4 hover:underline"
             >
               token composition
             </a>{" "}
             do the rest.
           </p>
 
-          <blockquote className="mt-6 border-primary border-l-4 pl-4 text-foreground text-subtitle italic">
+          <blockquote className="border-primary text-foreground text-subtitle mt-6 border-l-4 pl-4 italic">
             “Restraint at the token layer buys freedom at the page layer.”
           </blockquote>
 
-          <p className="mt-6 text-body text-muted-foreground">
+          <p className="text-body text-muted-foreground mt-6">
             Caption text - the smallest size in the scale - is reserved for metadata, eyebrow
             labels, and form helpers. Don’t reach for it just because something “feels small.”
           </p>
 
-          <p className="mt-6 text-body-sm text-muted-foreground">- Updated May 2026 · 4 min read</p>
+          <p className="text-body-sm text-muted-foreground mt-6">- Updated May 2026 · 4 min read</p>
         </aside>
       </div>
     </Section>

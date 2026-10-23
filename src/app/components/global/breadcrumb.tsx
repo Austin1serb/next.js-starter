@@ -54,12 +54,12 @@ export function Breadcrumb({ items, children, className }: BreadcrumbProps) {
 
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
         <nav aria-label="Breadcrumbs">
-          <ol className="flex flex-wrap items-center gap-1 text-caption">
+          <ol className="text-caption flex flex-wrap items-center gap-1">
             <li className="flex items-center">
               <Link
                 href={SITE_SLUGS.home}
                 title="Home"
-                className="flex items-center text-muted-foreground transition-colors hover:text-primary"
+                className="text-muted-foreground hover:text-primary flex items-center transition-colors"
                 aria-label="Home"
               >
                 Home
@@ -83,13 +83,13 @@ export function Breadcrumb({ items, children, className }: BreadcrumbProps) {
                   />
 
                   {isLast || !item.href ? (
-                    <span aria-current="page" className="font-medium text-foreground">
+                    <span aria-current="page" className="text-foreground font-medium">
                       {item.label}
                     </span>
                   ) : (
                     <Link
                       href={item.href}
-                      className="text-muted-foreground transition-colors hover:text-primary"
+                      className="text-muted-foreground hover:text-primary transition-colors"
                       aria-label={item.label}
                     >
                       {item.label}

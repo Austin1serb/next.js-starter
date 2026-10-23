@@ -30,12 +30,15 @@ export const SITE_NAP = {
   email: "",
   phone: "+1123456789",
   formattedPhone: "+1 (123) 456-789",
-  address: "123 Street",
-  addressLink: "https://goo.gl/maps/",
+  streetAddress: "123 Street",
+  mapsUrl: "https://goo.gl/maps/",
   city: "City",
   state: "State",
   stateCode: "ST",
   zipCode: "12345",
+  get fullAddress(): string {
+    return `${SITE_NAP.streetAddress}, ${SITE_NAP.city}, ${SITE_NAP.stateCode} ${SITE_NAP.zipCode}`
+  },
   geo: { latitude: 40.7128, longitude: -74.006 },
   areaServed: ["City", "Nearby City"],
   foundingYear: 1984,

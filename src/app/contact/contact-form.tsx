@@ -47,7 +47,7 @@ export function ContactForm({ turnstileSiteKey }: { turnstileSiteKey?: string })
       <fieldset disabled={pending} className="space-y-5 disabled:opacity-60">
         {inputFields.map((field) => (
           <div key={field.name} className="space-y-2">
-            <label htmlFor={`contact-${field.name}`} className="block font-medium text-body-sm">
+            <label htmlFor={`contact-${field.name}`} className="text-body-sm block font-medium">
               {field.label}
             </label>
             <input
@@ -73,7 +73,7 @@ export function ContactForm({ turnstileSiteKey }: { turnstileSiteKey?: string })
         ))}
 
         <div className="space-y-2">
-          <label htmlFor="contact-message" className="block font-medium text-body-sm">
+          <label htmlFor="contact-message" className="text-body-sm block font-medium">
             Message
           </label>
           <textarea
@@ -136,7 +136,7 @@ export function ContactForm({ turnstileSiteKey }: { turnstileSiteKey?: string })
         <button
           type="submit"
           disabled={pending || Boolean(turnstileSiteKey && !token)}
-          className="rounded-md bg-primary px-5 py-2.5 font-medium text-body-sm text-primary-foreground transition hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          className="bg-primary text-body-sm text-primary-foreground hover:bg-primary/90 focus-visible:outline-primary rounded-md px-5 py-2.5 font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {pending ? "Sending…" : "Send message"}
         </button>

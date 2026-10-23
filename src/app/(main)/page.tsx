@@ -18,17 +18,17 @@ const Home: React.FC = () => {
         {homeContent.heading.text} <br />
         <a
           href={homeContent.heading.link.href}
-          className="text-primary transition-colors hover:text-primary/90"
+          className="text-primary hover:text-primary/90 transition-colors"
         >
           {homeContent.heading.link.label}
         </a>
       </h1>
-      <p className="mt-6 max-w-2xl text-base text-foreground/80 sm:text-lg">
+      <p className="text-foreground/80 mt-6 max-w-2xl text-base sm:text-lg">
         {homeContent.description}
       </p>
       <Link
         href={homeContent.cta.href}
-        className="text-primary transition-colors hover:text-primary/90"
+        className="text-primary hover:text-primary/90 transition-colors"
       >
         {homeContent.cta.label}
       </Link>

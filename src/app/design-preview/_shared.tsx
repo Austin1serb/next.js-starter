@@ -31,7 +31,7 @@ type TokenLabelProps = {
 
 export function TokenLabel({ children }: TokenLabelProps) {
   return (
-    <p className="font-mono text-caption text-muted-foreground uppercase tracking-wider">
+    <p className="text-caption text-muted-foreground font-mono tracking-wider uppercase">
       {children}
     </p>
   )

@@ -16,11 +16,9 @@ test.describe("Validate metadata", () => {
 
       const title = await page.title()
       const description = await page.evaluate(() =>
-        // biome-ignore lint/security/noSecrets: Public metadata selector, not a credential.
         document.querySelector('meta[name="description"]')?.getAttribute("content")
       )
       const canonical = await page.evaluate(() =>
-        // biome-ignore lint/security/noSecrets: Public metadata selector, not a credential.
         document.querySelector('link[rel="canonical"]')?.getAttribute("href")
       )
       const canonicalUrl = canonical ? new URL(canonical) : null

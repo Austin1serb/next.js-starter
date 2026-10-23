@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   experimental: {
     useTypeScriptCli: true,
   },
+  cacheComponents: true,
   reactCompiler: true,
   images: {
     formats: ["image/avif", "image/webp"],

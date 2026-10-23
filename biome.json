@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.14/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.6.2/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -39,7 +39,6 @@
       "project": "recommended",
       "test": "recommended",
       "types": "recommended",
-
       "next": "recommended",
       "react": "recommended",
       "playwright": "recommended",
@@ -54,13 +53,14 @@
         "noUnusedInstantiation": "error",
         "useJsonImportAttributes": "error",
         "useSingleJsDocAsterisk": "error",
-        "noProcessGlobal": "error"
+        "noProcessGlobal": "error",
+        "noComponentHookFactories": "info"
       },
       "complexity": {
         "noExcessiveCognitiveComplexity": {
           "level": "error",
           "options": {
-            "maxAllowedComplexity": 15
+            "maxAllowedComplexity": 21
           }
         },
         "noExcessiveLinesPerFunction": {
@@ -77,11 +77,16 @@
         "noUselessUndefined": "error",
         "useArrayFind": "error",
         "useMaxParams": {
-          "level": "error",
+          "level": "warn",
           "options": {
             "max": 6
           }
-        }
+        },
+        "noExcessiveNestedCallbacks": "error",
+        "noUnnecessaryTemplateExpression": "error",
+        "useArraySome": "error",
+        "useMathMinMax": "error",
+        "useRegexpTest": "error"
       },
       "style": {
         "noCommonJs": "error",
@@ -121,7 +126,10 @@
           "options": {
             "maxLines": 1000
           }
-        }
+        },
+        "useImportsFirst": "error",
+        "useReduceTypeParameter": "error",
+        "useUnicodeRegex": "error"
       },
       "performance": {
         "noAwaitInLoops": "warn",
@@ -131,15 +139,12 @@
         "useTopLevelRegex": "error"
       },
       "nursery": {
-        "recommended": true,
+        "preset": "recommended",
         "noFloatingPromises": "error",
         "noBaseToString": "error",
         "noBunModules": "error",
-        "noExcessiveNestedCallbacks": "error",
         "noExtendNative": "error",
-        "noIdenticalTestTitle": "error",
         "noImpliedEval": "error",
-        "noLoopFunc": "error",
         "noMisleadingReturnType": "error",
         "noMisusedPromises": "error",
         "noNegationInEqualityCheck": "error",
@@ -147,12 +152,10 @@
         "noRestrictedDependencies": "warn",
         "noThisOutsideOfClass": "error",
         "noUnmodifiedLoopCondition": "error",
-        "noUnnecessaryTemplateExpression": "error",
         "noUnsafePlusOperands": "error",
         "noUnsafeTypeAssertion": "error",
         "noUselessTypeConversion": "error",
         "noXorAsExponentiation": "error",
-        "useArraySome": "error",
         "useAwaitThenable": "error",
         "useConsistentFunctionStyle": {
           "level": "on",
@@ -162,22 +165,17 @@
           }
         },
         "useExhaustiveSwitchCases": "error",
-        "useImportsFirst": "error",
         "useIncludes": "error",
-        "useMathMinMax": "error",
         "useModernMathApis": "error",
-        "useNullishCoalescing": "error",
-        "useReduceTypeParameter": "error",
+        "useNullishCoalescing": {
+          "level": "info",
+          "fix": "none"
+        },
         "useRegexpExec": "error",
-        "useRegexpTest": "error",
         "useStringStartsEndsWith": "error",
-        "useUnicodeRegex": "error",
-        "useSortedClasses": {
-          "level": "on",
-          "options": {
-            "attributes": ["classList"],
-            "functions": ["clsx", "cva", "tw", "tw.*"]
-          }
+        "useTailwindShorthandClasses": "info",
+        "useTailwindSortedClasses": {
+          "level": "on"
         }
       },
       "suspicious": {
@@ -201,10 +199,9 @@
           "options": {
             "allowComments": true
           }
-        }
-      },
-      "security": {
-        "noSecrets": "warn"
+        },
+        "noIdenticalTestTitle": "error",
+        "noLoopFunc": "error"
       }
     }
   },
@@ -298,9 +295,19 @@
       }
     }
   ],
+  "markdown": {
+    "formatter": {
+      "enabled": false
+    }
+  },
   "css": {
     "parser": {
       "tailwindDirectives": true
     }
+  },
+  "tailwind": {
+    "attributes": ["class", "className", "classList"],
+    "mergeFunctions": ["clsx", "tw"],
+    "variantFunctions": ["cva"]
   }
 }

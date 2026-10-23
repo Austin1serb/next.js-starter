@@ -32,10 +32,10 @@ export function PreviewFeatureGrid() {
     <Section background="background">
       <div className="max-w-2xl">
         <TokenLabel>Surface · muted · border · primary/10 · primary/20</TokenLabel>
-        <h2 className="mt-4 font-display text-foreground text-title">
+        <h2 className="font-display text-foreground text-title mt-4">
           Cards sit on background. Surfaces sit on cards.
         </h2>
-        <p className="mt-4 text-body text-muted-foreground">
+        <p className="text-body text-muted-foreground mt-4">
           The difference between background and surface is what makes a layout feel layered without
           resorting to drop shadows everywhere.
         </p>
@@ -47,16 +47,16 @@ export function PreviewFeatureGrid() {
           return (
             <article
               key={feature.title}
-              className={`rounded-xl border border-border p-6 shadow-sm ${feature.surface === "surface" ? "bg-surface" : "bg-muted"}`}
+              className={`border-border rounded-xl border p-6 shadow-sm ${feature.surface === "surface" ? "bg-surface" : "bg-muted"}`}
             >
-              <div className="flex size-10 items-center justify-center rounded-md border border-primary/20 bg-primary/10 text-primary">
+              <div className="border-primary/20 bg-primary/10 text-primary flex size-10 items-center justify-center rounded-md border">
                 <Icon size={20} />
               </div>
-              <h3 className="mt-5 font-display text-foreground text-subtitle">{feature.title}</h3>
-              <p className="mt-2 text-body text-muted-foreground">{feature.body}</p>
+              <h3 className="font-display text-foreground text-subtitle mt-5">{feature.title}</h3>
+              <p className="text-body text-muted-foreground mt-2">{feature.body}</p>
               <a
                 href="#"
-                className="mt-4 inline-flex items-center gap-1.5 text-body-sm text-primary underline-offset-4 hover:text-primary/90 hover:underline"
+                className="text-body-sm text-primary hover:text-primary/90 mt-4 inline-flex items-center gap-1.5 underline-offset-4 hover:underline"
               >
                 Explore {feature.title} <ArrowRight size={14} />
               </a>

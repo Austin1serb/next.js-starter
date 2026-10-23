@@ -1,7 +1,7 @@
 export function PreviewNav() {
   return (
-    <header className="border-border border-b bg-surface">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <header className="border-border bg-surface border-b">
+      <div className="mx-auto flex max-w-7xl items-center justify-between p-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-8">
           <a href="#" className="font-display text-foreground text-subtitle">
             Acme
@@ -9,25 +9,25 @@ export function PreviewNav() {
           <nav className="hidden items-center gap-6 md:flex">
             <a
               href="#"
-              className="text-body-sm text-muted-foreground transition hover:text-foreground"
+              className="text-body-sm text-muted-foreground hover:text-foreground transition"
             >
               Product
             </a>
             <a
               href="#"
-              className="text-body-sm text-muted-foreground transition hover:text-foreground"
+              className="text-body-sm text-muted-foreground hover:text-foreground transition"
             >
               Pricing
             </a>
             <a
               href="#"
-              className="text-body-sm text-muted-foreground transition hover:text-foreground"
+              className="text-body-sm text-muted-foreground hover:text-foreground transition"
             >
               Docs
             </a>
             <a
               href="#"
-              className="text-body-sm text-muted-foreground transition hover:text-foreground"
+              className="text-body-sm text-muted-foreground hover:text-foreground transition"
             >
               Changelog
             </a>
@@ -37,7 +37,7 @@ export function PreviewNav() {
         <div className="flex items-center gap-4">
           <a
             href="#"
-            className="hidden text-body-sm text-primary underline-offset-4 hover:text-primary/90 hover:underline sm:inline"
+            className="text-body-sm text-primary hover:text-primary/90 hidden underline-offset-4 hover:underline sm:inline"
           >
             Sign in
           </a>

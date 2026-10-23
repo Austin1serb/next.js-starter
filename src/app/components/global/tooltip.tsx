@@ -36,13 +36,13 @@ export function Tooltip({ label, children, className }: Props) {
         aria-label={label}
         aria-expanded={open}
         onClick={() => setOpen((previous) => !previous)}
-        className="rounded-full p-0.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30"
+        className="text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:ring-accent/30 rounded-full p-0.5 transition-colors focus-visible:ring-2 focus-visible:outline-none"
       >
-        <IconInfoCircle className="h-3.5 w-3.5" />
+        <IconInfoCircle className="size-3.5" />
       </button>
 
       {open && (
-        <span className="absolute top-7 left-0 z-20 w-64 rounded-lg border border-border bg-background p-3 text-muted-foreground text-xs leading-5 shadow-lg">
+        <span className="border-border bg-background text-muted-foreground absolute top-7 left-0 z-20 w-64 rounded-lg border p-3 text-xs leading-5 shadow-lg">
           {children}
         </span>
       )}

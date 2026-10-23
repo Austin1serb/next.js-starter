@@ -43,15 +43,15 @@ const navigateLinks: { label: string; href: string; external?: boolean }[] = [
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="mt-10 bg-inverse text-inverse-foreground">
+    <footer className="bg-inverse text-inverse-foreground mt-10">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-[1.5fr_repeat(3,1fr)]">
           {/* Brand */}
           <div className="h-card">
-            <span className="block p-name font-display text-inverse-foreground text-subtitle">
+            <span className="p-name font-display text-inverse-foreground text-subtitle block">
               {SITE_CONFIG.title}
             </span>
-            <p className="mt-3 max-w-xs text-body-sm text-inverse-foreground/60">
+            <p className="text-body-sm text-inverse-foreground/60 mt-3 max-w-xs">
               {SITE_CONFIG.description}
             </p>
 
@@ -67,7 +67,7 @@ export const Footer: React.FC = () => {
                       title={social.label}
                       target="_blank"
                       rel="nofollow noopener noreferrer"
-                      className="flex size-9 items-center justify-center rounded-full text-inverse-foreground/60 transition hover:bg-inverse-foreground/10 hover:text-inverse-foreground"
+                      className="text-inverse-foreground/60 hover:bg-inverse-foreground/10 hover:text-inverse-foreground flex size-9 items-center justify-center rounded-full transition"
                     >
                       <Icon size={16} strokeWidth={1} />
                     </Link>
@@ -79,7 +79,7 @@ export const Footer: React.FC = () => {
 
           {/* Navigate */}
           <div>
-            <p className="font-mono text-caption text-inverse-foreground/60 uppercase tracking-wider">
+            <p className="text-caption text-inverse-foreground/60 font-mono tracking-wider uppercase">
               Navigate
             </p>
             <ul className="mt-4 space-y-2">
@@ -90,7 +90,7 @@ export const Footer: React.FC = () => {
                     {...(link.external
                       ? { target: "_blank", rel: "nofollow noopener noreferrer" }
                       : {})}
-                    className="text-body-sm text-inverse-foreground/70 transition hover:text-inverse-foreground"
+                    className="text-body-sm text-inverse-foreground/70 hover:text-inverse-foreground transition"
                   >
                     {link.label}
                   </Link>
@@ -101,14 +101,14 @@ export const Footer: React.FC = () => {
 
           {/* Contact (h-card microformats preserved) */}
           <div className="h-card">
-            <p className="font-mono text-caption text-inverse-foreground/60 uppercase tracking-wider">
+            <p className="text-caption text-inverse-foreground/60 font-mono tracking-wider uppercase">
               Contact
             </p>
             <ul className="mt-4 space-y-2">
               <li>
                 <Link
                   href={`tel:${SITE_NAP.phone}`}
-                  className="p-tel text-body-sm text-inverse-foreground/70 transition hover:text-inverse-foreground"
+                  className="p-tel text-body-sm text-inverse-foreground/70 hover:text-inverse-foreground transition"
                   aria-label={`Call ${SITE_CONFIG.title} in ${SITE_NAP.city} at ${SITE_NAP.formattedPhone}`}
                 >
                   {SITE_NAP.formattedPhone}
@@ -117,7 +117,7 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   href={`mailto:${SITE_NAP.email}`}
-                  className="u-email text-body-sm text-inverse-foreground/70 transition hover:text-inverse-foreground"
+                  className="u-email text-body-sm text-inverse-foreground/70 hover:text-inverse-foreground transition"
                   aria-label={`Email ${SITE_CONFIG.title} at ${SITE_NAP.email}`}
                 >
                   {SITE_NAP.email}
@@ -129,9 +129,9 @@ export const Footer: React.FC = () => {
                   target="_blank"
                   rel="nofollow noopener noreferrer"
                   aria-label="View our location on Google Maps"
-                  className="block p-adr text-body-sm text-inverse-foreground/70 leading-relaxed transition hover:text-inverse-foreground"
+                  className="p-adr text-body-sm text-inverse-foreground/70 hover:text-inverse-foreground block leading-relaxed transition"
                 >
-                  <span className="p-street-address">{SITE_NAP.address}</span>
+                  <span className="p-street-address">{SITE_NAP.streetAddress}</span>
                   <br />
                   <span className="p-locality">{SITE_NAP.city}</span>,{" "}
                   <span className="p-region">{SITE_NAP.stateCode}</span>{" "}
@@ -143,17 +143,17 @@ export const Footer: React.FC = () => {
 
           {/* Hours */}
           <div>
-            <p className="font-mono text-caption text-inverse-foreground/60 uppercase tracking-wider">
+            <p className="text-caption text-inverse-foreground/60 font-mono tracking-wider uppercase">
               Hours
             </p>
             <ul className="mt-4 space-y-2">
               {SITE_NAP.openingHours.map(({ days, hours }) => (
                 <li
                   key={days}
-                  className="flex justify-between gap-3 text-body-sm text-inverse-foreground/70"
+                  className="text-body-sm text-inverse-foreground/70 flex justify-between gap-3"
                 >
                   <span className="text-nowrap">{days}</span>
-                  <span className="text-nowrap text-inverse-foreground/90">{hours}</span>
+                  <span className="text-inverse-foreground/90 text-nowrap">{hours}</span>
                 </li>
               ))}
             </ul>
@@ -161,7 +161,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col gap-4 border-border/20 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-border/20 mt-12 flex flex-col gap-4 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-caption text-inverse-foreground/50">
             © {year} {SITE_CONFIG.title} · Website by{" "}
             <Link
@@ -169,7 +169,7 @@ export const Footer: React.FC = () => {
               title="Seattle Web Design & SEO | Serbyte Development"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-inverse-foreground/70 underline-offset-4 hover:text-inverse-foreground hover:underline"
+              className="text-inverse-foreground/70 hover:text-inverse-foreground underline-offset-4 hover:underline"
             >
               Serbyte Development
             </Link>
@@ -179,7 +179,7 @@ export const Footer: React.FC = () => {
             <Link
               href={SITE_SLUGS.privacy}
               title={`Privacy Policy | ${SITE_CONFIG.title}`}
-              className="text-caption text-inverse-foreground/60 transition hover:text-inverse-foreground"
+              className="text-caption text-inverse-foreground/60 hover:text-inverse-foreground transition"
             >
               Privacy Policy
             </Link>
@@ -189,7 +189,7 @@ export const Footer: React.FC = () => {
             <Link
               href={SITE_SLUGS.terms}
               title={`Terms of Service | ${SITE_CONFIG.title}`}
-              className="text-caption text-inverse-foreground/60 transition hover:text-inverse-foreground"
+              className="text-caption text-inverse-foreground/60 hover:text-inverse-foreground transition"
             >
               Terms of Service
             </Link>

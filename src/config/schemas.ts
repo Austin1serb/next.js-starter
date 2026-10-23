@@ -15,7 +15,7 @@ export const localBusinessSchema = {
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
-    streetAddress: SITE_NAP.address,
+    streetAddress: SITE_NAP.streetAddress,
     addressLocality: SITE_NAP.city,
     addressRegion: SITE_NAP.stateCode,
     postalCode: SITE_NAP.zipCode,
@@ -59,7 +59,7 @@ export const organizationSchema: WithContext<Organization> = {
   telephone: SITE_NAP.phone,
   address: {
     "@type": "PostalAddress",
-    streetAddress: SITE_NAP.address,
+    streetAddress: SITE_NAP.streetAddress,
     addressLocality: SITE_NAP.city,
     addressRegion: SITE_NAP.stateCode,
     postalCode: SITE_NAP.zipCode,
